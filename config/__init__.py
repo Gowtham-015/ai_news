@@ -98,17 +98,19 @@ def validate_config():
         raise ValueError(
             "\n\n"
             "========================================\n"
-            " CONFIGURATION ERROR\n"
+            " GITHUB ACTIONS CONFIGURATION ERROR\n"
             "========================================\n"
-            f"Missing required value(s) in your .env file: {missing_list}\n\n"
+            f"Missing required secret value(s): {missing_list}\n\n"
             "How to fix this:\n"
-            "1. Make sure a file named '.env' exists in the project folder.\n"
-            "2. Open it and make sure both of these lines are filled in:\n"
-            "   TELEGRAM_BOT_TOKEN=your_actual_token_here\n"
-            "   TELEGRAM_CHANNEL_ID=your_actual_channel_id_here\n"
-            "3. Save the file and run the program again.\n"
+            "1. Open your GitHub Repository Secrets page:\n"
+            "   https://github.com/Gowtham-015/ai_news/settings/secrets/actions\n"
+            "2. Click 'New repository secret' and add:\n"
+            "   - TELEGRAM_BOT_TOKEN\n"
+            "   - TELEGRAM_CHANNEL_ID\n"
+            "3. Save the secrets and re-run the workflow.\n"
             "========================================\n"
         )
+
 
     print("[config] Configuration loaded successfully. (Token hidden for security)")
 
