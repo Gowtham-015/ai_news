@@ -33,6 +33,12 @@ HIGH_IMPORTANCE_KEYWORDS = {
     "winner", "oscars", "record", "surges", "dead", "killed", "crash", "investigation"
 }
 
+INDIA_PRIORITY_KEYWORDS = {
+    "india", "indian", "isro", "delhi", "mumbai", "bengaluru", "chennai", "kolkata",
+    "ipl", "bcci", "hockey", "cricket", "chandrayaan", "gaganyaan", "upi", "made in india",
+    "gdp", "modi", "sensex", "nifty", "bharat", "pakistan", "win", "victory", "defeats"
+}
+
 
 class NewsRanker:
     def __init__(self):
@@ -89,7 +95,7 @@ class NewsRanker:
 
     def calculate_importance_score(self, cluster: Dict) -> float:
         """
-        Calculates Importance Score (0 to 100) based on topic keywords and source authority.
+        Calculates Importance Score (0 to 100) based on topic keywords, India priority boost, and source authority.
         """
         topic = cluster.get("topic", "").lower()
         base = 60.0
@@ -99,10 +105,14 @@ class NewsRanker:
         matched = words.intersection(HIGH_IMPORTANCE_KEYWORDS)
         keyword_boost = min(25.0, len(matched) * 12.0)
 
+        # India news & development priority boost
+        india_matched = words.intersection(INDIA_PRIORITY_KEYWORDS)
+        india_boost = 15.0 if india_matched else 0.0
+
         # Source count boost
         confirm_boost = min(15.0, (cluster.get("source_count", 1) - 1) * 7.5)
 
-        return min(100.0, base + keyword_boost + confirm_boost)
+        return min(100.0, base + keyword_boost + india_boost + confirm_boost)
 
     def calculate_composite_score(self, cluster: Dict) -> tuple[float, dict]:
         """

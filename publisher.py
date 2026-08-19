@@ -130,6 +130,160 @@ async def _publish_text_async(text: str) -> bool:
         return False
 
 
+import html
+from datetime import datetime, timezone, timedelta
+
+def format_html_post(post: dict) -> str:
+    """
+    Safely formats a post dictionary into clean, professional Telegram HTML.
+    Supports breaking news header, category branding, summary, '📌 Why it matters:',
+    timestamp in IST, source attribution, and validated clickable source link.
+    """
+    is_breaking = post.get("is_breaking") or post.get("score", 0) >= getattr(config, "BREAKING_NEWS_SCORE_THRESHOLD", 90)
+    category_raw = str(post.get("category", "NEWS")).upper()
+    
+    emoji_map = {
+        "NEWS": "📰",
+        "TECHNOLOGY": "💻",
+        "SPORTS": "🏏",
+        "ENTERTAINMENT": "🎬"
+    }
+    cat_emoji = emoji_map.get(category_raw, "📰")
+    
+    header = "🚨 <b>BREAKING NEWS</b>" if is_breaking else f"<b>{cat_emoji} {category_raw}</b>"
+    
+    title = html.escape(post.get("title", "").replace("🔥 ", "").strip())
+    raw_summary = post.get("summary") or post.get("content") or post.get("description", "")
+    if "📰 Source:" in raw_summary:
+        raw_summary = raw_summary.split("📰 Source:")[0].strip()
+    if "🔗 Read More:" in raw_summary:
+        raw_summary = raw_summary.split("🔗 Read More:")[0].strip()
+    summary = html.escape(raw_summary.strip())
+    why_it_matters = html.escape(post.get("why_it_matters", "").strip())
+
+    
+    sources_list = post.get("sources_list") or []
+    if sources_list:
+        sources_str = html.escape(", ".join(sources_list))
+    else:
+        sources_str = html.escape(post.get("source", "Unknown Source").strip())
+        
+    url = post.get("original_url") or post.get("url", "")
+    if url and not (url.startswith("http://") or url.startswith("https://")):
+        url = ""
+        
+    pub_time = post.get("published_at") or post.get("scheduled_time")
+    dt = None
+    if pub_time:
+        try:
+            from news_collector import parse_published_time
+            dt = parse_published_time(str(pub_time))
+        except Exception:
+            pass
+    if not dt:
+        dt = datetime.now(timezone.utc)
+        
+    ist_dt = dt.astimezone(timezone(timedelta(hours=5, minutes=30)))
+    time_str = ist_dt.strftime("%I:%M %p IST")
+
+
+    parts = [header, ""]
+    if title:
+        parts.append(f"<b>{title}</b>\n")
+    if summary:
+        parts.append(f"{summary}\n")
+    if why_it_matters:
+        parts.append(f"📌 <b>Why it matters:</b>\n{why_it_matters}\n")
+        
+    parts.append(f"🏷️ <b>Category:</b> {category_raw.capitalize()}")
+    parts.append(f"🕒 <b>Published:</b> {time_str}")
+    parts.append(f"📰 <b>Source:</b> {sources_str}")
+    
+    if url:
+        parts.append(f"\n🔗 <a href=\"{url}\">Read full story</a>")
+        
+    return "\n".join(parts)
+
+
+async def _publish_post_async(post: dict) -> bool:
+    """
+    Publishes a post dictionary, attempting video or photo publishing first if available,
+    with automatic fallback to text message if media publishing fails.
+    """
+    bot = _build_bot()
+    video_url = post.get("video_url") or post.get("video", "")
+    image_url = post.get("image_url") or post.get("image", "")
+    
+    formatted_html = format_html_post(post)
+    parse_mode = "HTML"
+
+    if video_url and (video_url.startswith("http://") or video_url.startswith("https://")):
+        try:
+            logger.info("[TELEGRAM] Attempting video publish (Video: %s)", video_url[:60])
+            await bot.send_video(
+                chat_id=config.TELEGRAM_CHANNEL_ID,
+                video=video_url,
+                caption=formatted_html[:1024],
+                parse_mode=parse_mode
+            )
+            return True
+        except Exception as vid_err:
+            logger.warning("[TELEGRAM] Video publish failed (%s). Falling back to photo/text.", vid_err)
+    
+    if image_url and (image_url.startswith("http://") or image_url.startswith("https://")):
+        try:
+            logger.info("[TELEGRAM] Attempting photo publish (Image: %s)", image_url[:60])
+            await bot.send_photo(
+                chat_id=config.TELEGRAM_CHANNEL_ID,
+                photo=image_url,
+                caption=formatted_html[:1024],
+                parse_mode=parse_mode
+            )
+            return True
+        except Exception as img_err:
+            logger.warning("[TELEGRAM] Photo publish failed (%s). Falling back to text-only.", img_err)
+
+
+    try:
+        await bot.send_message(
+            chat_id=config.TELEGRAM_CHANNEL_ID,
+            text=formatted_html[:4096],
+            parse_mode=parse_mode,
+            disable_web_page_preview=False
+        )
+        return True
+    except BadRequest as e:
+        logger.warning("[TELEGRAM] HTML parse failed (%s). Retrying plain text.", e)
+        try:
+            # Strip HTML tags as ultimate safety fallback
+            clean_text = post.get("title", "") + "\n\n" + (post.get("content") or post.get("description", ""))
+            await bot.send_message(
+                chat_id=config.TELEGRAM_CHANNEL_ID,
+                text=clean_text[:4096]
+            )
+            return True
+        except Exception as fallback_err:
+            logger.error("[TELEGRAM] Plain text fallback failed: %s", fallback_err)
+            return False
+    except Exception as e:
+        logger.error("[TELEGRAM] Message publish failed: %s", e)
+        return False
+
+
+
+def publish_post(post: dict) -> bool:
+    """
+    Synchronous entry point to publish a post dictionary safely.
+    """
+    try:
+        config.validate_config()
+    except ValueError as e:
+        logger.error("Publish failed: %s", e)
+        return False
+
+    return asyncio.run(_publish_post_async(post))
+
+
 def publish_text(text: str) -> bool:
     """
     Synchronous entry point used by scheduler.py.
@@ -145,3 +299,4 @@ def publish_text(text: str) -> bool:
         return False
 
     return asyncio.run(_publish_text_async(text))
+

@@ -554,11 +554,13 @@ def test_reg10_scheduler_publishes_according_to_scheduled_times_not_all_at_once(
         json.dump(posts_data, f)
         
     with mock.patch.object(scheduler, "POSTS_FILE", posts_file):
-        with mock.patch.object(publisher, "publish_text", return_value=True) as mock_pub:
+        with mock.patch.object(publisher, "publish_text", return_value=True) as mock_pub_text, mock.patch.object(publisher, "publish_post", return_value=True) as mock_pub_post:
             with mock.patch.object(deduplicator, "record_published_history") as mock_rec:
                 scheduler.check_and_publish()
                 
-                assert mock_pub.call_count == 1, f"Expected exactly 1 publish call for due post, got {mock_pub.call_count}"
+                total_calls = mock_pub_text.call_count + mock_pub_post.call_count
+                assert total_calls == 1, f"Expected exactly 1 publish call for due post, got {total_calls}"
+
                 
                 updated = scheduler.load_posts()
                 p101 = [p for p in updated if p["id"] == 101][0]

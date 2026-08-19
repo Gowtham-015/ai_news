@@ -129,6 +129,25 @@ def is_quality_article(article: dict, max_age_hours: int = 24) -> bool:
     return True
 
 
+def enhance_image_url(url: str) -> str:
+    """
+    Transforms low-res thumbnail image URLs into crisp, high-definition full-size image URLs.
+    """
+    if not url:
+        return ""
+    
+    # 1. WordPress / TechCrunch / Variety thumbnail stripping: e.g. image-300x200.jpg -> image.jpg
+    url = re.sub(r'-\d{3,4}x\d{3,4}\.(jpg|jpeg|png|webp)', r'.\1', url, flags=re.IGNORECASE)
+    
+    # 2. BBC News image upscaler: e.g. /news/240/ -> /news/1024/
+    url = re.sub(r'/(news|cpsprodpb|vpid)/(\d{2,3})/', r'/\1/1024/', url, flags=re.IGNORECASE)
+    
+    # 3. Query string dimension upscaling: e.g. ?w=150 -> ?w=1200
+    url = re.sub(r'([?&](?:w|width|size|resize)=)\d+', r'\11200', url, flags=re.IGNORECASE)
+    
+    return url
+
+
 def parse_entry(entry: dict, source_name: str, category: str) -> dict | None:
     """
     Standardizes an RSS entry into a consistent data model.
@@ -165,22 +184,41 @@ def parse_entry(entry: dict, source_name: str, category: str) -> dict | None:
         published_at = datetime.now(timezone.utc).isoformat()
 
     image_url = ""
+    video_url = ""
+
     if hasattr(entry, "media_content") and entry.media_content:
         for media in entry.media_content:
-            if isinstance(media, dict) and "url" in media:
-                image_url = media["url"]
-                break
+            if isinstance(media, dict):
+                m_url = media.get("url", "")
+                m_type = media.get("type", "")
+                m_medium = media.get("medium", "")
+                if (m_medium == "video" or m_type.startswith("video/")) and not video_url:
+                    video_url = m_url
+                elif (m_medium == "image" or m_type.startswith("image/") or not m_type) and not image_url:
+                    image_url = m_url
+
     if not image_url and hasattr(entry, "media_thumbnail") and entry.media_thumbnail:
         for thumb in entry.media_thumbnail:
             if isinstance(thumb, dict) and "url" in thumb:
                 image_url = thumb["url"]
                 break
-    if not image_url and hasattr(entry, "enclosures") and entry.enclosures:
+
+    if hasattr(entry, "enclosures") and entry.enclosures:
         for enc in entry.enclosures:
-            if getattr(enc, "type", "").startswith("image/") or enc.get("type", "").startswith("image/"):
-                image_url = getattr(enc, "href", "") or enc.get("href", "")
-                if image_url:
-                    break
+            enc_type = getattr(enc, "type", "") or enc.get("type", "")
+            enc_href = getattr(enc, "href", "") or enc.get("href", "")
+            if enc_type.startswith("video/") and not video_url:
+                video_url = enc_href
+            elif enc_type.startswith("image/") and not image_url:
+                image_url = enc_href
+
+    if not image_url and description:
+        img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', description, re.IGNORECASE)
+        if img_match:
+            image_url = img_match.group(1)
+
+    if image_url:
+        image_url = enhance_image_url(image_url)
 
     article_id = getattr(entry, "id", "") or entry.get("id", "")
     if not article_id:
@@ -195,7 +233,9 @@ def parse_entry(entry: dict, source_name: str, category: str) -> dict | None:
         "category": category,
         "published_at": published_at,
         "image_url": image_url,
+        "video_url": video_url,
     }
+
 
 
 def fetch_feed(feed_info: dict) -> list[dict]:

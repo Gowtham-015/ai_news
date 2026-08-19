@@ -139,9 +139,13 @@ def check_and_publish():
         if scheduled_dt > now:
             continue
 
-        logger.info("Publishing post %s", post_id)
-        text = format_post_message(post)
-        success = publisher.publish_text(text)
+        logger.info("[TELEGRAM] Publishing post %s", post_id)
+        if hasattr(publisher, "publish_post") and isinstance(post, dict):
+            success = publisher.publish_post(post)
+        else:
+            text = format_post_message(post)
+            success = publisher.publish_text(text)
+
 
         if success:
             post["status"] = "published"

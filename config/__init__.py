@@ -93,22 +93,36 @@ TREND_WEIGHT = float(os.getenv("TREND_WEIGHT", "0.15"))
 CONFIRMATION_WEIGHT = float(os.getenv("CONFIRMATION_WEIGHT", "0.10"))
 CATEGORY_WEIGHT = float(os.getenv("CATEGORY_WEIGHT", "0.10"))
 
+# Phase 7 Frequency Control & Category Balancing Defaults
+MAX_POSTS_PER_HOUR = int(os.getenv("MAX_POSTS_PER_HOUR", "4"))
+MAX_POSTS_PER_DAY = int(os.getenv("MAX_POSTS_PER_DAY", "30"))
+MIN_POST_INTERVAL_MINUTES = int(os.getenv("MIN_POST_INTERVAL_MINUTES", "15"))
+MAX_POSTS_PER_CATEGORY_PER_DAY = int(os.getenv("MAX_POSTS_PER_CATEGORY_PER_DAY", "10"))
+
 DEFAULT_SOURCE_SCORE = int(os.getenv("DEFAULT_SOURCE_SCORE", "70"))
+SOURCE_TIERS = {
+    "Tier 1": ["BBC News", "Reuters", "AP News", "BBC Sport"],
+    "Tier 2": ["TechCrunch", "Wired", "Variety", "ESPN", "Hollywood Reporter", "NDTV News", "Times of India"],
+    "Tier 3": ["E! Online", "The Verge"]
+}
+
 SOURCE_SCORES = {
     "BBC News": 90,
     "Reuters": 95,
     "AP News": 95,
-    "TechCrunch": 85,
     "BBC Sport": 90,
-    "Variety": 85,
+    "TechCrunch": 85,
     "Wired": 85,
-    "The Verge": 80,
-    "NDTV News": 80,
-    "Times of India": 80,
+    "Variety": 85,
     "ESPN": 85,
     "Hollywood Reporter": 85,
+    "NDTV News": 80,
+    "Times of India": 80,
+    "The Verge": 80,
     "E! Online": 75,
 }
+
+
 
 
 def validate_score_weights() -> bool:

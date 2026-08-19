@@ -150,18 +150,22 @@ Return ONLY a JSON object with this exact format:
 
         headline = ai_result.get("headline", title).strip()
         summary = ai_result.get("summary", description).strip()
-
-        content_text = f"{summary}\n\n📰 Source: {source}\n\n🔗 Read More: {url}"
+        why_it_matters = ai_result.get("why_it_matters", "").strip()
 
         post_data = {
             "category": category_name,
-            "title": f"🔥 {headline}",
-            "content": content_text,
+            "title": headline,
+            "summary": summary,
+            "content": summary,
+            "why_it_matters": why_it_matters,
             "original_url": url,
+            "url": url,
+            "image_url": article.get("image_url", ""),
             "source_article_id": article.get("id", ""),
             "source": source,
             "published_at": article.get("published_at", "")
         }
+
 
         return post_data
 

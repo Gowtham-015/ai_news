@@ -151,26 +151,36 @@ class StateManager:
         self.is_locked_by_me = False
 
     def load_state(self) -> dict:
-        """Loads runtime state from data/agent_state.json."""
+        """Loads runtime state from data/agent_state.json with default statistics."""
+        defaults = {
+            "status": "stopped",
+            "started_at": None,
+            "last_collection_at": None,
+            "next_collection_at": None,
+            "last_successful_collection_at": None,
+            "queue_size": 0,
+            "published_count": 0,
+            "articles_collected_total": 0,
+            "duplicates_removed_total": 0,
+            "stories_clustered_total": 0,
+            "posts_published_total": 0,
+            "failed_posts_total": 0,
+            "ai_calls_total": 0,
+            "category_distribution": {"NEWS": 0, "TECHNOLOGY": 0, "SPORTS": 0, "ENTERTAINMENT": 0},
+            "last_error": None
+        }
         if not self.state_path.exists():
-            return {
-                "status": "stopped",
-                "started_at": None,
-                "last_collection_at": None,
-                "next_collection_at": None,
-                "last_successful_collection_at": None,
-                "queue_size": 0,
-                "published_count": 0,
-                "last_error": None
-            }
+            return defaults
         try:
             with open(self.state_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 if isinstance(data, dict):
-                    return data
+                    defaults.update(data)
+                    return defaults
         except Exception as e:
             logger.error("Failed to read state file %s: %s", self.state_path, e)
-        return {"status": "unknown"}
+        return defaults
+
 
     def update_state(self, **kwargs):
         """
