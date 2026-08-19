@@ -105,8 +105,12 @@ def execute_pipeline(
         active_hist_path = None
 
     try:
+        if not test_mode:
+            config.validate_config()
+
         if max_per_category is None:
             max_per_category = getattr(config, "POSTS_PER_CATEGORY", 2)
+
         if test_mode:
             max_per_category = 1
 
