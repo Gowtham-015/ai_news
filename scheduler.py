@@ -159,9 +159,12 @@ def check_and_publish():
             except Exception as e:
                 logger.error("Failed to record published history for post %s: %s", post_id, e)
         else:
-            err_msg = f"Failed to publish post {post_id} to Telegram. Verify TELEGRAM_BOT_TOKEN and channel admin permissions."
+            err_msg = f"Failed to publish post {post_id} to Telegram. Marking status='failed'."
             logger.error(err_msg)
-            raise RuntimeError(err_msg)
+            post["status"] = "failed"
+            post["failed_time"] = now.strftime(DATETIME_FORMAT)
+            changed = True
+
 
 
     if changed:

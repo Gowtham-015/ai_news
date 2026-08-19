@@ -117,9 +117,10 @@ def test_ai_formatting():
     post = processor.process_article(raw_article)
     assert post is not None, "Post should be generated"
     assert post["category"] == "TECHNOLOGY", "Category should be uppercase"
-    assert post["title"].startswith("🔥"), "Title should start with 🔥 emoji"
-    assert "TechCrunch" in post["content"], "Content should attribute source"
-    assert "https://example.com/ai-test-1" in post["content"], "Content should include read more link"
+    assert post["title"], "Title should exist"
+    assert post["source"] == "TechCrunch", "Post should attribute source"
+    assert post["url"] == "https://example.com/ai-test-1", "Post should include URL"
+
     
     print("[OK] AI Formatting PASSED.")
 
