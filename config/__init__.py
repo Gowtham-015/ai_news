@@ -18,11 +18,14 @@ def _sanitize_val(val: str | None, key_name: str) -> str | None:
     val = val.strip().strip('"').strip("'")
     if "=" in val and val.split("=", 1)[0].strip().upper() in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHANNEL_ID", "BOT_KEYFILE", "SECRETFILE", "GEMINI_API_KEY", "AI_API_KEY", "KEY"):
         val = val.split("=", 1)[1].strip().strip('"').strip("'")
+    if key_name == "TELEGRAM_CHANNEL_ID" and val.isdigit():
+        val = f"-100{val}"
     return val
 
 TELEGRAM_BOT_TOKEN = _sanitize_val(os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("BOT_KEYFILE"), "TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL_ID = _sanitize_val(os.getenv("TELEGRAM_CHANNEL_ID") or os.getenv("SECRETFILE"), "TELEGRAM_CHANNEL_ID")
 GEMINI_API_KEY = _sanitize_val(os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY"), "GEMINI_API_KEY")
+
 
 
 # Phase 3 Configuration Defaults
