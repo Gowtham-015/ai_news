@@ -1,0 +1,144 @@
+"""
+config package initializer
+---------------------------
+Combines environment secrets configuration (.env loading) with RSS feed configurations
+and Phase 5 Intelligent Ranking settings.
+"""
+
+import os
+from dotenv import load_dotenv
+
+from config.feeds import FEEDS
+
+load_dotenv()
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHANNEL_ID = os.getenv("TELEGRAM_CHANNEL_ID")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY")
+
+# Phase 3 Configuration Defaults
+MAX_NEWS_AGE_HOURS = int(os.getenv("MAX_NEWS_AGE_HOURS", "24"))
+POSTS_PER_CATEGORY = int(os.getenv("POSTS_PER_CATEGORY", "2"))
+
+# Phase 4 Autonomous & Reliability Settings
+NEWS_COLLECTION_INTERVAL_MINUTES = int(os.getenv("NEWS_COLLECTION_INTERVAL_MINUTES", "30"))
+MAX_QUEUE_SIZE = int(os.getenv("MAX_QUEUE_SIZE", "20"))
+MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
+RETRY_DELAY_SECONDS = int(os.getenv("RETRY_DELAY_SECONDS", "10"))
+HEARTBEAT_INTERVAL_MINUTES = int(os.getenv("HEARTBEAT_INTERVAL_MINUTES", "10"))
+
+# Phase 5 Intelligent Ranking & Trend Detection Settings
+ENABLE_INTELLIGENT_RANKING = os.getenv("ENABLE_INTELLIGENT_RANKING", "true").lower() == "true"
+ENABLE_TREND_DETECTION = os.getenv("ENABLE_TREND_DETECTION", "true").lower() == "true"
+ENABLE_AI_RANKING = os.getenv("ENABLE_AI_RANKING", "true").lower() == "true"
+
+AI_RANKING_TOP_N = int(os.getenv("AI_RANKING_TOP_N", "10"))
+BREAKING_NEWS_SCORE_THRESHOLD = int(os.getenv("BREAKING_NEWS_SCORE_THRESHOLD", "90"))
+ALLOW_MAJOR_STORY_UPDATES = os.getenv("ALLOW_MAJOR_STORY_UPDATES", "true").lower() == "true"
+
+# Ranking Score Weights (Must sum to 1.0)
+FRESHNESS_WEIGHT = float(os.getenv("FRESHNESS_WEIGHT", "0.25"))
+SOURCE_WEIGHT = float(os.getenv("SOURCE_WEIGHT", "0.20"))
+IMPORTANCE_WEIGHT = float(os.getenv("IMPORTANCE_WEIGHT", "0.20"))
+TREND_WEIGHT = float(os.getenv("TREND_WEIGHT", "0.15"))
+CONFIRMATION_WEIGHT = float(os.getenv("CONFIRMATION_WEIGHT", "0.10"))
+CATEGORY_WEIGHT = float(os.getenv("CATEGORY_WEIGHT", "0.10"))
+
+DEFAULT_SOURCE_SCORE = int(os.getenv("DEFAULT_SOURCE_SCORE", "70"))
+SOURCE_SCORES = {
+    "BBC News": 90,
+    "Reuters": 95,
+    "AP News": 95,
+    "TechCrunch": 85,
+    "BBC Sport": 90,
+    "Variety": 85,
+    "Wired": 85,
+    "The Verge": 80,
+    "NDTV News": 80,
+    "Times of India": 80,
+    "ESPN": 85,
+    "Hollywood Reporter": 85,
+    "E! Online": 75,
+}
+
+
+def validate_score_weights() -> bool:
+    """Validates that score weights total exactly 1.0."""
+    total = (
+        FRESHNESS_WEIGHT
+        + SOURCE_WEIGHT
+        + IMPORTANCE_WEIGHT
+        + TREND_WEIGHT
+        + CONFIRMATION_WEIGHT
+        + CATEGORY_WEIGHT
+    )
+    if round(total, 4) != 1.0:
+        raise ValueError(f"Ranking weights must sum to 1.0 (current sum: {total:.4f})")
+    return True
+
+
+# Run validation at module import
+validate_score_weights()
+
+
+def validate_config():
+    """
+    Checks that required environment variables exist in .env.
+    """
+    missing = []
+
+    if not TELEGRAM_BOT_TOKEN:
+        missing.append("TELEGRAM_BOT_TOKEN")
+
+    if not TELEGRAM_CHANNEL_ID:
+        missing.append("TELEGRAM_CHANNEL_ID")
+
+    if missing:
+        missing_list = ", ".join(missing)
+        raise ValueError(
+            "\n\n"
+            "========================================\n"
+            " CONFIGURATION ERROR\n"
+            "========================================\n"
+            f"Missing required value(s) in your .env file: {missing_list}\n\n"
+            "How to fix this:\n"
+            "1. Make sure a file named '.env' exists in the project folder.\n"
+            "2. Open it and make sure both of these lines are filled in:\n"
+            "   TELEGRAM_BOT_TOKEN=your_actual_token_here\n"
+            "   TELEGRAM_CHANNEL_ID=your_actual_channel_id_here\n"
+            "3. Save the file and run the program again.\n"
+            "========================================\n"
+        )
+
+    print("[config] Configuration loaded successfully. (Token hidden for security)")
+
+
+__all__ = [
+    "FEEDS",
+    "TELEGRAM_BOT_TOKEN",
+    "TELEGRAM_CHANNEL_ID",
+    "GEMINI_API_KEY",
+    "MAX_NEWS_AGE_HOURS",
+    "POSTS_PER_CATEGORY",
+    "NEWS_COLLECTION_INTERVAL_MINUTES",
+    "MAX_QUEUE_SIZE",
+    "MAX_RETRIES",
+    "RETRY_DELAY_SECONDS",
+    "HEARTBEAT_INTERVAL_MINUTES",
+    "ENABLE_INTELLIGENT_RANKING",
+    "ENABLE_TREND_DETECTION",
+    "ENABLE_AI_RANKING",
+    "AI_RANKING_TOP_N",
+    "BREAKING_NEWS_SCORE_THRESHOLD",
+    "ALLOW_MAJOR_STORY_UPDATES",
+    "FRESHNESS_WEIGHT",
+    "SOURCE_WEIGHT",
+    "IMPORTANCE_WEIGHT",
+    "TREND_WEIGHT",
+    "CONFIRMATION_WEIGHT",
+    "CATEGORY_WEIGHT",
+    "DEFAULT_SOURCE_SCORE",
+    "SOURCE_SCORES",
+    "validate_score_weights",
+    "validate_config",
+]

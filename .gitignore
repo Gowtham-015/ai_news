@@ -1,0 +1,22 @@
+# Never commit secrets
+.env
+
+# Python virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Runtime logs and lock files
+*.log
+logs/*.log
+data/*.lock
+
+# Editor/OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+
