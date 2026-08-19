@@ -31,8 +31,9 @@ import config
 from config.feeds import FEEDS
 from retry_manager import retry_with_backoff
 
-LOG_DIR = Path(__file__).parent / "logs"
-LOG_DIR.mkdir(exist_ok=True)
+LOG_DIR = getattr(config, "LOG_DIR_PATH", Path(__file__).parent / "logs")
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
 
 logger = logging.getLogger("news_collector")
 if not logger.handlers:

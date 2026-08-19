@@ -24,9 +24,10 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
 
-DATA_DIR = Path(__file__).parent / "data"
-DATA_DIR.mkdir(exist_ok=True)
-CACHE_FILE = DATA_DIR / "trend_cache.json"
+DATA_DIR = getattr(config, "DATA_DIR_PATH", Path(__file__).parent / "data")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+CACHE_FILE = getattr(config, "TREND_CACHE_FILE", DATA_DIR / "trend_cache.json")
+
 
 
 class TrendDetector:

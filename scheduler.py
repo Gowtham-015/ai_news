@@ -24,11 +24,14 @@ from zoneinfo import ZoneInfo
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
+import config
 import publisher
 import deduplicator
 
+
 TIMEZONE = ZoneInfo("Asia/Kolkata")
-POSTS_FILE = Path(__file__).parent / "posts.json"
+POSTS_FILE = getattr(config, "POSTS_FILE", Path(__file__).parent / "data" / "posts.json")
+
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 CHECK_INTERVAL_SECONDS = 30
 

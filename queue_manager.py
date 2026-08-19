@@ -29,7 +29,8 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
 
-POSTS_FILE = Path(__file__).parent / "posts.json"
+POSTS_FILE = getattr(config, "POSTS_FILE", Path(__file__).parent / "data" / "posts.json")
+
 
 
 class QueueManager:

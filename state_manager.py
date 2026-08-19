@@ -28,12 +28,13 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
 
-DATA_DIR = Path(__file__).parent / "data"
-DATA_DIR.mkdir(exist_ok=True)
+DATA_DIR = getattr(config, "DATA_DIR_PATH", Path(__file__).parent / "data")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-LOCK_FILE = DATA_DIR / "agent.lock"
-STATE_FILE = DATA_DIR / "agent_state.json"
+LOCK_FILE = getattr(config, "LOCK_FILE", DATA_DIR / "agent.lock")
+STATE_FILE = getattr(config, "AGENT_STATE_FILE", DATA_DIR / "agent_state.json")
 TASK_NAME = "AI News Automation Agent"
+
 
 
 def is_process_running(pid: int) -> bool:

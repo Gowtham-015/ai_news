@@ -28,9 +28,12 @@ if not logger.handlers:
     handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
     logger.addHandler(handler)
 
-DATA_DIR = Path(__file__).parent / "data"
-DATA_DIR.mkdir(exist_ok=True)
-PUBLISHED_NEWS_FILE = DATA_DIR / "published_news.json"
+import config
+
+DATA_DIR = getattr(config, "DATA_DIR_PATH", Path(__file__).parent / "data")
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+PUBLISHED_NEWS_FILE = getattr(config, "PUBLISHED_NEWS_FILE", DATA_DIR / "published_news.json")
+
 
 
 def normalize_url(url: str) -> str:

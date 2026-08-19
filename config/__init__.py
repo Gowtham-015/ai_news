@@ -28,9 +28,46 @@ GEMINI_API_KEY = _sanitize_val(os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_
 
 
 
+from pathlib import Path
+import shutil
+
+BASE_DIR = Path(__file__).parent.parent.resolve()
+
+DATA_DIR_PATH = Path(os.getenv("DATA_DIR", BASE_DIR / "data")).resolve()
+LOG_DIR_PATH = Path(os.getenv("LOG_DIR", BASE_DIR / "logs")).resolve()
+
+POSTS_FILE = DATA_DIR_PATH / "posts.json"
+AGENT_STATE_FILE = DATA_DIR_PATH / "agent_state.json"
+COLLECTED_NEWS_FILE = DATA_DIR_PATH / "collected_news.json"
+PUBLISHED_NEWS_FILE = DATA_DIR_PATH / "published_news.json"
+TREND_CACHE_FILE = DATA_DIR_PATH / "trend_cache.json"
+LOCK_FILE = DATA_DIR_PATH / "agent.lock"
+
+
+def ensure_data_dir_and_migrate():
+    """
+    Ensures DATA_DIR_PATH and LOG_DIR_PATH exist.
+    If root posts.json exists and DATA_DIR/posts.json does NOT exist:
+    migrates/copies root posts.json to DATA_DIR/posts.json safely.
+    """
+    DATA_DIR_PATH.mkdir(parents=True, exist_ok=True)
+    LOG_DIR_PATH.mkdir(parents=True, exist_ok=True)
+
+    root_posts = BASE_DIR / "posts.json"
+    target_posts = POSTS_FILE
+
+    if root_posts.exists() and not target_posts.exists():
+        try:
+            shutil.copy2(root_posts, target_posts)
+            print(f"[config] Migrated root posts.json to {target_posts}")
+        except Exception as e:
+            print(f"[config] Failed to copy root posts.json to data dir: {e}")
+
+
 # Phase 3 Configuration Defaults
 MAX_NEWS_AGE_HOURS = int(os.getenv("MAX_NEWS_AGE_HOURS", "24"))
 POSTS_PER_CATEGORY = int(os.getenv("POSTS_PER_CATEGORY", "2"))
+
 
 # Phase 4 Autonomous & Reliability Settings
 NEWS_COLLECTION_INTERVAL_MINUTES = int(os.getenv("NEWS_COLLECTION_INTERVAL_MINUTES", "30"))
@@ -132,6 +169,15 @@ __all__ = [
     "TELEGRAM_BOT_TOKEN",
     "TELEGRAM_CHANNEL_ID",
     "GEMINI_API_KEY",
+    "DATA_DIR_PATH",
+    "LOG_DIR_PATH",
+    "POSTS_FILE",
+    "AGENT_STATE_FILE",
+    "COLLECTED_NEWS_FILE",
+    "PUBLISHED_NEWS_FILE",
+    "TREND_CACHE_FILE",
+    "LOCK_FILE",
+    "ensure_data_dir_and_migrate",
     "MAX_NEWS_AGE_HOURS",
     "POSTS_PER_CATEGORY",
     "NEWS_COLLECTION_INTERVAL_MINUTES",
@@ -156,3 +202,4 @@ __all__ = [
     "validate_score_weights",
     "validate_config",
 ]
+
