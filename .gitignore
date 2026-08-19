@@ -8,15 +8,19 @@ venv/
 __pycache__/
 *.pyc
 
-# Runtime logs and lock files
+# Runtime logs, locks, and cache data
 *.log
 logs/*.log
 data/*.lock
+data/agent_state.json
+data/collected_news.json
+data/trend_cache.json
 
 # Editor/OS junk
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+
 
 
