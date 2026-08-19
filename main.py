@@ -303,6 +303,9 @@ def execute_pipeline(
         logger.error("Pipeline execution failed: %s", e)
         if not test_mode:
             state_mgr.update_state(last_error=str(e))
+        if instant_schedule or not state_mgr.is_locked_by_me:
+            raise e
+
     finally:
         _collection_in_progress = False
 

@@ -152,7 +152,10 @@ def check_and_publish():
             except Exception as e:
                 logger.error("Failed to record published history for post %s: %s", post_id, e)
         else:
-            logger.error("Failed to publish post %s. Will retry on next cycle.", post_id)
+            err_msg = f"Failed to publish post {post_id} to Telegram. Verify TELEGRAM_BOT_TOKEN and channel admin permissions."
+            logger.error(err_msg)
+            raise RuntimeError(err_msg)
+
 
     if changed:
         try:
