@@ -215,7 +215,8 @@ def execute_pipeline(
 
         # STEP 9: Category-Aware Selection
         print("\n[9] Category-Aware Selection...")
-        category_needs = active_queue_mgr.calculate_category_needs(target_per_cat=max_per_category)
+        category_needs = active_queue_mgr.calculate_category_needs(target_per_cat=max_per_category, instant_schedule=instant_schedule)
+
 
         selected_clusters = []
         selected_by_cat = {}

@@ -78,13 +78,17 @@ class QueueManager:
                     counts[cat] = 1
         return counts
 
-    def calculate_category_needs(self, target_per_cat: int = None) -> dict:
+    def calculate_category_needs(self, target_per_cat: int = None, instant_schedule: bool = False) -> dict:
         """
         Calculates how many additional articles are needed per category
         to achieve balanced category representation.
+        In instant_schedule/cron mode, requests target_per_cat articles per category.
         """
         if target_per_cat is None:
             target_per_cat = getattr(config, "POSTS_PER_CATEGORY", 2)
+
+        if instant_schedule:
+            return {"NEWS": target_per_cat, "TECHNOLOGY": target_per_cat, "SPORTS": target_per_cat, "ENTERTAINMENT": target_per_cat}
 
         queued_counts = self.get_queued_counts()
         needed = {}
@@ -136,9 +140,14 @@ class QueueManager:
                 seen_titles.add(normalize_title(item["title"]))
 
         # Check existing scheduled count
-        scheduled_posts = [p for p in existing_posts if p.get("status") == "scheduled"]
-        scheduled_count = len(scheduled_posts)
-        available_slots = max(0, max_queue_size - scheduled_count)
+        if instant_schedule:
+            scheduled_posts = []
+            scheduled_count = 0
+            available_slots = max_queue_size
+        else:
+            scheduled_posts = [p for p in existing_posts if p.get("status") == "scheduled"]
+            scheduled_count = len(scheduled_posts)
+            available_slots = max(0, max_queue_size - scheduled_count)
 
         logger.info("[QUEUE] Selected %d candidate articles", len(new_posts))
         logger.info("[QUEUE] Existing queue size: %d scheduled posts (Max limit: %d)", scheduled_count, max_queue_size)
@@ -170,6 +179,7 @@ class QueueManager:
             start_dt = latest_scheduled_dt + timedelta(minutes=interval_minutes)
         else:
             start_dt = now_tz + timedelta(minutes=interval_minutes)
+
 
 
         existing_ids = [p.get("id") for p in existing_posts if isinstance(p.get("id"), int)]
