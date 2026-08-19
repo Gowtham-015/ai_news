@@ -99,12 +99,14 @@ class QueueManager:
         self,
         new_posts: list[dict],
         max_queue_size: int = None,
-        history_filepath: Path = None
+        history_filepath: Path = None,
+        instant_schedule: bool = False
     ) -> int:
         """
         Adds new AI-generated posts to posts.json safely.
         - Enforces MAX_QUEUE_SIZE limit.
         - Calculates spaced FUTURE schedule times (e.g. 30 mins apart) continuing after existing scheduled posts.
+        - If instant_schedule is True, starts schedule times immediately at current time for cron/on-demand publishing.
         - Prevents queuing duplicate URLs/titles.
         - Returns number of new posts added.
         """
@@ -162,10 +164,13 @@ class QueueManager:
             except Exception:
                 pass
 
-        if latest_scheduled_dt and latest_scheduled_dt > now_tz:
+        if instant_schedule:
+            start_dt = now_tz
+        elif latest_scheduled_dt and latest_scheduled_dt > now_tz:
             start_dt = latest_scheduled_dt + timedelta(minutes=interval_minutes)
         else:
             start_dt = now_tz + timedelta(minutes=interval_minutes)
+
 
         existing_ids = [p.get("id") for p in existing_posts if isinstance(p.get("id"), int)]
         next_id = (max(existing_ids) + 1) if existing_ids else 1

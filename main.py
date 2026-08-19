@@ -76,7 +76,9 @@ def execute_pipeline(
     dry_run: bool = False,
     test_mode: bool = False,
     rank_test: bool = False,
+    instant_schedule: bool = False,
 ):
+
     """
     Executes the Phase 5 intelligent news automation pipeline safely.
     Queues posts to posts.json with future schedule times without publishing directly.
@@ -266,14 +268,16 @@ def execute_pipeline(
                 state_mgr.update_state(status="running" if state_mgr.is_locked_by_me else "idle")
             return
 
-        # STEP 11: Queue Management (posts.json with future schedule times)
-        print("\n[11] Adding posts to queue with future scheduled times...")
+        # STEP 11: Queue Management (posts.json)
+        print("\n[11] Adding posts to queue...")
         added_count = active_queue_mgr.add_posts_to_queue(
             generated_posts,
             max_queue_size=getattr(config, "MAX_QUEUE_SIZE", 20),
-            history_filepath=active_hist_path if test_mode else None
+            history_filepath=active_hist_path if test_mode else None,
+            instant_schedule=instant_schedule
         )
         print(f"[OK] Posts added to queue: {added_count}")
+
 
         if not test_mode:
             interval_mins = getattr(config, "NEWS_COLLECTION_INTERVAL_MINUTES", 30)
@@ -423,7 +427,8 @@ def main():
             max_per_category=args.max_per_cat,
             dry_run=args.dry_run,
             test_mode=args.test,
-            rank_test=args.rank_test
+            rank_test=args.rank_test,
+            instant_schedule=True
         )
         scheduler.check_and_publish()
     else:
@@ -433,6 +438,7 @@ def main():
             test_mode=args.test,
             rank_test=args.rank_test
         )
+
 
 
 if __name__ == "__main__":
