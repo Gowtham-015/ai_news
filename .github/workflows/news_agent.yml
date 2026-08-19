@@ -1,0 +1,36 @@
+name: Autonomous AI News Automation Agent
+
+on:
+  schedule:
+    # Runs automatically every 30 minutes on GitHub Cloud
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI anytime
+
+jobs:
+  run-news-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11 Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Autonomous AI News Pipeline
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NEWS_COLLECTION_INTERVAL_MINUTES: "30"
+          MAX_QUEUE_SIZE: "20"
+          POSTS_PER_CATEGORY: "2"
+        run: |
+          python main.py --cron
