@@ -316,6 +316,31 @@ def run_daemon():
     if not state_mgr.acquire_lock():
         sys.exit(1)
 
+    # Start lightweight HTTP server for cloud platform health checks (e.g. Render / Koyeb)
+    port_env = os.getenv("PORT")
+    if port_env:
+        try:
+            import http.server
+            import socketserver
+            import threading
+
+            port = int(port_env)
+            class HealthHandler(http.server.SimpleHTTPRequestHandler):
+                def do_GET(self):
+                    self.send_response(200)
+                    self.send_header("Content-type", "text/plain")
+                    self.end_headers()
+                    self.wfile.write(b"OK")
+                def log_message(self, format, *args):
+                    pass
+
+            server = socketserver.TCPServer(("", port), HealthHandler)
+            t = threading.Thread(target=server.serve_forever, daemon=True)
+            t.start()
+            logger.info("Health check server active on port %d", port)
+        except Exception as e:
+            logger.warning("Could not start health check HTTP server: %s", e)
+
     now_str = datetime.now(scheduler.TIMEZONE).strftime("%Y-%m-%d %H:%M:%S")
     state_mgr.update_state(status="running", started_at=now_str)
 
@@ -378,6 +403,7 @@ def run_daemon():
 def main():
     parser = argparse.ArgumentParser(description="AI News Automation Agent - Phase 5 Master Agent")
     parser.add_argument("--daemon", action="store_true", help="Run continuous autonomous daemon")
+    parser.add_argument("--cron", action="store_true", help="Run single pipeline collection and publish due posts (for cron/GitHub Actions)")
     parser.add_argument("--dry-run", action="store_true", help="Run pipeline without queueing or publishing")
     parser.add_argument("--test", action="store_true", help="Run lightweight isolated test mode")
     parser.add_argument("--rank-test", action="store_true", help="Display top ranked story clusters and explanations")
@@ -392,6 +418,14 @@ def main():
 
     if args.daemon:
         run_daemon()
+    elif args.cron:
+        execute_pipeline(
+            max_per_category=args.max_per_cat,
+            dry_run=args.dry_run,
+            test_mode=args.test,
+            rank_test=args.rank_test
+        )
+        scheduler.check_and_publish()
     else:
         execute_pipeline(
             max_per_category=args.max_per_cat,
@@ -403,3 +437,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
