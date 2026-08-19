@@ -1,12 +1,24 @@
 {
   "status": "idle",
   "started_at": "2026-08-19 07:15:58",
-  "last_collection_at": "2026-08-19 23:20:14",
-  "next_collection_at": "2026-08-19 23:50:19",
-  "last_successful_collection_at": "2026-08-19 23:20:14",
+  "last_collection_at": "2026-08-20 00:01:08",
+  "next_collection_at": "2026-08-20 00:31:11",
+  "last_successful_collection_at": "2026-08-20 00:01:08",
   "queue_size": 6,
   "published_count": 16,
+  "articles_collected_total": 0,
+  "duplicates_removed_total": 0,
+  "stories_clustered_total": 0,
+  "posts_published_total": 0,
+  "failed_posts_total": 0,
+  "ai_calls_total": 0,
+  "category_distribution": {
+    "NEWS": 0,
+    "TECHNOLOGY": 0,
+    "SPORTS": 0,
+    "ENTERTAINMENT": 0
+  },
   "last_error": null,
-  "candidates_last_cycle": 262,
-  "top_story_score": 79.9
+  "candidates_last_cycle": 261,
+  "top_story_score": 84.7
 }
