@@ -135,10 +135,13 @@ class QueueManager:
         # Include published history in seen sets
         history = load_published_history(filepath=history_filepath) if history_filepath else load_published_history()
         for item in history:
-            if item.get("url"):
-                seen_urls.add(normalize_url(item["url"]))
-            if item.get("title"):
-                seen_titles.add(normalize_title(item["title"]))
+            raw_u = item.get("original_url") or item.get("url") or ""
+            if raw_u:
+                seen_urls.add(normalize_url(raw_u))
+            raw_t = item.get("title") or ""
+            if raw_t:
+                seen_titles.add(normalize_title(raw_t))
+
 
         # Check existing scheduled count
         if instant_schedule:
