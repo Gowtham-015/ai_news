@@ -205,8 +205,13 @@ class QueueManager:
                 logger.debug("Skipping adding to queue: Title already present (%s)", post.get("title"))
                 continue
 
-            sched_time_dt = start_dt + timedelta(minutes=added_count * interval_minutes)
+            if instant_schedule:
+                sched_time_dt = now_tz
+            else:
+                sched_time_dt = start_dt + timedelta(minutes=added_count * interval_minutes)
+
             sched_time_str = sched_time_dt.strftime(scheduler.DATETIME_FORMAT)
+
 
             post_entry = {
                 "id": next_id,
