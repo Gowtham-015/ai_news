@@ -12,10 +12,18 @@ from config.feeds import FEEDS
 
 load_dotenv()
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("BOT_KEYFILE")
-TELEGRAM_CHANNEL_ID = os.getenv("TELEGRAM_CHANNEL_ID") or os.getenv("SECRETFILE")
+def _sanitize_val(val: str | None, key_name: str) -> str | None:
+    if not val:
+        return None
+    val = val.strip().strip('"').strip("'")
+    if "=" in val and val.split("=", 1)[0].strip().upper() in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHANNEL_ID", "BOT_KEYFILE", "SECRETFILE", "GEMINI_API_KEY", "AI_API_KEY", "KEY"):
+        val = val.split("=", 1)[1].strip().strip('"').strip("'")
+    return val
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY")
+TELEGRAM_BOT_TOKEN = _sanitize_val(os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv("BOT_KEYFILE"), "TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHANNEL_ID = _sanitize_val(os.getenv("TELEGRAM_CHANNEL_ID") or os.getenv("SECRETFILE"), "TELEGRAM_CHANNEL_ID")
+GEMINI_API_KEY = _sanitize_val(os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY"), "GEMINI_API_KEY")
+
 
 # Phase 3 Configuration Defaults
 MAX_NEWS_AGE_HOURS = int(os.getenv("MAX_NEWS_AGE_HOURS", "24"))
