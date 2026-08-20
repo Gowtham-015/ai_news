@@ -287,6 +287,7 @@ async def _publish_post_async(post: dict) -> bool:
 def publish_post(post: dict) -> bool:
     """
     Synchronous entry point to publish a post dictionary safely.
+    Automatically records post to persistent published history on success to prevent duplicate posts.
     """
     try:
         config.validate_config()
@@ -294,7 +295,15 @@ def publish_post(post: dict) -> bool:
         logger.error("Publish failed: %s", e)
         return False
 
-    return asyncio.run(_publish_post_async(post))
+    success = asyncio.run(_publish_post_async(post))
+    if success and isinstance(post, dict):
+        try:
+            import deduplicator
+            deduplicator.record_published_history([post])
+        except Exception as err:
+            logger.error("Failed to record published history: %s", err)
+    return success
+
 
 
 def publish_text(text: str) -> bool:
