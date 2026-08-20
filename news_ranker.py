@@ -107,7 +107,8 @@ class NewsRanker:
 
         # India news & development priority boost
         india_matched = words.intersection(INDIA_PRIORITY_KEYWORDS)
-        india_boost = 15.0 if india_matched else 0.0
+        india_boost = 30.0 if india_matched else 0.0
+
 
         # Source count boost
         confirm_boost = min(15.0, (cluster.get("source_count", 1) - 1) * 7.5)

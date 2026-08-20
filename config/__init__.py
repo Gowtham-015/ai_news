@@ -101,26 +101,28 @@ MAX_POSTS_PER_CATEGORY_PER_DAY = int(os.getenv("MAX_POSTS_PER_CATEGORY_PER_DAY",
 
 DEFAULT_SOURCE_SCORE = int(os.getenv("DEFAULT_SOURCE_SCORE", "70"))
 SOURCE_TIERS = {
-    "Tier 1": ["BBC News", "Reuters", "AP News", "BBC Sport"],
-    "Tier 2": ["TechCrunch", "Wired", "Variety", "ESPN", "Hollywood Reporter", "NDTV News", "Times of India"],
-    "Tier 3": ["E! Online", "The Verge"]
+    "Tier 1": ["NDTV News", "Times of India", "TOI Sports", "NDTV Sports", "The Hindu", "Economic Times Tech", "BBC News", "Reuters"],
+    "Tier 2": ["TechCrunch", "Wired", "Variety", "ESPN Cricinfo", "Hollywood Reporter"],
+    "Tier 3": ["BBC Sport", "The Verge"]
 }
 
 SOURCE_SCORES = {
+    "NDTV News": 95,
+    "Times of India": 95,
+    "TOI Sports": 95,
+    "NDTV Sports": 95,
+    "The Hindu": 95,
+    "Economic Times Tech": 95,
+    "ESPN Cricinfo": 90,
     "BBC News": 90,
-    "Reuters": 95,
-    "AP News": 95,
-    "BBC Sport": 90,
+    "Reuters": 90,
     "TechCrunch": 85,
     "Wired": 85,
     "Variety": 85,
-    "ESPN": 85,
     "Hollywood Reporter": 85,
-    "NDTV News": 80,
-    "Times of India": 80,
-    "The Verge": 80,
-    "E! Online": 75,
+    "BBC Sport": 75,
 }
+
 
 
 

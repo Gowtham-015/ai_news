@@ -12,19 +12,27 @@ Defines reliable RSS feed URLs categorized into:
 FEEDS = {
     "News": [
         {
-            "name": "BBC News",
-            "url": "http://feeds.bbci.co.uk/news/rss.xml"
-        },
-        {
             "name": "NDTV News",
             "url": "https://feeds.feedburner.com/ndtvnews-top-stories"
         },
         {
             "name": "Times of India",
             "url": "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"
+        },
+        {
+            "name": "The Hindu",
+            "url": "https://www.thehindu.com/news/national/feeder/default.rss"
+        },
+        {
+            "name": "BBC News",
+            "url": "http://feeds.bbci.co.uk/news/rss.xml"
         }
     ],
     "Technology": [
+        {
+            "name": "Economic Times Tech",
+            "url": "https://economictimes.indiatimes.com/tech/rssfeeds/13357270.cms"
+        },
         {
             "name": "TechCrunch",
             "url": "https://techcrunch.com/feed/"
@@ -40,19 +48,27 @@ FEEDS = {
     ],
     "Sports": [
         {
-            "name": "BBC Sport",
-            "url": "http://feeds.bbci.co.uk/sport/rss.xml"
+            "name": "TOI Sports",
+            "url": "https://timesofindia.indiatimes.com/rssfeeds/4719148.cms"
         },
         {
-            "name": "ESPN",
-            "url": "https://www.espn.com/espn/rss/news"
+            "name": "NDTV Sports",
+            "url": "https://feeds.feedburner.com/ndtvsports-latest"
         },
         {
             "name": "ESPN Cricinfo",
             "url": "https://www.espncricinfo.com/rss/content/story/feeds/0.xml"
+        },
+        {
+            "name": "BBC Sport",
+            "url": "http://feeds.bbci.co.uk/sport/rss.xml"
         }
     ],
     "Entertainment": [
+        {
+            "name": "Times of India Entertainment",
+            "url": "https://timesofindia.indiatimes.com/rssfeeds/1081479906.cms"
+        },
         {
             "name": "Variety",
             "url": "https://variety.com/feed/"
@@ -60,10 +76,7 @@ FEEDS = {
         {
             "name": "Hollywood Reporter",
             "url": "https://www.hollywoodreporter.com/feed/"
-        },
-        {
-            "name": "E! Online",
-            "url": "https://www.eonline.com/syndication/feeds/rss2/topstories.xml"
         }
     ]
 }
+
