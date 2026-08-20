@@ -113,7 +113,9 @@ SAFETY & ACCURACY RULES:
 2. Produce a clear, engaging headline (max 12 words) without clickbait.
 3. Produce a concise summary of 2 to 4 sentences explaining key facts.
 4. Preserve exact names, organizations, and numbers.
-5. Rewrite cleanly rather than copying long passages word-for-word.
+5. If the story includes direct quotes from world leaders, sports stars, or prominent figures (e.g. Donald Trump, Kim Jong Un, Prime Minister, Coaches), preserve and highlight the direct quote in quotation marks as it drives high subscriber engagement!
+6. Rewrite cleanly rather than copying long passages word-for-word.
+
 
 Return ONLY a JSON object with this exact format:
 {{
