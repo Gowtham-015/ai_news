@@ -205,17 +205,30 @@ def format_html_post(post: dict) -> str:
     return "\n".join(parts)
 
 
+CATEGORY_BANNERS = {
+    "NEWS": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200",
+    "TECHNOLOGY": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200",
+    "SPORTS": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200",
+    "ENTERTAINMENT": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200"
+}
+
+
 async def _publish_post_async(post: dict) -> bool:
     """
     Publishes a post dictionary, attempting video or photo publishing first if available,
-    with automatic fallback to text message if media publishing fails.
+    with automatic fallback to category photo banner so every post has media at the top.
     """
     bot = _build_bot()
     video_url = post.get("video_url") or post.get("video", "")
     image_url = post.get("image_url") or post.get("image", "")
+
+    if not image_url and not video_url:
+        cat_key = (post.get("category") or "NEWS").upper()
+        image_url = CATEGORY_BANNERS.get(cat_key, CATEGORY_BANNERS["NEWS"])
     
     formatted_html = format_html_post(post)
     parse_mode = "HTML"
+
 
     if video_url and (video_url.startswith("http://") or video_url.startswith("https://")):
         try:

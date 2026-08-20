@@ -217,8 +217,28 @@ def parse_entry(entry: dict, source_name: str, category: str) -> dict | None:
         if img_match:
             image_url = img_match.group(1)
 
+    # OpenGraph / HTML webpage scraper fallback if image_url or video_url is still missing
+    if url and (not image_url or not video_url):
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=2.5)
+            if resp.status_code == 200:
+                html_text = resp.text
+                if not video_url:
+                    vid_match = re.search(r'<meta[^>]+property=["\']og:video(?::secure_url)?["\'][^>]+content=["\']([^"\']+)["\']', html_text, re.IGNORECASE)
+                    if vid_match:
+                        video_url = vid_match.group(1)
+                if not image_url:
+                    og_match = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', html_text, re.IGNORECASE)
+                    if not og_match:
+                        og_match = re.search(r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']', html_text, re.IGNORECASE)
+                    if og_match:
+                        image_url = og_match.group(1)
+        except Exception:
+            pass
+
     if image_url:
         image_url = enhance_image_url(image_url)
+
 
     article_id = getattr(entry, "id", "") or entry.get("id", "")
     if not article_id:
