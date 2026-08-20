@@ -148,6 +148,30 @@ def record_published_history(
             logger.error("Failed to save published history: %s", e)
 
 
+def is_fuzzy_duplicate_title(title1: str, title2: str) -> bool:
+    """
+    Checks if two titles share significant keyword overlap (Jaccard similarity >= 0.45
+    or matching 3+ key entity words), ignoring common stop words.
+    """
+    if not title1 or not title2:
+        return False
+    
+    stop_words = {"the", "a", "an", "in", "on", "of", "to", "for", "with", "at", "by", "from", "and", "or", "is", "are", "was", "were", "be", "has", "have", "had", "it", "its", "this", "that", "after", "as", "about"}
+    
+    words1 = {w for w in re.sub(r"[^\w\s]", "", title1.lower()).split() if len(w) > 2 and w not in stop_words}
+    words2 = {w for w in re.sub(r"[^\w\s]", "", title2.lower()).split() if len(w) > 2 and w not in stop_words}
+    
+    if not words1 or not words2:
+        return False
+        
+    common = words1.intersection(words2)
+    if len(common) >= 3:
+        return True
+        
+    jaccard = len(common) / len(words1.union(words2))
+    return jaccard >= 0.45
+
+
 def filter_duplicates(
     articles: list[dict],
     existing_articles: list[dict] = None,
@@ -158,10 +182,7 @@ def filter_duplicates(
     Compares against:
     1. Batch duplicates (within current collection)
     2. Previously published history (published_news.json)
-    3. Additional existing objects (if passed)
-
-    Returns:
-        (unique_articles, batch_duplicates_removed, history_duplicates_removed)
+    3. Fuzzy title & key entity overlap
     """
     if history_filepath is None:
         history_filepath = PUBLISHED_NEWS_FILE
@@ -169,6 +190,7 @@ def filter_duplicates(
     seen_ids = set()
     seen_urls = set()
     seen_titles = set()
+    history_raw_titles = []
 
     # Pre-populate from published history
     history = load_published_history(history_filepath)
@@ -180,6 +202,7 @@ def filter_duplicates(
         if item.get("url"):
             seen_urls.add(normalize_url(item["url"]))
         if item.get("title"):
+            history_raw_titles.append(item["title"])
             norm_t = normalize_title(item["title"])
             if norm_t:
                 seen_titles.add(norm_t)
@@ -192,6 +215,7 @@ def filter_duplicates(
             if art.get("url") or art.get("original_url"):
                 seen_urls.add(normalize_url(art.get("url") or art.get("original_url")))
             if art.get("title"):
+                history_raw_titles.append(art["title"])
                 norm_t = normalize_title(art["title"])
                 if norm_t:
                     seen_titles.add(norm_t)
@@ -203,10 +227,10 @@ def filter_duplicates(
         art_id = str(article.get("id", ""))
         raw_url = article.get("url", "")
         norm_url = normalize_url(raw_url)
-        norm_title = normalize_title(article.get("title", ""))
+        raw_title = article.get("title", "")
+        norm_title = normalize_title(raw_title)
 
         is_duplicate = False
-        is_history_dup = False
 
         if art_id and art_id in seen_ids:
             is_duplicate = True
@@ -214,10 +238,17 @@ def filter_duplicates(
             is_duplicate = True
         elif norm_title and norm_title in seen_titles:
             is_duplicate = True
+        elif raw_title:
+            # Fuzzy match against history titles
+            for prev_t in history_raw_titles:
+                if is_fuzzy_duplicate_title(raw_title, prev_t):
+                    is_duplicate = True
+                    break
 
         if is_duplicate:
             batch_duplicates_count += 1
             logger.debug("Duplicate filtered: '%s' (%s)", article.get("title"), raw_url)
+
         else:
             if art_id:
                 seen_ids.add(art_id)
