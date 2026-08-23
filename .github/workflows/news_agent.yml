@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: news-agent-publishing
+  cancel-in-progress: false
+
 jobs:
   run-news-agent:
     runs-on: ubuntu-latest

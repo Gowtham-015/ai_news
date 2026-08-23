@@ -131,13 +131,63 @@ async def _publish_text_async(text: str) -> bool:
 
 
 import html
+import re
 from datetime import datetime, timezone, timedelta
+from urllib.parse import urlparse
 
-def format_html_post(post: dict) -> str:
+def is_valid_url(url: str) -> bool:
+    """Checks if a URL is non-empty, well-formed, and uses http/https scheme."""
+    if not url or not isinstance(url, str):
+        return False
+    url = url.strip()
+    if not (url.startswith("http://") or url.startswith("https://")):
+        return False
+    try:
+        res = urlparse(url)
+        return bool(res.scheme and res.netloc)
+    except Exception:
+        return False
+
+
+def validate_image_url(url: str, timeout: float = 3.0, max_bytes: int = 10 * 1024 * 1024) -> bool:
+    """
+    Fast HTTP HEAD/stream check to pre-validate image URL availability, Content-Type, and size.
+    Prevents huge downloads or hanging servers from blocking Telegram publishing.
+    """
+    if not is_valid_url(url):
+        return False
+    try:
+        import requests
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+        resp = requests.head(url, headers=headers, timeout=timeout, allow_redirects=True)
+        if resp.status_code != 200:
+            resp = requests.get(url, headers=headers, stream=True, timeout=timeout, allow_redirects=True)
+            if resp.status_code != 200:
+                return False
+        
+        content_type = resp.headers.get("Content-Type", "").lower()
+        if content_type and not content_type.startswith("image/") and "octet-stream" not in content_type and "binary" not in content_type:
+            return False
+            
+        content_length = resp.headers.get("Content-Length")
+        if content_length and content_length.isdigit():
+            if int(content_length) > max_bytes:
+                logger.warning("Image URL rejected (size %s bytes exceeds limit %s bytes): %s", content_length, max_bytes, url[:60])
+                return False
+        return True
+    except Exception as e:
+        logger.warning("Image pre-validation failed for %s: %s", url[:60], e)
+        return False
+
+
+def format_html_post(post: dict, max_length: int = 4096) -> str:
     """
     Safely formats a post dictionary into clean, professional Telegram HTML.
     Supports breaking news header, category branding, summary, '📌 Why it matters:',
     timestamp in IST, source attribution, and validated clickable source link.
+    Budget-aware so total HTML string does not exceed max_length (e.g., 1024 for photo captions).
     """
     is_breaking = post.get("is_breaking") or post.get("score", 0) >= getattr(config, "BREAKING_NEWS_SCORE_THRESHOLD", 90)
     category_raw = str(post.get("category", "NEWS")).upper()
@@ -152,24 +202,24 @@ def format_html_post(post: dict) -> str:
     
     header = "🚨 <b>BREAKING NEWS</b>" if is_breaking else f"<b>{cat_emoji} {category_raw}</b>"
     
-    title = html.escape(post.get("title", "").replace("🔥 ", "").strip())
+    title_raw = post.get("title", "").replace("🔥 ", "").strip()
     raw_summary = post.get("summary") or post.get("content") or post.get("description", "")
     if "📰 Source:" in raw_summary:
         raw_summary = raw_summary.split("📰 Source:")[0].strip()
     if "🔗 Read More:" in raw_summary:
         raw_summary = raw_summary.split("🔗 Read More:")[0].strip()
-    summary = html.escape(raw_summary.strip())
-    why_it_matters = html.escape(post.get("why_it_matters", "").strip())
+        
+    summary_raw = raw_summary.strip()
+    why_it_matters_raw = post.get("why_it_matters", "").strip()
 
-    
     sources_list = post.get("sources_list") or []
     if sources_list:
-        sources_str = html.escape(", ".join(sources_list))
+        sources_str = ", ".join(sources_list)
     else:
-        sources_str = html.escape(post.get("source", "Unknown Source").strip())
+        sources_str = post.get("source", "Unknown Source").strip()
         
     url = post.get("original_url") or post.get("url", "")
-    if url and not (url.startswith("http://") or url.startswith("https://")):
+    if not is_valid_url(url):
         url = ""
         
     pub_time = post.get("published_at") or post.get("scheduled_time")
@@ -186,93 +236,112 @@ def format_html_post(post: dict) -> str:
     ist_dt = dt.astimezone(timezone(timedelta(hours=5, minutes=30)))
     time_str = ist_dt.strftime("%I:%M %p IST")
 
+    title = html.escape(title_raw)
+    sources = html.escape(sources_str)
+    category_cap = html.escape(category_raw.capitalize())
 
+    priority_raw = post.get("priority")
+    is_followup = post.get("is_followup", False)
+    sources_count = len(post.get("sources_list", [])) if post.get("sources_list") else (1 if post.get("source") else 0)
+
+    footer_parts = [
+        f"🏷️ <b>Category:</b> {category_cap}",
+        f"🕒 <b>Published:</b> {time_str}",
+        f"📰 <b>Source:</b> {sources}"
+    ]
+
+    intel_badge = []
+    if priority_raw == "BREAKING" or is_breaking:
+        intel_badge.append("⚡ <b>Priority:</b> 🚨 BREAKING (Fast-Tracked)")
+    elif priority_raw == "HIGH":
+        intel_badge.append("⚡ <b>Priority:</b> 🔥 HIGH")
+        
+    if is_followup:
+        intel_badge.append("🔄 <b>Story State:</b> 📢 DEVELOPING UPDATE")
+    elif sources_count >= 2:
+        intel_badge.append(f"👥 <b>Confirmation:</b> {sources_count} Independent Sources")
+
+    if intel_badge:
+        footer_parts.append("\n" + "\n".join(intel_badge))
+
+    if url:
+        safe_url = html.escape(url, quote=True)
+        footer_parts.append(f"\n🔗 <a href=\"{safe_url}\">Read full story</a>")
+        
+    footer_text = "\n".join(footer_parts)
+
+    overhead = len(header) + len(title) + len(footer_text) + 150
+    available_for_body = max(100, max_length - overhead)
+
+    if len(summary_raw) > available_for_body:
+        summary_raw = summary_raw[:available_for_body - 3].rstrip() + "..."
+
+    summary = html.escape(summary_raw)
+    
     parts = [header, ""]
     if title:
         parts.append(f"<b>{title}</b>\n")
     if summary:
         parts.append(f"{summary}\n")
-    if why_it_matters:
+    if why_it_matters_raw:
+        why_it_matters = html.escape(why_it_matters_raw)
         parts.append(f"📌 <b>Why it matters:</b>\n{why_it_matters}\n")
         
-    parts.append(f"🏷️ <b>Category:</b> {category_raw.capitalize()}")
-    parts.append(f"🕒 <b>Published:</b> {time_str}")
-    parts.append(f"📰 <b>Source:</b> {sources_str}")
-    
-    if url:
-        parts.append(f"\n🔗 <a href=\"{url}\">Read full story</a>")
+    parts.append(footer_text)
+    full_html = "\n".join(parts)
+
+    if len(full_html) > max_length and why_it_matters_raw:
+        # Fallback to omitting why_it_matters if caption budget is still exceeded
+        parts = [header, "", f"<b>{title}</b>\n", f"{summary}\n", footer_text]
+        full_html = "\n".join(parts)
         
-    return "\n".join(parts)
-
-
-CATEGORY_BANNERS = {
-    "NEWS": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200",
-    "TECHNOLOGY": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200",
-    "SPORTS": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1200",
-    "ENTERTAINMENT": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200"
-}
+    return full_html
 
 
 async def _publish_post_async(post: dict) -> bool:
     """
-    Publishes a post dictionary, attempting video or photo publishing first if available,
-    with automatic fallback to category photo banner so every post has media at the top.
+    Publishes a post dictionary, attempting photo publishing first if real article image exists,
+    with automatic fallback to text-only Telegram post if no image exists or photo publish fails.
     """
     bot = _build_bot()
-    video_url = post.get("video_url") or post.get("video", "")
     image_url = post.get("image_url") or post.get("image", "")
 
-    if not image_url and not video_url:
-        cat_key = (post.get("category") or "NEWS").upper()
-        image_url = CATEGORY_BANNERS.get(cat_key, CATEGORY_BANNERS["NEWS"])
-    
-    formatted_html = format_html_post(post)
-    parse_mode = "HTML"
+    is_image_valid = False
+    if image_url and is_valid_url(image_url):
+        is_image_valid = validate_image_url(image_url, timeout=3.0)
 
-
-    if video_url and (video_url.startswith("http://") or video_url.startswith("https://")):
-        try:
-            logger.info("[TELEGRAM] Attempting video publish (Video: %s)", video_url[:60])
-            await bot.send_video(
-                chat_id=config.TELEGRAM_CHANNEL_ID,
-                video=video_url,
-                caption=formatted_html[:1024],
-                parse_mode=parse_mode
-            )
-            return True
-        except Exception as vid_err:
-            logger.warning("[TELEGRAM] Video publish failed (%s). Falling back to photo/text.", vid_err)
-    
-    if image_url and (image_url.startswith("http://") or image_url.startswith("https://")):
+    # 1. Attempt Photo Post if real article image is present and valid
+    if is_image_valid and image_url:
+        caption_html = format_html_post(post, max_length=1024)
         try:
             logger.info("[TELEGRAM] Attempting photo publish (Image: %s)", image_url[:60])
             await bot.send_photo(
                 chat_id=config.TELEGRAM_CHANNEL_ID,
                 photo=image_url,
-                caption=formatted_html[:1024],
-                parse_mode=parse_mode
+                caption=caption_html,
+                parse_mode="HTML"
             )
             return True
         except Exception as img_err:
             logger.warning("[TELEGRAM] Photo publish failed (%s). Falling back to text-only.", img_err)
 
-
+    # 2. Text-only Post HTML
+    formatted_html = format_html_post(post, max_length=4096)
     try:
         await bot.send_message(
             chat_id=config.TELEGRAM_CHANNEL_ID,
-            text=formatted_html[:4096],
-            parse_mode=parse_mode,
+            text=formatted_html,
+            parse_mode="HTML",
             disable_web_page_preview=False
         )
         return True
     except BadRequest as e:
         logger.warning("[TELEGRAM] HTML parse failed (%s). Retrying plain text.", e)
         try:
-            # Strip HTML tags as ultimate safety fallback
-            clean_text = post.get("title", "") + "\n\n" + (post.get("content") or post.get("description", ""))
+            plain_text = re.sub(r"<[^>]+>", "", formatted_html)
             await bot.send_message(
                 chat_id=config.TELEGRAM_CHANNEL_ID,
-                text=clean_text[:4096]
+                text=plain_text[:4096]
             )
             return True
         except Exception as fallback_err:

@@ -186,16 +186,31 @@ class QueueManager:
 
 
 
+        # Priority sorting: BREAKING (1) > HIGH (2) > NORMAL (3) > LOW (4)
+        prio_order = {"BREAKING": 1, "HIGH": 2, "NORMAL": 3, "LOW": 4}
+        sorted_new_posts = sorted(
+            new_posts,
+            key=lambda p: prio_order.get(p.get("priority", "NORMAL"), 3)
+        )
+
         existing_ids = [p.get("id") for p in existing_posts if isinstance(p.get("id"), int)]
         next_id = (max(existing_ids) + 1) if existing_ids else 1
 
         added_count = 0
         posts_to_append = []
 
-        for post in new_posts:
+        for post in sorted_new_posts:
             if added_count >= available_slots:
                 logger.info("[QUEUE] Reached queue capacity limit (%d posts added).", added_count)
                 break
+
+            priority = post.get("priority", "NORMAL")
+            final_score = post.get("final_score", 60)
+
+            # Filter out LOW priority low-value posts if score < 55
+            if priority == "LOW" and final_score < 55:
+                logger.info("Discarding low-value post below quality threshold: '%s' (Score: %s)", post.get("title"), final_score)
+                continue
 
             raw_url = post.get("original_url") or post.get("url", "")
             norm_url = normalize_url(raw_url)
@@ -209,24 +224,32 @@ class QueueManager:
                 logger.debug("Skipping adding to queue: Title already present (%s)", post.get("title"))
                 continue
 
-            if instant_schedule:
+            # Fast-path for BREAKING news: schedule immediately at current time
+            if priority == "BREAKING" or post.get("is_breaking"):
+                sched_time_dt = now_tz
+            elif instant_schedule:
                 sched_time_dt = now_tz
             else:
                 sched_time_dt = start_dt + timedelta(minutes=added_count * interval_minutes)
 
             sched_time_str = sched_time_dt.strftime(scheduler.DATETIME_FORMAT)
 
-
             post_entry = {
                 "id": next_id,
                 "category": str(post.get("category", "")).upper(),
                 "title": post.get("title", ""),
                 "content": post.get("content", ""),
+                "summary": post.get("summary", ""),
+                "why_it_matters": post.get("why_it_matters", ""),
                 "scheduled_time": sched_time_str,
                 "status": "scheduled",
                 "published_time": None,
                 "original_url": raw_url,
                 "source": post.get("source", ""),
+                "priority": priority,
+                "is_breaking": post.get("is_breaking", False),
+                "is_followup": post.get("is_followup", False),
+                "image_url": post.get("image_url", ""),
                 "source_article_id": post.get("source_article_id", "")
             }
 

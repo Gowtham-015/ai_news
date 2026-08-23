@@ -42,6 +42,11 @@ COLLECTED_NEWS_FILE = DATA_DIR_PATH / "collected_news.json"
 PUBLISHED_NEWS_FILE = DATA_DIR_PATH / "published_news.json"
 TREND_CACHE_FILE = DATA_DIR_PATH / "trend_cache.json"
 LOCK_FILE = DATA_DIR_PATH / "agent.lock"
+ANALYTICS_DIR = DATA_DIR_PATH / "analytics"
+
+# Phase 10 Analytics & Statistics Settings
+ANALYTICS_ENABLED = os.getenv("ANALYTICS_ENABLED", "true").lower() == "true"
+ANALYTICS_RETENTION_DAYS = int(os.getenv("ANALYTICS_RETENTION_DAYS", "90"))
 
 
 def ensure_data_dir_and_migrate():
@@ -193,6 +198,9 @@ __all__ = [
     "PUBLISHED_NEWS_FILE",
     "TREND_CACHE_FILE",
     "LOCK_FILE",
+    "ANALYTICS_DIR",
+    "ANALYTICS_ENABLED",
+    "ANALYTICS_RETENTION_DAYS",
     "ensure_data_dir_and_migrate",
     "MAX_NEWS_AGE_HOURS",
     "POSTS_PER_CATEGORY",

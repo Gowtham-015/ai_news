@@ -64,6 +64,22 @@ def normalize_url(url: str) -> str:
         return url.strip().lower()
 
 
+def is_duplicate_url(url: str, history: list = None) -> bool:
+    """Returns True if normalized URL matches any entry in published history."""
+    if not url:
+        return False
+    if history is None:
+        history = load_published_history()
+    norm_target = normalize_url(url)
+    if not norm_target:
+        return False
+    for item in history:
+        item_u = normalize_url(item.get("original_url") or item.get("url") or "")
+        if item_u and item_u == norm_target:
+            return True
+    return False
+
+
 def normalize_title(title: str) -> str:
     """
     Normalizes a title string for deduplication comparison:

@@ -71,11 +71,13 @@ class AIProcessor:
 
         if not clean_desc or clean_desc.lower() == raw_title.lower():
             summary = f"Latest developments reported regarding {raw_title}."
+            why_it_matters = f"Important news update from {article.get('source', 'primary sources')}."
         else:
             sentences = re.split(r"(?<=[.!?])\s+", clean_desc)
-            summary = " ".join(sentences[:3])
+            summary = " ".join(sentences[:2])
             if len(summary) < 40:
                 summary = clean_desc
+            why_it_matters = sentences[2] if len(sentences) > 2 else f"Highlights key updates on this developing story."
 
         headline = raw_title
         if headline.lower().startswith("video:") or headline.lower().startswith("watch:"):
@@ -83,7 +85,8 @@ class AIProcessor:
 
         return {
             "headline": headline,
-            "summary": summary
+            "summary": summary,
+            "why_it_matters": why_it_matters
         }
 
     def process_article(self, article: dict) -> dict | None:
@@ -111,16 +114,16 @@ Description/Content: {description}
 SAFETY & ACCURACY RULES:
 1. NEVER invent information, statistics, quotes, or details not present in the text above.
 2. Produce a clear, engaging headline (max 12 words) without clickbait.
-3. Produce a concise summary of 2 to 4 sentences explaining key facts.
-4. Preserve exact names, organizations, and numbers.
-5. If the story includes direct quotes from world leaders, sports stars, or prominent figures (e.g. Donald Trump, Kim Jong Un, Prime Minister, Coaches), preserve and highlight the direct quote in quotation marks as it drives high subscriber engagement!
+3. Produce a concise summary of 2 to 3 sentences explaining key facts.
+4. Produce 1 concise sentence explaining "why_it_matters" (key impact or context).
+5. Preserve exact names, organizations, and numbers.
 6. Rewrite cleanly rather than copying long passages word-for-word.
-
 
 Return ONLY a JSON object with this exact format:
 {{
     "headline": "Engaging Headline Here",
-    "summary": "Concise 2-4 sentence summary here."
+    "summary": "Concise 2-3 sentence summary here.",
+    "why_it_matters": "One concise sentence explaining impact."
 }}
 """
             @retry_with_backoff(
@@ -140,6 +143,13 @@ Return ONLY a JSON object with this exact format:
 
             try:
                 ai_result = _call_gemini()
+                try:
+                    from state_manager import StateManager
+                    sm = StateManager()
+                    state = sm.load_state()
+                    sm.update_state(ai_calls_total=state.get("ai_calls_total", 0) + 1)
+                except Exception:
+                    pass
             except Exception as e:
                 logger.error("AI processing failed for article: '%s' (%s). Using fallback.", title, e)
 
@@ -154,6 +164,10 @@ Return ONLY a JSON object with this exact format:
         summary = ai_result.get("summary", description).strip()
         why_it_matters = ai_result.get("why_it_matters", "").strip()
 
+        is_followup = article.get("is_followup", False)
+        if is_followup and not headline.startswith("📢 UPDATE:"):
+            headline = f"📢 UPDATE: {headline}"
+
         post_data = {
             "category": category_name,
             "title": headline,
@@ -165,9 +179,12 @@ Return ONLY a JSON object with this exact format:
             "image_url": article.get("image_url", ""),
             "source_article_id": article.get("id", ""),
             "source": source,
-            "published_at": article.get("published_at", "")
+            "published_at": article.get("published_at", ""),
+            "priority": article.get("priority", "NORMAL"),
+            "is_breaking": article.get("is_breaking", False),
+            "is_followup": is_followup,
+            "final_score": article.get("final_score", 60)
         }
-
 
         return post_data
 

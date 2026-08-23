@@ -46,6 +46,65 @@ GEOPOLITICS_KEYWORDS = {
 }
 
 
+CATEGORY_HIGH_PRIORITY_KEYWORDS = {
+    "SPORTS": {"win", "wins", "victory", "defeats", "final", "finals", "championship", "cup", "gold", "medal", "trophy", "record", "world record", "grand prix", "tournament"},
+    "TECHNOLOGY": {"ai", "gpt", "gemini", "claude", "breakthrough", "launch", "launches", "unveils", "model", "chip", "quantum", "banning", "antitrust", "policy", "robotics"},
+    "ENTERTAINMENT": {"release", "premiere", "trailer", "oscars", "emmy", "grammy", "box office", "record", "series", "season", "marvel", "dc", "prime video", "netflix"},
+    "NEWS": {"disaster", "earthquake", "crisis", "war", "peace", "election", "president", "prime minister", "supreme court", "treaty", "sanctions", "budget", "gdp"}
+}
+
+CATEGORY_LOW_PRIORITY_KEYWORDS = {
+    "SPORTS": {"rumor", "speculation", "claims", "hopes", "thinks", "comments", "opinion"},
+    "TECHNOLOGY": {"rumor", "leak", "may get", "could have", "render", "patent"},
+    "ENTERTAINMENT": {"spotted", "seen", "gossip", "dating", "outfit", "vacation"},
+    "NEWS": {"opinion", "column", "local update", "routine"}
+}
+
+
+def filter_syndicated_sources(articles: List[Dict]) -> tuple[int, list[str]]:
+    """
+    Identifies verbatim syndicated news copies (Jaccard title/desc similarity > 0.70)
+    and returns independent source count and list of unique reporting sources.
+    """
+    if not articles:
+        return 0, []
+
+    from story_clusterer import extract_keywords
+
+    unique_sources = []
+    independent_count = 0
+
+    seen_keyword_sets = []
+
+    for art in articles:
+        src = art.get("source", "")
+        title = art.get("title", "")
+        desc = art.get("description", "")
+        kw = extract_keywords(f"{title} {desc}")
+
+        is_syndicated = False
+        for prev_kw in seen_keyword_sets:
+            if not kw or not prev_kw:
+                continue
+            inter = kw.intersection(prev_kw)
+            union = kw.union(prev_kw)
+            sim = len(inter) / len(union) if union else 0
+            if sim > 0.70:
+                is_syndicated = True
+                break
+
+        if not is_syndicated:
+            seen_keyword_sets.append(kw)
+            independent_count += 1
+            if src and src not in unique_sources:
+                unique_sources.append(src)
+        else:
+            if src and src not in unique_sources:
+                unique_sources.append(src)
+
+    return max(1, independent_count), unique_sources
+
+
 class NewsRanker:
     def __init__(self):
         # Validate weights at initialization
@@ -99,12 +158,38 @@ class NewsRanker:
         else:
             return 50.0
 
+    def calculate_category_intelligence_boost(self, cluster: Dict) -> tuple[float, str]:
+        """
+        Category intelligence rule:
+        Evaluates category-specific priority keywords to boost major launches, results,
+        and breakthroughs over minor gossip/rumors.
+        """
+        cat = str(cluster.get("category", "News")).upper()
+        topic = cluster.get("topic", "").lower()
+        words = set(re.sub(r"[^\w\s]", "", topic).split())
+
+        high_kw = CATEGORY_HIGH_PRIORITY_KEYWORDS.get(cat, set())
+        low_kw = CATEGORY_LOW_PRIORITY_KEYWORDS.get(cat, set())
+
+        high_match = words.intersection(high_kw)
+        low_match = words.intersection(low_kw)
+
+        if high_match:
+            boost = min(25.0, len(high_match) * 12.5)
+            reason = f"High category priority match ({cat}: {', '.join(high_match)})"
+            return boost, reason
+        elif low_match:
+            penalty = -15.0
+            reason = f"Low category priority match ({cat}: {', '.join(low_match)})"
+            return penalty, reason
+        return 0.0, f"Standard category relevance for {cat}"
+
     def calculate_importance_score(self, cluster: Dict) -> float:
         """
-        Calculates Importance Score (0 to 100) based on topic keywords, India boost, Geopolitics boost, and source authority.
+        Calculates Importance Score (0 to 100) based on topic keywords, India boost, Geopolitics boost, category intelligence, and source authority.
         """
         topic = cluster.get("topic", "").lower()
-        base = 60.0
+        base = 55.0
 
         # Keyword match boost
         words = set(re.sub(r"[^\w\s]", "", topic).split())
@@ -113,17 +198,88 @@ class NewsRanker:
 
         # India news & development priority boost
         india_matched = words.intersection(INDIA_PRIORITY_KEYWORDS)
-        india_boost = 30.0 if india_matched else 0.0
+        india_boost = 25.0 if india_matched else 0.0
 
         # Geopolitics priority boost
         geo_matched = words.intersection(GEOPOLITICS_KEYWORDS) or ("trump" in topic or "kim" in topic)
         geo_boost = 20.0 if geo_matched else 0.0
 
+        # Category intelligence boost/penalty
+        cat_boost, _ = self.calculate_category_intelligence_boost(cluster)
+
         # Source count boost
         confirm_boost = min(15.0, (cluster.get("source_count", 1) - 1) * 7.5)
 
-        return min(100.0, base + keyword_boost + india_boost + geo_boost + confirm_boost)
+        return min(100.0, max(10.0, base + keyword_boost + india_boost + geo_boost + cat_boost + confirm_boost))
 
+    def evaluate_breaking_news(self, cluster: Dict, final_score: float) -> tuple[bool, str]:
+        """
+        Determines breaking news classification based on multiple signals:
+        - Freshness (< 2 hours / freshness_score >= 85)
+        - High Importance / Crisis keywords
+        - Independent source confirmation (>= 2 independent sources)
+        - High Trend Velocity (>= 2.0 mentions/hr)
+        - Source Quality (Tier 1 source)
+        - AI Evaluation flag if present
+        """
+        if cluster.get("is_breaking"):
+            return True, cluster.get("breaking_reason", "Pre-flagged as breaking news")
+
+        topic = cluster.get("topic", "").lower()
+        freshness = cluster.get("score_explanation", {}).get("freshness_score", 50)
+        importance = cluster.get("score_explanation", {}).get("importance_score", 50)
+        sources = cluster.get("independent_source_count", cluster.get("source_count", 1))
+        velocity = cluster.get("trend_velocity", 0.0)
+        source_name = cluster.get("best_article", {}).get("source", "")
+        source_score = self.calculate_source_score(source_name)
+
+        has_crisis_kw = any(kw in topic for kw in ["breaking", "earthquake", "tsunami", "disaster", "explosion", "attack", "emergency", "crisis", "crash"])
+        
+        signals = []
+        if freshness >= 85:
+            signals.append("freshness<2h")
+        if has_crisis_kw:
+            signals.append("crisis_keywords")
+        if sources >= 2:
+            signals.append(f"sources={sources}")
+        if velocity >= 2.0:
+            signals.append(f"velocity={velocity:.1f}x")
+        if source_score >= 90:
+            signals.append(f"tier1_source={source_name}")
+
+        threshold = getattr(config, "BREAKING_NEWS_SCORE_THRESHOLD", 90)
+        
+        if has_crisis_kw and freshness >= 80:
+            reason = f"Breaking crisis event detected ({', '.join(signals)})"
+            return True, reason
+        elif freshness >= 85 and sources >= 2 and velocity >= 2.0:
+            reason = f"Rapidly escalating multi-source breaking story ({', '.join(signals)})"
+            return True, reason
+        elif final_score >= threshold and has_crisis_kw:
+            reason = f"High-score breaking event ({final_score:.1f} score, {', '.join(signals)})"
+            return True, reason
+
+        return False, "Not classified as breaking news"
+
+    def assign_priority(self, cluster: Dict, final_score: float) -> str:
+        """
+        Assigns priority levels:
+        - BREAKING (Priority 1): multi-signal breaking classification
+        - HIGH (Priority 2): score >= 75
+        - NORMAL (Priority 3): score >= 60
+        - LOW (Priority 4): score < 60
+        """
+        is_breaking, reason = self.evaluate_breaking_news(cluster, final_score)
+        if is_breaking:
+            cluster["is_breaking"] = True
+            cluster["breaking_reason"] = reason
+            return "BREAKING"
+        elif final_score >= 75:
+            return "HIGH"
+        elif final_score >= 60:
+            return "NORMAL"
+        else:
+            return "LOW"
 
     def calculate_composite_score(self, cluster: Dict) -> tuple[float, dict]:
         """
@@ -133,12 +289,20 @@ class NewsRanker:
         source_name = best_art.get("source", "")
         pub_at = best_art.get("published_at", "")
 
+        # Syndicated source filtering
+        articles = cluster.get("articles", [])
+        indep_sources, unique_srcs = filter_syndicated_sources(articles)
+        cluster["independent_source_count"] = indep_sources
+        cluster["source_count"] = len(unique_srcs)
+
         freshness = self.calculate_freshness_score(pub_at)
         source_quality = self.calculate_source_score(source_name)
         importance = self.calculate_importance_score(cluster)
         trend = float(cluster.get("trend_score", 50))
-        confirmation = self.calculate_confirmation_score(cluster.get("source_count", 1))
-        category_relevance = 100.0
+        confirmation = self.calculate_confirmation_score(indep_sources)
+        
+        cat_boost, cat_reason = self.calculate_category_intelligence_boost(cluster)
+        category_relevance = max(20.0, min(100.0, 75.0 + cat_boost))
 
         w_fresh = getattr(config, "FRESHNESS_WEIGHT", 0.25)
         w_source = getattr(config, "SOURCE_WEIGHT", 0.20)
@@ -163,6 +327,8 @@ class NewsRanker:
             "trend_score": round(trend, 1),
             "confirmation_score": round(confirmation, 1),
             "category_relevance_score": round(category_relevance, 1),
+            "category_reason": cat_reason,
+            "independent_sources": indep_sources,
             "weights": {
                 "freshness": w_fresh,
                 "source": w_source,
@@ -171,23 +337,29 @@ class NewsRanker:
                 "confirmation": w_confirm,
                 "category": w_cat
             },
-            "reason": f"Covered by {cluster.get('source_count', 1)} source(s) with freshness={round(freshness)} and source_quality={round(source_quality)}"
+            "reason": f"Covered by {indep_sources} independent source(s) ({cat_reason})"
         }
 
         return round(final_score, 1), explanation
 
     def rank_clusters(self, clusters: List[Dict]) -> List[Dict]:
         """
-        Ranks story clusters programmatically based on final composite score.
-        Populates final_score, importance_score, and score_explanation.
+        Ranks story clusters programmatically based on final composite score and assigns priority levels.
+        Populates final_score, importance_score, priority, and score_explanation.
         """
         for cluster in clusters:
             score, explanation = self.calculate_composite_score(cluster)
+            priority = self.assign_priority(cluster, score)
             cluster["final_score"] = score
             cluster["importance_score"] = explanation["importance_score"]
+            cluster["priority"] = priority
             cluster["score_explanation"] = explanation
 
-        # Sort in descending order of final_score
-        sorted_clusters = sorted(clusters, key=lambda c: c.get("final_score", 0), reverse=True)
-        logger.info("Ranked %d story clusters programmatically", len(sorted_clusters))
+        # Sort priority mapping
+        prio_order = {"BREAKING": 1, "HIGH": 2, "NORMAL": 3, "LOW": 4}
+        sorted_clusters = sorted(
+            clusters,
+            key=lambda c: (prio_order.get(c.get("priority", "NORMAL"), 3), -c.get("final_score", 0))
+        )
+        logger.info("Ranked %d story clusters programmatically with priority assignment", len(sorted_clusters))
         return sorted_clusters

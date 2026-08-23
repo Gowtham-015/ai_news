@@ -18,7 +18,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import shutil
 import tempfile
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -112,9 +112,80 @@ def parse_scheduled_time(post):
     return naive_dt.replace(tzinfo=TIMEZONE)
 
 
+def check_post_frequency_limits(post: dict, published_history: list = None) -> tuple[bool, str]:
+    """
+    Enforces Phase 7 post frequency controls using Asia/Kolkata timezone:
+    1. MAX_POSTS_PER_HOUR (4)
+    2. MAX_POSTS_PER_DAY (30)
+    3. MIN_POST_INTERVAL_MINUTES (15)
+    4. MAX_POSTS_PER_CATEGORY_PER_DAY (10)
+    
+    Breaking news override: Bypasses frequency limits if is_breaking or priority == 'BREAKING'.
+    """
+    is_breaking = post.get("is_breaking") or post.get("priority") == "BREAKING"
+    if is_breaking:
+        return True, "Breaking news override active"
+
+    if published_history is None:
+        published_history = deduplicator.load_published_history()
+
+    now = datetime.now(TIMEZONE)
+    hour_ago = now - timedelta(hours=1)
+    day_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    min_interval = timedelta(minutes=getattr(config, "MIN_POST_INTERVAL_MINUTES", 15))
+
+    posts_last_hour = 0
+    posts_today = 0
+    cat_posts_today = 0
+    post_category = str(post.get("category", "")).upper()
+    latest_published_dt = None
+
+    for item in published_history:
+        pub_str = item.get("published_time") or item.get("published_at")
+        if not pub_str:
+            continue
+        try:
+            from news_collector import parse_published_time
+            dt = parse_published_time(str(pub_str)).astimezone(TIMEZONE)
+        except Exception:
+            continue
+
+        if latest_published_dt is None or dt > latest_published_dt:
+            latest_published_dt = dt
+
+        if dt >= hour_ago:
+            posts_last_hour += 1
+
+        if dt >= day_start:
+            posts_today += 1
+            item_cat = str(item.get("category", "")).upper()
+            if item_cat == post_category:
+                cat_posts_today += 1
+
+    max_per_hour = getattr(config, "MAX_POSTS_PER_HOUR", 4)
+    if posts_last_hour >= max_per_hour:
+        return False, f"Hourly limit reached ({posts_last_hour}/{max_per_hour} posts in last hour)"
+
+    max_per_day = getattr(config, "MAX_POSTS_PER_DAY", 30)
+    if posts_today >= max_per_day:
+        return False, f"Daily limit reached ({posts_today}/{max_per_day} posts today)"
+
+    if latest_published_dt and (now - latest_published_dt) < min_interval:
+        elapsed = (now - latest_published_dt).total_seconds() / 60.0
+        return False, f"Minimum interval not met ({elapsed:.1f} mins since last post, required {min_interval.total_seconds()/60:.0f} mins)"
+
+    max_cat_day = getattr(config, "MAX_POSTS_PER_CATEGORY_PER_DAY", 10)
+    if cat_posts_today >= max_cat_day:
+        return False, f"Category daily limit reached ({cat_posts_today}/{max_cat_day} posts for {post_category} today)"
+
+    return True, "Frequency limits passed"
+
+
 def check_and_publish():
     """
     Checks due posts in posts.json and publishes them via publisher.py.
+    Enforces frequency limits and safe retry state transitions:
+    scheduled -> publishing -> retrying -> published / permanently_failed
     Records to published_news.json only upon confirmed Telegram success.
     """
     posts = load_posts()
@@ -122,12 +193,14 @@ def check_and_publish():
         return
 
     now = datetime.now(TIMEZONE)
-    changed = False
+    published_history = deduplicator.load_published_history()
+    max_retries = getattr(config, "MAX_RETRIES", 3)
 
     for post in posts:
         post_id = post.get("id", "?")
+        status = post.get("status")
 
-        if post.get("status") != "scheduled":
+        if status not in ("scheduled", "retrying"):
             continue
 
         try:
@@ -139,39 +212,72 @@ def check_and_publish():
         if scheduled_dt > now:
             continue
 
-        logger.info("[TELEGRAM] Publishing post %s", post_id)
+        # Check duplicate publishing prevention against published history
+        post_url = post.get("original_url") or post.get("url", "")
+        if post_url and deduplicator.is_duplicate_url(post_url, published_history):
+            logger.warning("[SAFETY] Post %s URL already exists in published history (%s). Marking published.", post_id, post_url)
+            post["status"] = "published"
+            save_posts(posts)
+            continue
+
+        # Enforce post frequency limits (hourly, daily, min interval, category daily)
+        freq_ok, freq_reason = check_post_frequency_limits(post, published_history=published_history)
+        if not freq_ok:
+            logger.info("[FREQUENCY] Delaying post %s: %s", post_id, freq_reason)
+            continue
+
+        # Transition to publishing state
+        post["status"] = "publishing"
+        save_posts(posts)
+
+        logger.info("[TELEGRAM] Publishing post %s (Priority: %s)", post_id, post.get("priority", "NORMAL"))
         if hasattr(publisher, "publish_post") and isinstance(post, dict):
             success = publisher.publish_post(post)
         else:
             text = format_post_message(post)
             success = publisher.publish_text(text)
 
-
         if success:
             post["status"] = "published"
             post["published_time"] = now.strftime(DATETIME_FORMAT)
-            changed = True
+            save_posts(posts)
             logger.info("Post %s published successfully", post_id)
 
-            # PART 25: Record to persistent published history only after success
+            # Record to persistent published history immediately after confirmed Telegram success
             try:
                 deduplicator.record_published_history([post])
+                published_history.append(post)
             except Exception as e:
                 logger.error("Failed to record published history for post %s: %s", post_id, e)
+
+            # Record Phase 10 Analytics
+            try:
+                from analytics_manager import AnalyticsManager
+                am = AnalyticsManager()
+                am.record_publishing_event("success", post=post, priority=post.get("priority", "NORMAL"), is_photo=bool(post.get("image_url")))
+            except Exception as e:
+                logger.warning("Failed to record publishing analytics: %s", e)
         else:
-            err_msg = f"Failed to publish post {post_id} to Telegram. Marking status='failed'."
-            logger.error(err_msg)
-            post["status"] = "failed"
+            retry_count = post.get("retry_count", 0) + 1
+            post["retry_count"] = retry_count
             post["failed_time"] = now.strftime(DATETIME_FORMAT)
-            changed = True
 
+            try:
+                from analytics_manager import AnalyticsManager
+                am = AnalyticsManager()
+                if retry_count < max_retries:
+                    post["status"] = "retrying"
+                    logger.warning("Failed to publish post %s (Attempt %d/%d). Status set to 'retrying'.", post_id, retry_count, max_retries)
+                    am.record_publishing_event("retry", post=post, priority=post.get("priority", "NORMAL"))
+                else:
+                    post["status"] = "permanently_failed"
+                    logger.error("Post %s permanently failed after %d attempts.", post_id, retry_count)
+                    am.record_publishing_event("permanently_failed", post=post, priority=post.get("priority", "NORMAL"))
+                    am.record_failure("TELEGRAM_ERROR", f"Post {post_id} permanently failed after {max_retries} retries", details={"post_id": post_id, "title": post.get("title")})
+            except Exception as e:
+                logger.warning("Failed to record failure analytics: %s", e)
 
-
-    if changed:
-        try:
             save_posts(posts)
-        except Exception as e:
-            logger.error("Failed to save posts.json after publishing: %s", e)
 
 
 def main():

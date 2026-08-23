@@ -43,6 +43,8 @@ from queue_manager import QueueManager
 from state_manager import StateManager
 import scheduler
 
+from story_lifecycle import StoryLifecycleManager
+
 LOG_DIR = Path(__file__).parent / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 agent_log_path = LOG_DIR / "agent.log"
@@ -66,6 +68,7 @@ queue_mgr = QueueManager()
 clusterer = StoryClusterer()
 trend_det = TrendDetector()
 ranker = NewsRanker()
+lifecycle_mgr = StoryLifecycleManager()
 
 # Global lock to prevent overlapping collection cycles
 _collection_in_progress = False
@@ -80,8 +83,8 @@ def execute_pipeline(
 ):
 
     """
-    Executes the Phase 5 intelligent news automation pipeline safely.
-    Queues posts to posts.json with future schedule times without publishing directly.
+    Executes the Phase 9 intelligent news automation pipeline safely.
+    Queues posts to posts.json with priority and scheduled times without publishing directly.
     """
     global _collection_in_progress
 
@@ -97,11 +100,14 @@ def execute_pipeline(
         temp_dir = Path(tempfile.mkdtemp())
         test_posts_file = temp_dir / "posts.json"
         test_hist_file = temp_dir / "published_news.json"
+        test_lifecycle_file = temp_dir / "story_lifecycle.json"
         active_queue_mgr = QueueManager(posts_filepath=test_posts_file)
+        active_lifecycle_mgr = StoryLifecycleManager(filepath=test_lifecycle_file)
         active_hist_path = test_hist_file
     else:
         state_mgr.update_state(status="collecting", last_collection_at=now_str)
         active_queue_mgr = queue_mgr
+        active_lifecycle_mgr = lifecycle_mgr
         active_hist_path = None
 
     try:
@@ -116,7 +122,7 @@ def execute_pipeline(
 
         print("\n==================================================")
         print("AI NEWS AUTOMATION AGENT")
-        print("PHASE 5 — INTELLIGENT NEWS RANKING & AUTOMATION")
+        print("PHASE 9 — SMART TELEGRAM CONTENT INTELLIGENCE")
         print("==================================================")
 
         # STEP 1 & 2: Load feeds & Collect news
@@ -174,8 +180,8 @@ def execute_pipeline(
         print("\n[6] Trend Detection & Momentum Analysis...")
         clusters = trend_det.analyze_trends(clusters)
 
-        # STEP 7: Programmatic News Ranking
-        print("\n[7] Programmatic News Ranking...")
+        # STEP 7: Programmatic News Ranking & Priority Assignment
+        print("\n[7] Programmatic News Ranking & Priority Assignment...")
         ranked_clusters = ranker.rank_clusters(clusters)
 
         top_score = ranked_clusters[0].get("final_score", 0) if ranked_clusters else 0
@@ -201,43 +207,52 @@ def execute_pipeline(
             for idx, cl in enumerate(ranked_clusters[:10], 1):
                 best = cl["best_article"]
                 exp = cl.get("score_explanation", {})
-                print(f"\n[{idx}] {best.get('category', '').upper()} - {best.get('title')}")
-                print(f"    Final Score: {cl.get('final_score')} / 100")
+                state = active_lifecycle_mgr.get_story_state(cl)
+                print(f"\n[{idx}] [{cl.get('priority')}] {best.get('category', '').upper()} - {best.get('title')}")
+                print(f"    Final Score: {cl.get('final_score')} / 100 | Priority: {cl.get('priority')} | State: {state}")
                 print(f"    Sources ({cl.get('source_count')}): {', '.join(cl.get('sources', []))}")
                 print(f"    Breakdown: Freshness={exp.get('freshness_score')}, Source={exp.get('source_quality_score')}, Importance={exp.get('importance_score')}, Trend={exp.get('trend_score')}, Confirmation={exp.get('confirmation_score')}")
-                if "ai_evaluation" in cl:
-                    print(f"    AI Evaluation: Recommended={cl['ai_evaluation'].get('recommended')}, Reason: {cl['ai_evaluation'].get('reason')}")
+                print(f"    Reason: {exp.get('reason')}")
 
             print("\n[RANK TEST COMPLETE] Displayed top candidate rankings.\n")
             if not test_mode:
                 state_mgr.update_state(status="running" if state_mgr.is_locked_by_me else "idle")
             return
 
-        # STEP 9: Category-Aware Selection
-        print("\n[9] Category-Aware Selection...")
+        # STEP 9: Story Lifecycle & Category-Aware Selection
+        print("\n[9] Story Lifecycle & Category-Aware Selection...")
         category_needs = active_queue_mgr.calculate_category_needs(target_per_cat=max_per_category, instant_schedule=instant_schedule)
-
 
         selected_clusters = []
         selected_by_cat = {}
 
-        # Prioritize breaking news above threshold
-        breaking_threshold = getattr(config, "BREAKING_NEWS_SCORE_THRESHOLD", 90)
-
         for cl in ranked_clusters:
+            priority = cl.get("priority", "NORMAL")
+            score = cl.get("final_score", 0)
+
+            # Discard low-priority stories below threshold
+            if priority == "LOW" and score < 55:
+                logger.info("Skipping low-priority low-value story: '%s' (Score: %s)", cl.get("topic"), score)
+                continue
+
+            # Evaluate follow-up eligibility
+            eligible, reason = active_lifecycle_mgr.is_eligible_for_followup(cl)
+            if not eligible:
+                logger.info("Skipping story duplicate update: '%s' (%s)", cl.get("topic"), reason)
+                continue
+
+            if "Follow-up" in reason or "expansion" in reason or "progression" in reason:
+                cl["best_article"]["is_followup"] = True
+
             cat = str(cl.get("category", "News")).upper()
             target_limit = category_needs.get(cat, max_per_category)
 
             if cat not in selected_by_cat:
                 selected_by_cat[cat] = []
 
-            # Check if selection limit reached for this category
-            if len(selected_by_cat[cat]) < target_limit:
+            # Priority exception for BREAKING or HIGH priority stories
+            if len(selected_by_cat[cat]) < target_limit or priority in ("BREAKING", "HIGH"):
                 selected_by_cat[cat].append(cl)
-                selected_clusters.append(cl)
-            elif cl.get("final_score", 0) >= breaking_threshold:
-                # Breaking news priority exception
-                logger.info("Breaking news threshold (%d) met for story: '%s'", breaking_threshold, cl.get("topic"))
                 selected_clusters.append(cl)
 
         for cat_name in ["News", "Technology", "Sports", "Entertainment"]:
@@ -252,10 +267,16 @@ def execute_pipeline(
 
         for cl in selected_clusters:
             best_art = cl.get("best_article", {})
+            best_art["priority"] = cl.get("priority", "NORMAL")
+            best_art["is_breaking"] = cl.get("is_breaking", False)
+            best_art["final_score"] = cl.get("final_score", 60)
+
             post = ai_processor.generate_post(best_art)
             if post:
                 generated_posts.append(post)
-                print(f"[OK] {post['category']} article processed: {post['title']} (Score: {cl.get('final_score')})")
+                # Record in story lifecycle tracking
+                active_lifecycle_mgr.record_posted_story(cl)
+                print(f"[OK] [{cl.get('priority')}] {post['category']} article processed: {post['title']} (Score: {cl.get('final_score')})")
 
         if dry_run:
             print("\n==================================================")
@@ -294,8 +315,33 @@ def execute_pipeline(
                 last_error=None
             )
 
+        # Record Phase 10 Analytics
+        try:
+            from analytics_manager import AnalyticsManager
+            am = AnalyticsManager()
+            am.record_pipeline_run({
+                "collected_count": len(raw_articles),
+                "rejected_count": len(raw_articles) - len(unique_articles),
+                "duplicates_count": removed_dups,
+                "unique_count": len(unique_articles),
+                "clusters_count": len(clusters),
+                "ranked_count": len(ranked_clusters),
+                "ai_processed_count": len(generated_posts),
+                "ai_successful_count": len(generated_posts),
+                "ai_failed_count": 0,
+                "posts_generated_count": len(generated_posts),
+                "posts_scheduled_count": added_count,
+                "queue_size": len(active_queue_mgr.load_queue()),
+                "category_collected": cat_counts,
+                "top_candidates": [c.get("best_article", {}) for c in selected_clusters[:10]]
+            })
+            if not dry_run and not test_mode and not rank_test:
+                print("\n" + am.generate_daily_report() + "\n")
+        except Exception as e:
+            logger.warning("Failed to record analytics: %s", e)
+
         print("\n==================================================")
-        print("PHASE 5 PIPELINE COMPLETED")
+        print("PHASE 10 PIPELINE COMPLETED")
         print("Posts queued in posts.json with future scheduled times.")
         print("==================================================\n")
 

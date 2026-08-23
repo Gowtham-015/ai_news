@@ -1,0 +1,92 @@
+{
+  "2026-08-23": {
+    "date": "2026-08-23",
+    "articles_collected": 0,
+    "articles_rejected": 0,
+    "duplicates_removed": 0,
+    "unique_articles": 0,
+    "stories_clustered": 0,
+    "stories_ranked": 0,
+    "ai_processed": 0,
+    "ai_successful": 0,
+    "ai_failed": 0,
+    "ai_retries": 0,
+    "ai_filtered_before": 0,
+    "posts_generated": 0,
+    "posts_scheduled": 0,
+    "posts_published": 0,
+    "posts_failed": 0,
+    "post_retries": 1,
+    "permanently_failed": 1,
+    "photo_posts": 0,
+    "text_only_posts": 0,
+    "markup_fallbacks": 0,
+    "breaking_posts": 0,
+    "high_priority_posts": 0,
+    "normal_priority_posts": 0,
+    "low_priority_posts": 0,
+    "lifecycle_new": 0,
+    "lifecycle_developing": 0,
+    "lifecycle_trending": 0,
+    "lifecycle_resolved": 0,
+    "meaningful_followups": 0,
+    "rejected_followups": 0,
+    "queue_size_end": 0,
+    "peak_queue_size": 0,
+    "last_successful_collection": null,
+    "last_successful_publication": null,
+    "durations_seconds": {
+      "collection": 0.0,
+      "deduplication": 0.0,
+      "clustering": 0.0,
+      "ai": 0.0,
+      "ranking": 0.0,
+      "queue": 0.0,
+      "publishing": 0.0,
+      "total_pipeline": 0.0
+    },
+    "category_stats": {
+      "NEWS": {
+        "collected": 0,
+        "rejected": 0,
+        "published": 0,
+        "failed": 0,
+        "breaking": 0,
+        "high": 0,
+        "normal": 0,
+        "low": 0
+      },
+      "TECHNOLOGY": {
+        "collected": 0,
+        "rejected": 0,
+        "published": 0,
+        "failed": 0,
+        "breaking": 0,
+        "high": 0,
+        "normal": 0,
+        "low": 0
+      },
+      "SPORTS": {
+        "collected": 0,
+        "rejected": 0,
+        "published": 0,
+        "failed": 0,
+        "breaking": 0,
+        "high": 0,
+        "normal": 0,
+        "low": 0
+      },
+      "ENTERTAINMENT": {
+        "collected": 0,
+        "rejected": 0,
+        "published": 0,
+        "failed": 0,
+        "breaking": 0,
+        "high": 0,
+        "normal": 0,
+        "low": 0
+      }
+    },
+    "source_stats": {}
+  }
+}

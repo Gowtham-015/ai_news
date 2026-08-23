@@ -30,6 +30,9 @@ from config import (
     CATEGORY_WEIGHT,
     DEFAULT_SOURCE_SCORE,
     SOURCE_SCORES,
+    ANALYTICS_ENABLED,
+    ANALYTICS_RETENTION_DAYS,
+    ANALYTICS_DIR,
     validate_score_weights,
     validate_config,
 )
@@ -60,6 +63,9 @@ __all__ = [
     "CATEGORY_WEIGHT",
     "DEFAULT_SOURCE_SCORE",
     "SOURCE_SCORES",
+    "ANALYTICS_ENABLED",
+    "ANALYTICS_RETENTION_DAYS",
+    "ANALYTICS_DIR",
     "validate_score_weights",
     "validate_config",
 ]

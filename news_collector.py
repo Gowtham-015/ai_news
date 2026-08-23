@@ -27,9 +27,14 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import feedparser
+import requests
 import config
 from config.feeds import FEEDS
 from retry_manager import retry_with_backoff
+
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+}
 
 LOG_DIR = getattr(config, "LOG_DIR_PATH", Path(__file__).parent / "logs")
 LOG_DIR.mkdir(parents=True, exist_ok=True)
