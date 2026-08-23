@@ -235,6 +235,12 @@ class AnalyticsManager:
                     day_entry["source_stats"][src] = {"collected": 0, "accepted": 0, "published": 0}
                 day_entry["source_stats"][src]["collected"] += count
 
+            src_accepted = metrics.get("source_accepted", {})
+            for src, count in src_accepted.items():
+                if src not in day_entry["source_stats"]:
+                    day_entry["source_stats"][src] = {"collected": 0, "accepted": 0, "published": 0}
+                day_entry["source_stats"][src]["accepted"] += count
+
             daily_data[date_str] = day_entry
             _save_json_file(self.daily_file, daily_data)
 
@@ -351,14 +357,18 @@ class AnalyticsManager:
             logger.warning("Analytics failure in record_failure: %s", e)
 
     def record_top_stories(self, stories: list[dict], date_str: str, week_str: str):
-        """Stores top stories metadata by date and week."""
+        """Stores top stories metadata by date and week, accumulating top scoring stories across runs."""
         try:
             data = _load_json_file(self.top_stories_file, dict)
+            existing_list = data.get(date_str, [])
             
-            top_list = []
+            new_items = []
             for s in stories[:10]:
-                top_list.append({
-                    "title": s.get("title") or s.get("topic", ""),
+                title = s.get("title") or s.get("topic", "")
+                if not title:
+                    continue
+                new_items.append({
+                    "title": title,
                     "category": s.get("category", "NEWS"),
                     "priority": s.get("priority", "NORMAL"),
                     "score": s.get("final_score", 0),
@@ -366,7 +376,14 @@ class AnalyticsManager:
                     "published_at": s.get("published_at", "")
                 })
 
-            data[date_str] = top_list
+            # Merge existing and new items, avoiding duplicate titles and retaining top scores
+            combined = {item["title"]: item for item in existing_list}
+            for item in new_items:
+                if item["title"] not in combined or item["score"] > combined[item["title"]]["score"]:
+                    combined[item["title"]] = item
+
+            sorted_top = sorted(list(combined.values()), key=lambda x: x.get("score", 0), reverse=True)[:10]
+            data[date_str] = sorted_top
             _save_json_file(self.top_stories_file, data)
         except Exception as e:
             logger.warning("Analytics failure in record_top_stories: %s", e)

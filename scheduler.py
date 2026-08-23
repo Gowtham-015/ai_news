@@ -265,6 +265,7 @@ def check_and_publish():
             try:
                 from analytics_manager import AnalyticsManager
                 am = AnalyticsManager()
+                am.record_publishing_event("failure", post=post, priority=post.get("priority", "NORMAL"))
                 if retry_count < max_retries:
                     post["status"] = "retrying"
                     logger.warning("Failed to publish post %s (Attempt %d/%d). Status set to 'retrying'.", post_id, retry_count, max_retries)

@@ -47,6 +47,15 @@ class AIProcessor:
         self.api_key = api_key or getattr(config, "GEMINI_API_KEY", None) or os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY")
         self.model = None
 
+        self.stats = {
+            "ranking_requests": 0,
+            "generation_requests": 0,
+            "successful_requests": 0,
+            "failed_requests": 0,
+            "retries": 0,
+            "filtered_before": 0
+        }
+
         if HAS_GEMINI and self.api_key:
             try:
                 genai.configure(api_key=self.api_key)
@@ -99,6 +108,7 @@ class AIProcessor:
         category_name = str(article.get("category", "NEWS")).upper()
         url = article.get("url", "")
 
+        self.stats["generation_requests"] += 1
         ai_result = None
 
         if self.model:
@@ -143,6 +153,7 @@ Return ONLY a JSON object with this exact format:
 
             try:
                 ai_result = _call_gemini()
+                self.stats["successful_requests"] += 1
                 try:
                     from state_manager import StateManager
                     sm = StateManager()
@@ -151,7 +162,13 @@ Return ONLY a JSON object with this exact format:
                 except Exception:
                     pass
             except Exception as e:
+                self.stats["failed_requests"] += 1
                 logger.error("AI processing failed for article: '%s' (%s). Using fallback.", title, e)
+                try:
+                    from analytics_manager import AnalyticsManager
+                    AnalyticsManager().record_failure("AI_ERROR", f"AI post generation failed for '{title}': {e}", details={"title": title, "source": source})
+                except Exception:
+                    pass
 
         if not ai_result:
             try:
@@ -187,6 +204,10 @@ Return ONLY a JSON object with this exact format:
         }
 
         return post_data
+
+    def generate_post(self, article: dict) -> dict | None:
+        """Alias for process_article for pipeline compatibility."""
+        return self.process_article(article)
 
     def rank_stories_with_ai(self, clusters: List[Dict]) -> List[Dict]:
         """

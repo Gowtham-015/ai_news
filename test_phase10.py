@@ -321,6 +321,56 @@ class TestPhase10(unittest.TestCase):
             today_str = get_ist_date_str()
             self.assertEqual(data[today_str]["articles_collected"], 15)
 
+    def test_22_top_story_accumulation(self):
+        """22. Verifies top stories accumulate across multiple runs on the same day retaining highest scores."""
+        today_str = get_ist_date_str()
+        week_str = get_ist_week_str()
+
+        self.am.record_top_stories([{"title": "Story A", "final_score": 80}], today_str, week_str)
+        self.am.record_top_stories([{"title": "Story B", "final_score": 95}, {"title": "Story A", "final_score": 85}], today_str, week_str)
+
+        stories = self.am.get_top_stories("today")
+        self.assertEqual(len(stories), 2)
+        self.assertEqual(stories[0]["title"], "Story B")
+        self.assertEqual(stories[0]["score"], 95)
+        self.assertEqual(stories[1]["title"], "Story A")
+        self.assertEqual(stories[1]["score"], 85)
+
+    def test_23_source_accepted_tracking(self):
+        """23. Verifies source accepted counts are tracked in source_stats."""
+        self.am.record_pipeline_run({
+            "source_collected": {"NDTV": 10},
+            "source_accepted": {"NDTV": 4}
+        })
+
+        daily_file = self.temp_dir / "daily.json"
+        with open(daily_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            today_str = get_ist_date_str()
+            stats = data[today_str]["source_stats"]
+            self.assertEqual(stats["NDTV"]["collected"], 10)
+            self.assertEqual(stats["NDTV"]["accepted"], 4)
+
+    def test_24_pipeline_durations_populated(self):
+        """24. Verifies durations are tracked and accumulated in durations_seconds."""
+        self.am.record_pipeline_run({
+            "durations": {
+                "collection": 1.25,
+                "deduplication": 0.5,
+                "clustering": 0.3,
+                "ai": 2.1,
+                "total_pipeline": 4.15
+            }
+        })
+
+        daily_file = self.temp_dir / "daily.json"
+        with open(daily_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            today_str = get_ist_date_str()
+            durations = data[today_str]["durations_seconds"]
+            self.assertGreater(durations["collection"], 0)
+            self.assertGreater(durations["total_pipeline"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

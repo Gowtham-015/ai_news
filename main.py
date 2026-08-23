@@ -125,16 +125,23 @@ def execute_pipeline(
         print("PHASE 9 — SMART TELEGRAM CONTENT INTELLIGENCE")
         print("==================================================")
 
+        t_pipeline_start = time.perf_counter()
+
         # STEP 1 & 2: Load feeds & Collect news
         print("\n[1] Loading RSS feeds...")
         print("\n[2] Collecting news...")
 
+        t_start = time.perf_counter()
         raw_articles = collect_news(max_age_hours=getattr(config, "MAX_NEWS_AGE_HOURS", 24))
+        d_collect = time.perf_counter() - t_start
 
         cat_counts = {}
+        source_collected_counts = {}
         for a in raw_articles:
             c = a.get("category", "General")
             cat_counts[c] = cat_counts.get(c, 0) + 1
+            src = a.get("source", "Unknown")
+            source_collected_counts[src] = source_collected_counts.get(src, 0) + 1
 
         emoji_map = {
             "News": "📰",
@@ -153,6 +160,7 @@ def execute_pipeline(
 
         # STEP 3 & 4: Deduplicate and check previously published history
         print("\n[3] Removing duplicates...")
+        t_start = time.perf_counter()
         existing_posts = active_queue_mgr.load_queue()
         existing_news_ref = [
             {"url": p.get("original_url", ""), "title": p.get("title", "")}
@@ -165,6 +173,7 @@ def execute_pipeline(
             history_filepath=active_hist_path if test_mode else None
         )
         removed_dups = len(raw_articles) - len(unique_articles)
+        d_dedup = time.perf_counter() - t_start
         print(f"Duplicates removed: {removed_dups}")
 
         print("\n[4] Removing previously published articles...")
@@ -173,16 +182,22 @@ def execute_pipeline(
 
         # STEP 5: Story Clustering
         print("\n[5] Story Clustering...")
+        t_start = time.perf_counter()
         clusters = clusterer.cluster_articles(unique_articles)
+        d_cluster = time.perf_counter() - t_start
         print(f"Story clusters created: {len(clusters)}")
 
         # STEP 6: Trend Detection
         print("\n[6] Trend Detection & Momentum Analysis...")
+        t_start = time.perf_counter()
         clusters = trend_det.analyze_trends(clusters)
+        d_trend = time.perf_counter() - t_start
 
         # STEP 7: Programmatic News Ranking & Priority Assignment
         print("\n[7] Programmatic News Ranking & Priority Assignment...")
+        t_start = time.perf_counter()
         ranked_clusters = ranker.rank_clusters(clusters)
+        d_rank = time.perf_counter() - t_start
 
         top_score = ranked_clusters[0].get("final_score", 0) if ranked_clusters else 0
         if not test_mode:
@@ -192,12 +207,14 @@ def execute_pipeline(
             )
 
         # STEP 8: AI-Assisted Ranking (if enabled)
+        t_start = time.perf_counter()
         if getattr(config, "ENABLE_AI_RANKING", True):
             print("\n[8] AI-Assisted Ranking Evaluation...")
             ai_processor = AIProcessor()
             ranked_clusters = ai_processor.rank_stories_with_ai(ranked_clusters)
         else:
             ai_processor = AIProcessor()
+        d_ai_rank = time.perf_counter() - t_start
 
         # Handle --rank-test CLI mode
         if rank_test:
@@ -221,12 +238,32 @@ def execute_pipeline(
 
         # STEP 9: Story Lifecycle & Category-Aware Selection
         print("\n[9] Story Lifecycle & Category-Aware Selection...")
+        t_start = time.perf_counter()
         category_needs = active_queue_mgr.calculate_category_needs(target_per_cat=max_per_category, instant_schedule=instant_schedule)
 
         selected_clusters = []
         selected_by_cat = {}
+        
+        lifecycle_counts = {
+            "lifecycle_new": 0,
+            "lifecycle_developing": 0,
+            "lifecycle_trending": 0,
+            "lifecycle_resolved": 0,
+            "meaningful_followups": 0,
+            "rejected_followups": 0
+        }
 
         for cl in ranked_clusters:
+            st = active_lifecycle_mgr.get_story_state(cl)
+            if st == "NEW":
+                lifecycle_counts["lifecycle_new"] += 1
+            elif st == "DEVELOPING":
+                lifecycle_counts["lifecycle_developing"] += 1
+            elif st == "TRENDING":
+                lifecycle_counts["lifecycle_trending"] += 1
+            elif st == "RESOLVED":
+                lifecycle_counts["lifecycle_resolved"] += 1
+
             priority = cl.get("priority", "NORMAL")
             score = cl.get("final_score", 0)
 
@@ -238,11 +275,13 @@ def execute_pipeline(
             # Evaluate follow-up eligibility
             eligible, reason = active_lifecycle_mgr.is_eligible_for_followup(cl)
             if not eligible:
+                lifecycle_counts["rejected_followups"] += 1
                 logger.info("Skipping story duplicate update: '%s' (%s)", cl.get("topic"), reason)
                 continue
 
             if "Follow-up" in reason or "expansion" in reason or "progression" in reason:
                 cl["best_article"]["is_followup"] = True
+                lifecycle_counts["meaningful_followups"] += 1
 
             cat = str(cl.get("category", "News")).upper()
             target_limit = category_needs.get(cat, max_per_category)
@@ -255,14 +294,21 @@ def execute_pipeline(
                 selected_by_cat[cat].append(cl)
                 selected_clusters.append(cl)
 
+        source_accepted_counts = {}
+        for cl in selected_clusters:
+            src = cl.get("best_article", {}).get("source", "Unknown")
+            source_accepted_counts[src] = source_accepted_counts.get(src, 0) + 1
+
         for cat_name in ["News", "Technology", "Sports", "Entertainment"]:
             cat_u = cat_name.upper()
             arts = selected_by_cat.get(cat_u, [])
             em = emoji_map.get(cat_name, "📌")
             print(f"{em} {cat_name}: {len(arts)} selected")
+        d_selection = time.perf_counter() - t_start
 
         # STEP 10: AI Writing per selected story cluster
         print("\n[10] AI Post Generation...")
+        t_start = time.perf_counter()
         generated_posts = []
 
         for cl in selected_clusters:
@@ -277,6 +323,7 @@ def execute_pipeline(
                 # Record in story lifecycle tracking
                 active_lifecycle_mgr.record_posted_story(cl)
                 print(f"[OK] [{cl.get('priority')}] {post['category']} article processed: {post['title']} (Score: {cl.get('final_score')})")
+        d_ai_gen = time.perf_counter() - t_start
 
         if dry_run:
             print("\n==================================================")
@@ -292,18 +339,20 @@ def execute_pipeline(
             print("\n[DRY RUN COMPLETE] No posts queued to posts.json or sent to Telegram.\n")
             if not test_mode:
                 state_mgr.update_state(status="running" if state_mgr.is_locked_by_me else "idle")
-            return
 
         # STEP 11: Queue Management (posts.json)
         print("\n[11] Adding posts to queue...")
+        t_start = time.perf_counter()
         added_count = active_queue_mgr.add_posts_to_queue(
             generated_posts,
             max_queue_size=getattr(config, "MAX_QUEUE_SIZE", 20),
             history_filepath=active_hist_path if test_mode else None,
             instant_schedule=instant_schedule
         )
+        d_queue = time.perf_counter() - t_start
         print(f"[OK] Posts added to queue: {added_count}")
 
+        d_total = time.perf_counter() - t_pipeline_start
 
         if not test_mode:
             interval_mins = getattr(config, "NEWS_COLLECTION_INTERVAL_MINUTES", 30)
@@ -319,6 +368,7 @@ def execute_pipeline(
         try:
             from analytics_manager import AnalyticsManager
             am = AnalyticsManager()
+            ai_stats = getattr(ai_processor, "stats", {})
             am.record_pipeline_run({
                 "collected_count": len(raw_articles),
                 "rejected_count": len(raw_articles) - len(unique_articles),
@@ -326,19 +376,44 @@ def execute_pipeline(
                 "unique_count": len(unique_articles),
                 "clusters_count": len(clusters),
                 "ranked_count": len(ranked_clusters),
-                "ai_processed_count": len(generated_posts),
-                "ai_successful_count": len(generated_posts),
-                "ai_failed_count": 0,
+                "ai_processed_count": ai_stats.get("generation_requests", len(generated_posts)),
+                "ai_successful_count": ai_stats.get("successful_requests", len(generated_posts)),
+                "ai_failed_count": ai_stats.get("failed_requests", 0),
+                "ai_filtered_before_count": len(ranked_clusters) - len(selected_clusters),
                 "posts_generated_count": len(generated_posts),
                 "posts_scheduled_count": added_count,
                 "queue_size": len(active_queue_mgr.load_queue()),
+                "durations": {
+                    "collection": d_collect,
+                    "deduplication": d_dedup,
+                    "clustering": d_cluster,
+                    "trend_detection": d_trend,
+                    "ranking": d_rank,
+                    "ai_ranking": d_ai_rank,
+                    "selection": d_selection,
+                    "ai": d_ai_gen,
+                    "queue": d_queue,
+                    "publishing": 0.0,
+                    "total_pipeline": d_total
+                },
+                "lifecycle_new": lifecycle_counts["lifecycle_new"],
+                "lifecycle_developing": lifecycle_counts["lifecycle_developing"],
+                "lifecycle_trending": lifecycle_counts["lifecycle_trending"],
+                "lifecycle_resolved": lifecycle_counts["lifecycle_resolved"],
+                "meaningful_followups": lifecycle_counts["meaningful_followups"],
+                "rejected_followups": lifecycle_counts["rejected_followups"],
                 "category_collected": cat_counts,
+                "source_collected": source_collected_counts,
+                "source_accepted": source_accepted_counts,
                 "top_candidates": [c.get("best_article", {}) for c in selected_clusters[:10]]
             })
             if not dry_run and not test_mode and not rank_test:
                 print("\n" + am.generate_daily_report() + "\n")
         except Exception as e:
             logger.warning("Failed to record analytics: %s", e)
+
+        if dry_run:
+            return
 
         print("\n==================================================")
         print("PHASE 10 PIPELINE COMPLETED")
