@@ -25,6 +25,7 @@ Public function:
 
 import asyncio
 import logging
+from typing import Tuple, Optional
 
 from telegram import Bot
 from telegram.request import HTTPXRequest
@@ -298,10 +299,11 @@ def format_html_post(post: dict, max_length: int = 4096) -> str:
     return full_html
 
 
-async def _publish_post_async(post: dict) -> bool:
+async def _publish_post_async(post: dict) -> Tuple[bool, Optional[int]]:
     """
     Publishes a post dictionary, attempting photo publishing first if real article image exists,
     with automatic fallback to text-only Telegram post if no image exists or photo publish fails.
+    Returns (success: bool, message_id: Optional[int]).
     """
     bot = _build_bot()
     image_url = post.get("image_url") or post.get("image", "")
@@ -310,47 +312,51 @@ async def _publish_post_async(post: dict) -> bool:
     if image_url and is_valid_url(image_url):
         is_image_valid = validate_image_url(image_url, timeout=3.0)
 
+    msg_id = None
+
     # 1. Attempt Photo Post if real article image is present and valid
     if is_image_valid and image_url:
         caption_html = format_html_post(post, max_length=1024)
         try:
             logger.info("[TELEGRAM] Attempting photo publish (Image: %s)", image_url[:60])
-            await bot.send_photo(
+            msg = await bot.send_photo(
                 chat_id=config.TELEGRAM_CHANNEL_ID,
                 photo=image_url,
                 caption=caption_html,
                 parse_mode="HTML"
             )
-            return True
+            msg_id = getattr(msg, "message_id", None)
+            return True, msg_id
         except Exception as img_err:
             logger.warning("[TELEGRAM] Photo publish failed (%s). Falling back to text-only.", img_err)
 
     # 2. Text-only Post HTML
     formatted_html = format_html_post(post, max_length=4096)
     try:
-        await bot.send_message(
+        msg = await bot.send_message(
             chat_id=config.TELEGRAM_CHANNEL_ID,
             text=formatted_html,
             parse_mode="HTML",
             disable_web_page_preview=False
         )
-        return True
+        msg_id = getattr(msg, "message_id", None)
+        return True, msg_id
     except BadRequest as e:
         logger.warning("[TELEGRAM] HTML parse failed (%s). Retrying plain text.", e)
         try:
             plain_text = re.sub(r"<[^>]+>", "", formatted_html)
-            await bot.send_message(
+            msg = await bot.send_message(
                 chat_id=config.TELEGRAM_CHANNEL_ID,
                 text=plain_text[:4096]
             )
-            return True
+            msg_id = getattr(msg, "message_id", None)
+            return True, msg_id
         except Exception as fallback_err:
             logger.error("[TELEGRAM] Plain text fallback failed: %s", fallback_err)
-            return False
+            return False, None
     except Exception as e:
         logger.error("[TELEGRAM] Message publish failed: %s", e)
-        return False
-
+        return False, None
 
 
 def publish_post(post: dict) -> bool:
@@ -364,8 +370,15 @@ def publish_post(post: dict) -> bool:
         logger.error("Publish failed: %s", e)
         return False
 
-    success = asyncio.run(_publish_post_async(post))
+    res = asyncio.run(_publish_post_async(post))
+    if isinstance(res, tuple):
+        success, msg_id = res
+    else:
+        success, msg_id = bool(res), None
+
     if success and isinstance(post, dict):
+        if msg_id:
+            post["telegram_message_id"] = msg_id
         try:
             import deduplicator
             deduplicator.record_published_history([post])
@@ -374,14 +387,9 @@ def publish_post(post: dict) -> bool:
     return success
 
 
-
 def publish_text(text: str) -> bool:
     """
     Synchronous entry point used by scheduler.py.
-
-    Loads/validates config, then sends `text` to the Telegram channel.
-    Returns True on success, False on any failure. Never prints or
-    logs the bot token.
     """
     try:
         config.validate_config()
@@ -390,4 +398,55 @@ def publish_text(text: str) -> bool:
         return False
 
     return asyncio.run(_publish_text_async(text))
+
+
+async def _publish_poll_async(question: str, options: list[str]) -> bool:
+    """Sends an interactive Telegram Poll to the configured channel."""
+    bot = _build_bot()
+    try:
+        await bot.send_poll(
+            chat_id=config.TELEGRAM_CHANNEL_ID,
+            question=question[:300],
+            options=[opt[:100] for opt in options[:10]],
+            is_anonymous=True
+        )
+        return True
+    except Exception as e:
+        logger.error("[TELEGRAM] Poll publishing failed: %s", e)
+        return False
+
+
+def publish_poll(question: str, options: list[str]) -> bool:
+    """Synchronous entry point to publish an interactive Telegram Poll."""
+    try:
+        config.validate_config()
+    except ValueError as e:
+        logger.error("Poll publish failed: %s", e)
+        return False
+    return asyncio.run(_publish_poll_async(question, options))
+
+
+async def _pin_message_async(message_id: int) -> bool:
+    """Pins a message in the configured Telegram channel safely."""
+    bot = _build_bot()
+    try:
+        await bot.pin_chat_message(
+            chat_id=config.TELEGRAM_CHANNEL_ID,
+            message_id=message_id,
+            disable_notification=True
+        )
+        return True
+    except Exception as e:
+        logger.warning("[TELEGRAM] Message pinning skipped/failed: %s", e)
+        return False
+
+
+def pin_message(message_id: int) -> bool:
+    """Synchronous entry point to pin a message in Telegram channel."""
+    try:
+        config.validate_config()
+    except ValueError as e:
+        logger.error("Pin message failed: %s", e)
+        return False
+    return asyncio.run(_pin_message_async(message_id))
 

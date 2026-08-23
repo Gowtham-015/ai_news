@@ -261,6 +261,36 @@ def check_and_publish():
             save_posts(posts)
             logger.info("Post %s published successfully", post_id)
 
+            # Check breaking news auto-pinning if enabled
+            is_breaking = post.get("is_breaking") or str(post.get("priority", "")).upper() == "BREAKING"
+            msg_id = post.get("telegram_message_id")
+            if is_breaking and msg_id:
+                try:
+                    from channel_automation import ChannelAutomationManager
+                    cam = ChannelAutomationManager()
+                    astate = cam.load_state()
+                    if astate.get("pinning_enabled", True):
+                        logger.info("[TELEGRAM] Pinning breaking news post %s (Msg ID: %s)", post_id, msg_id)
+                        publisher.pin_message(msg_id)
+                except Exception as pin_err:
+                    logger.warning("[TELEGRAM] Failed to pin breaking post: %s", pin_err)
+
+            # Check interactive poll generation for suitable sports/entertainment topic
+            try:
+                from channel_automation import ChannelAutomationManager
+                cam = ChannelAutomationManager()
+                if cam.should_trigger_poll(dt=now):
+                    poll_payload = cam.generate_poll_payload(post)
+                    if poll_payload:
+                        q, opts = poll_payload
+                        logger.info("[TELEGRAM] Creating interactive poll: '%s'", q)
+                        if publisher.publish_poll(q, opts):
+                            astate = cam.load_state()
+                            astate["last_poll_created_at"] = now.isoformat()
+                            cam.save_state(astate)
+            except Exception as poll_err:
+                logger.warning("[TELEGRAM] Failed to generate/publish poll: %s", poll_err)
+
             # Record to persistent published history immediately after confirmed Telegram success
             try:
                 deduplicator.record_published_history([post])

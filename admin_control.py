@@ -125,11 +125,19 @@ class AdminControlManager:
             "/queue - View upcoming scheduled posts\n"
             "/stats - View today's analytics report\n"
             "/topnews - View current top candidate stories\n\n"
-            "⚙️ CONTROL:\n"
+            "🌅 PUBLICATION RHYTHM:\n"
+            "/briefing - Trigger Morning Briefing summary\n"
+            "/roundup - Trigger Evening Roundup summary\n"
+            "/trending - Trigger Trending Digest summary\n\n"
+            "⚙️ CONFIGURATION & CONTROL:\n"
             "/pause - Pause all Telegram publishing\n"
             "/pause <category> - Pause publishing for specific category (e.g. /pause sports)\n"
             "/resume - Resume Telegram publishing\n"
             "/resume <category> - Resume publishing for specific category\n"
+            "/polls <on|off> - Enable or disable interactive polls\n"
+            "/pin <on|off> - Enable or disable breaking news auto-pinning\n"
+            "/briefingtime HH:MM - Set morning briefing IST time (e.g. /briefingtime 08:00)\n"
+            "/rounduptime HH:MM - Set evening roundup IST time (e.g. /rounduptime 20:00)\n"
             "/retry - Reset failed posts for re-attempt\n"
             "/test - Send admin test message\n"
         )
@@ -146,7 +154,6 @@ class AdminControlManager:
         parts = text.split()
         cmd = parts[0].lower() if parts else ""
 
-        # Remove @bot_name suffix if present (e.g., /status@MyBot -> /status)
         if "@" in cmd:
             cmd = cmd.split("@")[0]
 
@@ -173,8 +180,130 @@ class AdminControlManager:
             return self._cmd_retry(queue_mgr)
         elif cmd == "/test":
             return self._cmd_test(user_id)
+        elif cmd == "/briefing":
+            return self._cmd_briefing()
+        elif cmd == "/roundup":
+            return self._cmd_roundup()
+        elif cmd == "/trending":
+            return self._cmd_trending()
+        elif cmd == "/polls":
+            arg = parts[1].lower() if len(parts) > 1 else ""
+            return self._cmd_polls_toggle(arg)
+        elif cmd == "/pin":
+            arg = parts[1].lower() if len(parts) > 1 else ""
+            return self._cmd_pin_toggle(arg)
+        elif cmd == "/briefingtime":
+            time_arg = parts[1] if len(parts) > 1 else ""
+            return self._cmd_set_briefingtime(time_arg)
+        elif cmd == "/rounduptime":
+            time_arg = parts[1] if len(parts) > 1 else ""
+            return self._cmd_set_rounduptime(time_arg)
         else:
             return f"❓ Unknown or invalid command: '{command_text}'\n\n" + self.get_help_menu()
+
+    def _cmd_briefing(self) -> str:
+        """Triggers manual Morning Briefing test."""
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            am = AnalyticsManager()
+            top = am.get_top_stories("today")
+            briefing = cam.generate_morning_briefing(top)
+            return briefing["summary"]
+        except Exception as e:
+            return f"Error generating briefing: {e}"
+
+    def _cmd_roundup(self) -> str:
+        """Triggers manual Evening Roundup test."""
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            am = AnalyticsManager()
+            top = am.get_top_stories("today")
+            roundup = cam.generate_evening_roundup(top)
+            return roundup["summary"]
+        except Exception as e:
+            return f"Error generating roundup: {e}"
+
+    def _cmd_trending(self) -> str:
+        """Triggers manual Trending Digest test."""
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            am = AnalyticsManager()
+            top = am.get_top_stories("today")
+            trending = cam.generate_trending_digest(top)
+            return trending["summary"]
+        except Exception as e:
+            return f"Error generating trending digest: {e}"
+
+    def _cmd_polls_toggle(self, arg: str) -> str:
+        """Toggles interactive polls on or off."""
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            astate = cam.load_state()
+            if arg in ("on", "true", "1", "enable"):
+                astate["polls_enabled"] = True
+                cam.save_state(astate)
+                return "📊 INTERACTIVE POLLS: ENABLED"
+            elif arg in ("off", "false", "0", "disable"):
+                astate["polls_enabled"] = False
+                cam.save_state(astate)
+                return "📊 INTERACTIVE POLLS: DISABLED"
+            else:
+                curr = "ENABLED" if astate.get("polls_enabled", True) else "DISABLED"
+                return f"📊 INTERACTIVE POLLS: Currently {curr}.\nUse '/polls on' or '/polls off' to change."
+        except Exception as e:
+            return f"Error setting polls: {e}"
+
+    def _cmd_pin_toggle(self, arg: str) -> str:
+        """Toggles breaking news auto-pinning on or off."""
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            astate = cam.load_state()
+            if arg in ("on", "true", "1", "enable"):
+                astate["pinning_enabled"] = True
+                cam.save_state(astate)
+                return "📌 BREAKING NEWS PINNING: ENABLED"
+            elif arg in ("off", "false", "0", "disable"):
+                astate["pinning_enabled"] = False
+                cam.save_state(astate)
+                return "📌 BREAKING NEWS PINNING: DISABLED"
+            else:
+                curr = "ENABLED" if astate.get("pinning_enabled", True) else "DISABLED"
+                return f"📌 BREAKING NEWS PINNING: Currently {curr}.\nUse '/pin on' or '/pin off' to change."
+        except Exception as e:
+            return f"Error setting pinning: {e}"
+
+    def _cmd_set_briefingtime(self, time_str: str) -> str:
+        """Sets Morning Briefing IST time (HH:MM)."""
+        if not re.match(r"^\d{1,2}:\d{2}$", time_str):
+            return "⚠️ Invalid time format. Use HH:MM format (e.g. /briefingtime 08:00)"
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            astate = cam.load_state()
+            astate["briefing_time_ist"] = time_str
+            cam.save_state(astate)
+            return f"🌅 MORNING BRIEFING TIME set to {time_str} IST"
+        except Exception as e:
+            return f"Error setting briefing time: {e}"
+
+    def _cmd_set_rounduptime(self, time_str: str) -> str:
+        """Sets Evening Roundup IST time (HH:MM)."""
+        if not re.match(r"^\d{1,2}:\d{2}$", time_str):
+            return "⚠️ Invalid time format. Use HH:MM format (e.g. /rounduptime 20:00)"
+        try:
+            from channel_automation import ChannelAutomationManager
+            cam = ChannelAutomationManager()
+            astate = cam.load_state()
+            astate["roundup_time_ist"] = time_str
+            cam.save_state(astate)
+            return f"🌙 EVENING ROUNDUP TIME set to {time_str} IST"
+        except Exception as e:
+            return f"Error setting roundup time: {e}"
 
     def _cmd_status(self, queue_mgr: Optional[QueueManager] = None) -> str:
         """Processes /status command."""

@@ -39,6 +39,30 @@
         "post_id": 1,
         "title": "Failing Post"
       }
+    },
+    {
+      "timestamp": "2026-08-23 18:03:05 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
+    },
+    {
+      "timestamp": "2026-08-23 18:03:27 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
+    },
+    {
+      "timestamp": "2026-08-23 18:03:58 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
     }
   ]
 }
