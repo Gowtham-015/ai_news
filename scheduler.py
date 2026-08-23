@@ -184,10 +184,17 @@ def check_post_frequency_limits(post: dict, published_history: list = None) -> t
 def check_and_publish():
     """
     Checks due posts in posts.json and publishes them via publisher.py.
-    Enforces frequency limits and safe retry state transitions:
+    Enforces frequency limits, admin pause controls, and safe retry state transitions:
     scheduled -> publishing -> retrying -> published / permanently_failed
     Records to published_news.json only upon confirmed Telegram success.
     """
+    try:
+        from admin_control import AdminControlManager
+        acm = AdminControlManager()
+        acm.poll_and_process_commands()
+    except Exception as e:
+        logger.warning("Failed to poll admin control commands: %s", e)
+
     posts = load_posts()
     if not posts:
         return
@@ -211,6 +218,17 @@ def check_and_publish():
 
         if scheduled_dt > now:
             continue
+
+        # Check admin pause control (global or category-level)
+        post_category = post.get("category", "NEWS")
+        try:
+            from admin_control import AdminControlManager
+            acm = AdminControlManager()
+            if acm.is_publishing_paused(post_category):
+                logger.info("[PAUSED] Delaying post %s: Publishing is currently paused for category %s", post_id, post_category)
+                continue
+        except Exception:
+            pass
 
         # Check duplicate publishing prevention against published history
         post_url = post.get("original_url") or post.get("url", "")

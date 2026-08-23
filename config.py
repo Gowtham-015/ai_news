@@ -33,6 +33,8 @@ from config import (
     ANALYTICS_ENABLED,
     ANALYTICS_RETENTION_DAYS,
     ANALYTICS_DIR,
+    TELEGRAM_ADMIN_IDS,
+    ADMIN_STATE_FILE,
     validate_score_weights,
     validate_config,
 )
@@ -66,6 +68,8 @@ __all__ = [
     "ANALYTICS_ENABLED",
     "ANALYTICS_RETENTION_DAYS",
     "ANALYTICS_DIR",
+    "TELEGRAM_ADMIN_IDS",
+    "ADMIN_STATE_FILE",
     "validate_score_weights",
     "validate_config",
 ]

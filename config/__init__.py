@@ -26,6 +26,11 @@ TELEGRAM_BOT_TOKEN = _sanitize_val(os.getenv("TELEGRAM_BOT_TOKEN") or os.getenv(
 TELEGRAM_CHANNEL_ID = _sanitize_val(os.getenv("TELEGRAM_CHANNEL_ID") or os.getenv("SECRETFILE"), "TELEGRAM_CHANNEL_ID")
 GEMINI_API_KEY = _sanitize_val(os.getenv("GEMINI_API_KEY") or os.getenv("AI_API_KEY"), "GEMINI_API_KEY")
 
+# Phase 11 Telegram Admin Control Settings
+raw_admin = os.getenv("TELEGRAM_ADMIN_IDS", "")
+TELEGRAM_ADMIN_IDS = [
+    int(x.strip()) for x in raw_admin.split(",") if x.strip().replace("-", "").isdigit()
+]
 
 
 from pathlib import Path
@@ -43,6 +48,7 @@ PUBLISHED_NEWS_FILE = DATA_DIR_PATH / "published_news.json"
 TREND_CACHE_FILE = DATA_DIR_PATH / "trend_cache.json"
 LOCK_FILE = DATA_DIR_PATH / "agent.lock"
 ANALYTICS_DIR = DATA_DIR_PATH / "analytics"
+ADMIN_STATE_FILE = DATA_DIR_PATH / "admin_state.json"
 
 # Phase 10 Analytics & Statistics Settings
 ANALYTICS_ENABLED = os.getenv("ANALYTICS_ENABLED", "true").lower() == "true"
@@ -201,6 +207,8 @@ __all__ = [
     "ANALYTICS_DIR",
     "ANALYTICS_ENABLED",
     "ANALYTICS_RETENTION_DAYS",
+    "TELEGRAM_ADMIN_IDS",
+    "ADMIN_STATE_FILE",
     "ensure_data_dir_and_migrate",
     "MAX_NEWS_AGE_HOURS",
     "POSTS_PER_CATEGORY",
