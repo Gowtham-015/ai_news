@@ -16,5 +16,23 @@
       "SPORTS": 4,
       "ENTERTAINMENT": 1
     }
+  },
+  "2026-W35": {
+    "week": "2026-W35",
+    "days_count": 1,
+    "total_posts_published": 1,
+    "total_articles_collected": 327,
+    "total_duplicates_removed": 236,
+    "total_ai_processed": 15,
+    "total_breaking_posts": 0,
+    "total_failed_posts": 0,
+    "total_retries": 0,
+    "avg_posts_per_day": 1.0,
+    "category_totals": {
+      "NEWS": 1,
+      "TECHNOLOGY": 0,
+      "SPORTS": 0,
+      "ENTERTAINMENT": 0
+    }
   }
 }
