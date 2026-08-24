@@ -138,6 +138,9 @@ class AdminControlManager:
             "/pin <on|off> - Enable or disable breaking news auto-pinning\n"
             "/briefingtime HH:MM - Set morning briefing IST time (e.g. /briefingtime 08:00)\n"
             "/rounduptime HH:MM - Set evening roundup IST time (e.g. /rounduptime 20:00)\n"
+            "/engagement - View engagement engine status & settings\n"
+            "/engagement <on|off> - Enable or disable engagement engine\n"
+            "/engagementstats - View engagement telemetry statistics\n"
             "/retry - Reset failed posts for re-attempt\n"
             "/test - Send admin test message\n"
         )
@@ -198,8 +201,57 @@ class AdminControlManager:
         elif cmd == "/rounduptime":
             time_arg = parts[1] if len(parts) > 1 else ""
             return self._cmd_set_rounduptime(time_arg)
+        elif cmd == "/engagement":
+            arg = parts[1].lower() if len(parts) > 1 else ""
+            return self._cmd_engagement(arg)
+        elif cmd == "/engagementstats":
+            return self._cmd_engagementstats()
         else:
             return f"❓ Unknown or invalid command: '{command_text}'\n\n" + self.get_help_menu()
+
+    def _cmd_engagement(self, arg: str) -> str:
+        """Handles /engagement and /engagement on|off."""
+        try:
+            from engagement_engine import EngagementEngine
+            ee = EngagementEngine()
+            estate = ee.load_state()
+            if arg in ("on", "true", "1", "enable"):
+                estate["enabled"] = True
+                ee.save_state(estate)
+                return "🚀 ENGAGEMENT ENGINE: ENABLED"
+            elif arg in ("off", "false", "0", "disable"):
+                estate["enabled"] = False
+                ee.save_state(estate)
+                return "🚀 ENGAGEMENT ENGINE: DISABLED"
+            else:
+                curr = "ENABLED" if estate.get("enabled", True) else "DISABLED"
+                return (
+                    f"🚀 ENGAGEMENT ENGINE STATUS: {curr}\n\n"
+                    f"Polls Today: {estate.get('polls_today_count', 0)} / {estate.get('max_polls_per_day', 3)}\n"
+                    f"Engagement Posts Today: {estate.get('engagement_today_count', 0)} / {estate.get('max_engagement_per_day', 4)}\n"
+                    f"Polls Rejected (Sensitive): {estate.get('polls_rejected_count', 0)}\n\n"
+                    "Use '/engagement on' or '/engagement off' to configure."
+                )
+        except Exception as e:
+            return f"Error setting engagement: {e}"
+
+    def _cmd_engagementstats(self) -> str:
+        """Handles /engagementstats command."""
+        try:
+            from engagement_engine import EngagementEngine
+            ee = EngagementEngine()
+            estate = ee.load_state()
+            return (
+                "📊 ENGAGEMENT TELEMETRY STATISTICS\n\n"
+                f"Status: {'ENABLED' if estate.get('enabled', True) else 'DISABLED'}\n"
+                f"Polls Sent Today: {estate.get('polls_today_count', 0)}\n"
+                f"Engagement Prompts Sent Today: {estate.get('engagement_today_count', 0)}\n"
+                f"Sensitive Polls Rejected: {estate.get('polls_rejected_count', 0)}\n"
+                f"Last Poll Time: {estate.get('last_poll_at') or 'None'}\n"
+                f"Last Engagement Time: {estate.get('last_engagement_at') or 'None'}"
+            )
+        except Exception as e:
+            return f"Error loading engagement stats: {e}"
 
     def _cmd_briefing(self) -> str:
         """Triggers manual Morning Briefing test."""

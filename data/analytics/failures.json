@@ -87,6 +87,14 @@
         "post_id": 1,
         "title": "Failing Post"
       }
+    },
+    {
+      "timestamp": "2026-08-24 14:36:22 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
     }
   ]
 }

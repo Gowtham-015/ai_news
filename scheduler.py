@@ -330,6 +330,14 @@ def check_and_publish():
             logger.info("[FREQUENCY] Delaying post %s: %s", post_id, freq_reason)
             continue
 
+        # Attach Phase 13 engagement opinion prompt if non-sensitive and within limits
+        try:
+            from engagement_engine import EngagementEngine
+            ee = EngagementEngine()
+            post = ee.attach_opinion_prompt(post, dt=now)
+        except Exception as eng_err:
+            logger.warning("[ENGAGEMENT] Failed to attach opinion prompt: %s", eng_err)
+
         # Transition to publishing state
         post["status"] = "publishing"
         save_posts(posts)
@@ -361,21 +369,22 @@ def check_and_publish():
                 except Exception as pin_err:
                     logger.warning("[TELEGRAM] Failed to pin breaking post: %s", pin_err)
 
-            # Check interactive poll generation for suitable sports/entertainment topic
+            # Check Phase 13 interactive prediction poll generation
             try:
-                from channel_automation import ChannelAutomationManager
-                cam = ChannelAutomationManager()
-                if cam.should_trigger_poll(dt=now):
-                    poll_payload = cam.generate_poll_payload(post)
-                    if poll_payload:
-                        q, opts = poll_payload
-                        logger.info("[TELEGRAM] Creating interactive poll: '%s'", q)
-                        if publisher.publish_poll(q, opts):
-                            astate = cam.load_state()
-                            astate["last_poll_created_at"] = now.isoformat()
-                            cam.save_state(astate)
+                from engagement_engine import EngagementEngine
+                ee = EngagementEngine()
+                poll_payload = ee.generate_prediction_poll(post, dt=now)
+                if poll_payload:
+                    q, opts = poll_payload
+                    logger.info("[ENGAGEMENT] Creating interactive prediction poll: '%s'", q)
+                    if publisher.publish_poll(q, opts):
+                        try:
+                            from analytics_manager import AnalyticsManager
+                            AnalyticsManager().record_publishing_event("success", post={"title": q}, priority="NORMAL")
+                        except Exception:
+                            pass
             except Exception as poll_err:
-                logger.warning("[TELEGRAM] Failed to generate/publish poll: %s", poll_err)
+                logger.warning("[ENGAGEMENT] Failed to generate/publish poll: %s", poll_err)
 
             # Record to persistent published history immediately after confirmed Telegram success
             try:

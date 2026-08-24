@@ -148,7 +148,7 @@ class TestPhase7(unittest.TestCase):
         with open(posts_file, "w", encoding="utf-8") as f:
             json.dump(test_posts, f)
 
-        with mock.patch("scheduler.POSTS_FILE", posts_file), mock.patch("config.MAX_RETRIES", 2), mock.patch("deduplicator.load_published_history", return_value=[]):
+        with mock.patch("scheduler.POSTS_FILE", posts_file), mock.patch("config.MAX_RETRIES", 2), mock.patch("scheduler.check_post_frequency_limits", return_value=(True, "Limits OK")), mock.patch("deduplicator.load_published_history", return_value=[]):
             # Attempt 1 -> status should become retrying
             scheduler.check_and_publish()
             posts = scheduler.load_posts()
