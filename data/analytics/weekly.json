@@ -20,34 +20,16 @@
   "2026-W35": {
     "week": "2026-W35",
     "days_count": 1,
-    "total_posts_published": 15,
-    "total_articles_collected": 4851,
-    "total_duplicates_removed": 3679,
-    "total_ai_processed": 99,
-    "total_breaking_posts": 0,
-    "total_failed_posts": 0,
-    "total_retries": 0,
-    "avg_posts_per_day": 15.0,
-    "category_totals": {
-      "NEWS": 10,
-      "TECHNOLOGY": 0,
-      "SPORTS": 4,
-      "ENTERTAINMENT": 1
-    }
-  },
-  "2026-W35": {
-    "week": "2026-W35",
-    "days_count": 1,
-    "total_posts_published": 44,
-    "total_articles_collected": 0,
-    "total_duplicates_removed": 0,
-    "total_ai_processed": 0,
+    "total_posts_published": 45,
+    "total_articles_collected": 328,
+    "total_duplicates_removed": 223,
+    "total_ai_processed": 16,
     "total_breaking_posts": 0,
     "total_failed_posts": 6,
     "total_retries": 3,
-    "avg_posts_per_day": 44.0,
+    "avg_posts_per_day": 45.0,
     "category_totals": {
-      "NEWS": 44,
+      "NEWS": 45,
       "TECHNOLOGY": 0,
       "SPORTS": 0,
       "ENTERTAINMENT": 0
