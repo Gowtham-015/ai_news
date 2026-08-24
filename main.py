@@ -155,6 +155,13 @@ def execute_pipeline(
             em = emoji_map.get(cat_name, "📌")
             print(f"{em} {cat_name}: {cnt} articles")
 
+        # Telemetry: Record collection success
+        try:
+            from health_monitor import HealthMonitor
+            HealthMonitor().record_success("collection")
+        except Exception:
+            pass
+
         if not test_mode:
             save_collected_news(raw_articles)
 
@@ -294,6 +301,14 @@ def execute_pipeline(
                 selected_by_cat[cat].append(cl)
                 selected_clusters.append(cl)
 
+        # Enforce Phase 14 Content Intelligence Category Diversity
+        try:
+            from content_intelligence import ContentIntelligenceEngine
+            cie = ContentIntelligenceEngine()
+            selected_clusters = cie.enforce_category_diversity(selected_clusters, published_history=pub_history)
+        except Exception as cie_err:
+            logger.warning("Category diversity enforcement skipped: %s", cie_err)
+
         source_accepted_counts = {}
         for cl in selected_clusters:
             src = cl.get("best_article", {}).get("source", "Unknown")
@@ -412,6 +427,15 @@ def execute_pipeline(
         except Exception as e:
             logger.warning("Failed to record analytics: %s", e)
 
+        # Telemetry: Record AI & Queue success
+        try:
+            from health_monitor import HealthMonitor
+            HealthMonitor().record_success("ai")
+            HealthMonitor().record_success("queue")
+            HealthMonitor().record_success("workflow")
+        except Exception:
+            pass
+
         if dry_run:
             return
 
@@ -422,6 +446,11 @@ def execute_pipeline(
 
     except Exception as e:
         logger.error("Pipeline execution failed: %s", e)
+        try:
+            from health_monitor import HealthMonitor
+            HealthMonitor().record_failure("WORKFLOW_FAILURE", str(e))
+        except Exception:
+            pass
         if not test_mode:
             state_mgr.update_state(last_error=str(e))
         if instant_schedule or not state_mgr.is_locked_by_me:

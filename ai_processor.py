@@ -165,6 +165,11 @@ Return ONLY a JSON object with this exact format:
                 ai_result = _call_gemini()
                 self.stats["successful_requests"] += 1
                 try:
+                    from health_monitor import HealthMonitor
+                    HealthMonitor().record_success("ai")
+                except Exception:
+                    pass
+                try:
                     from cache_manager import CacheManager
                     CacheManager().set_ai_summary(cache_key, ai_result)
                 except Exception:
@@ -179,6 +184,11 @@ Return ONLY a JSON object with this exact format:
             except Exception as e:
                 self.stats["failed_requests"] += 1
                 logger.error("AI processing failed for article: '%s' (%s). Using fallback.", title, e)
+                try:
+                    from health_monitor import HealthMonitor
+                    HealthMonitor().record_failure("AI_ERROR", f"AI post generation failed for '{title}': {e}")
+                except Exception:
+                    pass
                 try:
                     from analytics_manager import AnalyticsManager
                     AnalyticsManager().record_failure("AI_ERROR", f"AI post generation failed for '{title}': {e}", details={"title": title, "source": source})

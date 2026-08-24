@@ -109,6 +109,11 @@ class NewsRanker:
     def __init__(self):
         # Validate weights at initialization
         config.validate_score_weights()
+        try:
+            from content_intelligence import ContentIntelligenceEngine
+            self.cie = ContentIntelligenceEngine()
+        except Exception:
+            self.cie = None
 
     def calculate_freshness_score(self, published_at_str: str) -> float:
         """
@@ -139,11 +144,18 @@ class NewsRanker:
 
     def calculate_source_score(self, source_name: str) -> float:
         """
-        Calculates Source Quality Score (0 to 100) based on config.SOURCE_SCORES.
+        Calculates Source Quality Score (0 to 100) based on config.SOURCE_SCORES & ContentIntelligenceEngine.
         """
         scores = getattr(config, "SOURCE_SCORES", {})
         default_score = getattr(config, "DEFAULT_SOURCE_SCORE", 70)
-        return float(scores.get(source_name, default_score))
+        cfg_score = float(scores.get(source_name, default_score))
+        if hasattr(self, "cie") and self.cie:
+            try:
+                cie_sq = self.cie.get_source_quality_score(source_name) * 100.0
+                return max(cfg_score, cie_sq)
+            except Exception:
+                pass
+        return cfg_score
 
     def calculate_confirmation_score(self, source_count: int) -> float:
         """
@@ -247,6 +259,14 @@ class NewsRanker:
         if source_score >= 90:
             signals.append(f"tier1_source={source_name}")
 
+        if hasattr(self, "cie") and self.cie:
+            try:
+                target_story = cluster.get("best_article") or cluster
+                if self.cie.is_verified_breaking_news(target_story):
+                    return True, "Verified breaking news signal from ContentIntelligenceEngine"
+            except Exception:
+                pass
+
         threshold = getattr(config, "BREAKING_NEWS_SCORE_THRESHOLD", 90)
         
         if has_crisis_kw and freshness >= 80:
@@ -304,6 +324,15 @@ class NewsRanker:
         cat_boost, cat_reason = self.calculate_category_intelligence_boost(cluster)
         category_relevance = max(20.0, min(100.0, 75.0 + cat_boost))
 
+        # Calculate Content Intelligence Story Value Score
+        story_value_score = 70.0
+        if hasattr(self, "cie") and self.cie:
+            try:
+                story_value_score = self.cie.calculate_story_value_score(best_art or cluster) * 100.0
+            except Exception:
+                pass
+        cluster["story_value_score"] = round(story_value_score, 1)
+
         w_fresh = getattr(config, "FRESHNESS_WEIGHT", 0.25)
         w_source = getattr(config, "SOURCE_WEIGHT", 0.20)
         w_import = getattr(config, "IMPORTANCE_WEIGHT", 0.20)
@@ -327,6 +356,7 @@ class NewsRanker:
             "trend_score": round(trend, 1),
             "confirmation_score": round(confirmation, 1),
             "category_relevance_score": round(category_relevance, 1),
+            "story_value_score": round(story_value_score, 1),
             "category_reason": cat_reason,
             "independent_sources": indep_sources,
             "weights": {

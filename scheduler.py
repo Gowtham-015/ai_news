@@ -400,13 +400,19 @@ def check_and_publish():
             except Exception as e:
                 logger.error("Failed to record published history for post %s: %s", post_id, e)
 
-            # Record Phase 10 Analytics
+            # Record Phase 10 Analytics & Phase 16 Health Telemetry
             try:
                 from analytics_manager import AnalyticsManager
                 am = AnalyticsManager()
                 am.record_publishing_event("success", post=post, priority=post.get("priority", "NORMAL"), is_photo=bool(post.get("image_url")))
             except Exception as e:
                 logger.warning("Failed to record publishing analytics: %s", e)
+
+            try:
+                from health_monitor import HealthMonitor
+                HealthMonitor().record_success("publication")
+            except Exception:
+                pass
         else:
             retry_count = post.get("retry_count", 0) + 1
             post["retry_count"] = retry_count
@@ -416,17 +422,21 @@ def check_and_publish():
                 from analytics_manager import AnalyticsManager
                 am = AnalyticsManager()
                 am.record_publishing_event("failure", post=post, priority=post.get("priority", "NORMAL"))
-                if retry_count < max_retries:
-                    post["status"] = "retrying"
-                    logger.warning("Failed to publish post %s (Attempt %d/%d). Status set to 'retrying'.", post_id, retry_count, max_retries)
-                    am.record_publishing_event("retry", post=post, priority=post.get("priority", "NORMAL"))
-                else:
-                    post["status"] = "permanently_failed"
-                    logger.error("Post %s permanently failed after %d attempts.", post_id, retry_count)
-                    am.record_publishing_event("permanently_failed", post=post, priority=post.get("priority", "NORMAL"))
-                    am.record_failure("TELEGRAM_ERROR", f"Post {post_id} permanently failed after {max_retries} retries", details={"post_id": post_id, "title": post.get("title")})
-            except Exception as e:
-                logger.warning("Failed to record failure analytics: %s", e)
+            except Exception:
+                pass
+
+            try:
+                from health_monitor import HealthMonitor
+                HealthMonitor().record_failure("TELEGRAM_FAILURE", f"Failed to publish post {post_id}")
+            except Exception:
+                pass
+
+            if retry_count < max_retries:
+                post["status"] = "retrying"
+                logger.warning("Failed to publish post %s (Attempt %d/%d). Status set to 'retrying'.", post_id, retry_count, max_retries)
+            else:
+                post["status"] = "permanently_failed"
+                logger.error("Post %s permanently failed after %d attempts.", post_id, retry_count)
 
             save_posts(posts)
 

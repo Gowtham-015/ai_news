@@ -166,20 +166,21 @@ class ContentIntelligenceEngine:
 
         while remaining:
             selected_idx = None
+            # First check if any remaining post is verified Breaking News
             for idx, post in enumerate(remaining):
-                # Breaking news ALWAYS gets highest priority
                 if post.get("is_breaking") or self.is_verified_breaking_news(post):
                     selected_idx = idx
                     break
 
-                post_cat = str(post.get("category", "NEWS")).upper()
-                # Check if adding this post exceeds max_consecutive for the same category
-                recent_window = (recent_categories + [str(p.get("category", "NEWS")).upper() for p in reordered])[-max_consecutive:]
-                if len(recent_window) >= max_consecutive and all(c == post_cat for c in recent_window):
-                    continue  # Skip to avoid cluster
-
-                selected_idx = idx
-                break
+            # If no breaking news, select next post avoiding category clustering
+            if selected_idx is None:
+                for idx, post in enumerate(remaining):
+                    post_cat = str(post.get("category", "NEWS")).upper()
+                    recent_window = (recent_categories + [str(p.get("category", "NEWS")).upper() for p in reordered])[-max_consecutive:]
+                    if len(recent_window) >= max_consecutive and all(c == post_cat for c in recent_window):
+                        continue  # Skip to avoid cluster
+                    selected_idx = idx
+                    break
 
             if selected_idx is None:
                 # Fallback if all remaining belong to the same category

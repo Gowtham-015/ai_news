@@ -4,8 +4,26 @@
   "last_news_collection": null,
   "last_telegram_publication": null,
   "last_ai_success": null,
-  "consecutive_failures": 0,
-  "last_error": null,
+  "consecutive_failures": 2,
+  "last_error": {
+    "type": "TELEGRAM_FAILURE",
+    "reason": "Failed to publish post 1",
+    "timestamp": "2026-08-24T16:16:14.493606+05:30",
+    "details": {}
+  },
   "last_alerts": {},
-  "recovery_logs": []
+  "recovery_logs": [
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 1",
+      "timestamp": "2026-08-24T16:16:11.908333+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 1",
+      "timestamp": "2026-08-24T16:16:14.493606+05:30",
+      "action": "logged"
+    }
+  ]
 }
