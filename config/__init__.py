@@ -87,6 +87,20 @@ MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
 RETRY_DELAY_SECONDS = int(os.getenv("RETRY_DELAY_SECONDS", "10"))
 HEARTBEAT_INTERVAL_MINUTES = int(os.getenv("HEARTBEAT_INTERVAL_MINUTES", "10"))
 
+# Phase 14 Advanced News Content Intelligence Settings
+SOURCE_QUALITY_SCORES = {
+    "reuters": 1.0,
+    "bbc": 1.0,
+    "ap_news": 1.0,
+    "techcrunch": 0.9,
+    "espn": 0.9,
+    "the_verge": 0.85,
+    "wired": 0.85,
+    "default": 0.70
+}
+BREAKING_MIN_SOURCE_QUALITY = float(os.getenv("BREAKING_MIN_SOURCE_QUALITY", "0.85"))
+MAX_CONSECUTIVE_CATEGORY_POSTS = int(os.getenv("MAX_CONSECUTIVE_CATEGORY_POSTS", "2"))
+
 # Phase 5 Intelligent Ranking & Trend Detection Settings
 ENABLE_INTELLIGENT_RANKING = os.getenv("ENABLE_INTELLIGENT_RANKING", "true").lower() == "true"
 ENABLE_TREND_DETECTION = os.getenv("ENABLE_TREND_DETECTION", "true").lower() == "true"

@@ -186,12 +186,27 @@ class QueueManager:
 
 
 
-        # Priority sorting: BREAKING (1) > HIGH (2) > NORMAL (3) > LOW (4)
-        prio_order = {"BREAKING": 1, "HIGH": 2, "NORMAL": 3, "LOW": 4}
-        sorted_new_posts = sorted(
-            new_posts,
-            key=lambda p: prio_order.get(p.get("priority", "NORMAL"), 3)
-        )
+        # Phase 14 Advanced Content Intelligence: Story Value scoring & Category Diversity
+        try:
+            from content_intelligence import ContentIntelligenceEngine
+            cie = ContentIntelligenceEngine()
+            for p in new_posts:
+                p["story_value_score"] = cie.calculate_story_value_score(p, history)
+
+            prio_order = {"BREAKING": 1, "HIGH": 2, "NORMAL": 3, "LOW": 4}
+            sorted_new_posts = sorted(
+                new_posts,
+                key=lambda p: (prio_order.get(p.get("priority", "NORMAL"), 3), -p.get("story_value_score", 0.5))
+            )
+            # Enforce category diversity to prevent category clustering
+            sorted_new_posts = cie.enforce_category_diversity(sorted_new_posts, history)
+        except Exception as cie_err:
+            logger.warning("[INTELLIGENCE] Content intelligence ranking fallback: %s", cie_err)
+            prio_order = {"BREAKING": 1, "HIGH": 2, "NORMAL": 3, "LOW": 4}
+            sorted_new_posts = sorted(
+                new_posts,
+                key=lambda p: prio_order.get(p.get("priority", "NORMAL"), 3)
+            )
 
         existing_ids = [p.get("id") for p in existing_posts if isinstance(p.get("id"), int)]
         next_id = (max(existing_ids) + 1) if existing_ids else 1
@@ -234,6 +249,14 @@ class QueueManager:
 
             sched_time_str = sched_time_dt.strftime(scheduler.DATETIME_FORMAT)
 
+            lifecycle = "NEW"
+            try:
+                from content_intelligence import ContentIntelligenceEngine
+                cie = ContentIntelligenceEngine()
+                lifecycle = cie.get_story_lifecycle_state(post, source_count=post.get("source_count", 1))
+            except Exception:
+                pass
+
             post_entry = {
                 "id": next_id,
                 "category": str(post.get("category", "")).upper(),
@@ -249,6 +272,11 @@ class QueueManager:
                 "priority": priority,
                 "is_breaking": post.get("is_breaking", False),
                 "is_followup": post.get("is_followup", False),
+                "story_value_score": post.get("story_value_score", 0.7),
+                "lifecycle_state": lifecycle,
+                "retry_count": 0,
+                "last_retry_at": None,
+                "error_log": [],
                 "image_url": post.get("image_url", ""),
                 "source_article_id": post.get("source_article_id", "")
             }

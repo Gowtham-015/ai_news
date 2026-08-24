@@ -33,8 +33,9 @@ jobs:
 
       - name: Run Autonomous AI News Pipeline
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.BOT_KEYFILE }}
-          TELEGRAM_CHANNEL_ID: ${{ secrets.SECRETFILE }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || secrets.BOT_KEYFILE }}
+          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID || secrets.SECRETFILE }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.AI_API_KEY }}
           NEWS_COLLECTION_INTERVAL_MINUTES: "30"
           MAX_QUEUE_SIZE: "20"
           POSTS_PER_CATEGORY: "1"

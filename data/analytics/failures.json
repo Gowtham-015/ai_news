@@ -95,6 +95,38 @@
         "post_id": 1,
         "title": "Failing Post"
       }
+    },
+    {
+      "timestamp": "2026-08-24 15:52:29 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
+    },
+    {
+      "timestamp": "2026-08-24 15:55:50 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
+    },
+    {
+      "timestamp": "2026-08-24 15:58:43 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
+    },
+    {
+      "timestamp": "2026-08-24 16:02:02 IST",
+      "error": "Post 1 permanently failed after 2 retries",
+      "details": {
+        "post_id": 1,
+        "title": "Failing Post"
+      }
     }
   ]
 }

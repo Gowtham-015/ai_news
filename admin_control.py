@@ -358,17 +358,29 @@ class AdminControlManager:
             return f"Error setting roundup time: {e}"
 
     def _cmd_status(self, queue_mgr: Optional[QueueManager] = None) -> str:
-        """Processes /status command."""
+        """Processes /status command with Phase 16 production monitoring diagnostics."""
         state = self.load_state()
         is_paused = state.get("is_paused", False)
         paused_cats = state.get("paused_categories", [])
 
+        # Evaluate Phase 16 Health Status
+        health_status = "ONLINE"
+        consecutive_fails = 0
+        try:
+            from health_monitor import HealthMonitor
+            hm = HealthMonitor()
+            health_status = hm.evaluate_status()
+            hstate = hm.load_state()
+            consecutive_fails = hstate.get("consecutive_failures", 0)
+        except Exception:
+            pass
+
         if is_paused:
             status_str = "PAUSED (Global)"
         elif paused_cats:
-            status_str = f"ONLINE (Paused categories: {', '.join(paused_cats)})"
+            status_str = f"{health_status} (Paused categories: {', '.join(paused_cats)})"
         else:
-            status_str = "ONLINE"
+            status_str = health_status
 
         # Load runtime agent state
         try:
@@ -404,6 +416,7 @@ class AdminControlManager:
         return (
             "🤖 AI NEWS AGENT — SYSTEM STATUS\n\n"
             f"Status: {status_str}\n"
+            f"Consecutive Failures: {consecutive_fails}\n"
             f"Last Collection: {last_coll}\n"
             f"Next Collection: {next_coll}\n"
             f"Queue: {scheduled_count} scheduled posts\n"

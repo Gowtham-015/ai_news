@@ -280,6 +280,13 @@ def check_and_publish():
 
     now = datetime.now(TIMEZONE)
 
+    # Phase 16 Production Monitoring & Self-Healing check
+    try:
+        from health_monitor import HealthMonitor
+        HealthMonitor().auto_heal()
+    except Exception as h_err:
+        logger.warning("[HEALTH] Health auto-heal failed: %s", h_err)
+
     # Automatic Phase 12 channel publication rhythm check
     check_and_trigger_channel_rhythm(now)
 
@@ -422,6 +429,12 @@ def check_and_publish():
                 logger.warning("Failed to record failure analytics: %s", e)
 
             save_posts(posts)
+
+    try:
+        from storage_manager import StorageManager
+        StorageManager().prune_all_storage()
+    except Exception as s_err:
+        logger.warning("[STORAGE] Storage pruning error: %s", s_err)
 
 
 def main():

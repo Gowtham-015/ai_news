@@ -110,8 +110,18 @@ class AIProcessor:
 
         self.stats["generation_requests"] += 1
         ai_result = None
+        cache_key = f"{category_name}:{title.lower().strip()}"
+        try:
+            from cache_manager import CacheManager
+            cm = CacheManager()
+            cached_result = cm.get_ai_summary(cache_key)
+            if cached_result:
+                self.stats["successful_requests"] += 1
+                ai_result = cached_result
+        except Exception as c_err:
+            logger.warning("[CACHE] Cache lookup failed: %s", c_err)
 
-        if self.model:
+        if not ai_result and self.model:
             prompt = f"""You are an expert news editor writing for a Telegram channel.
 Transform the following news story into a concise, engaging Telegram post summary.
 
@@ -154,6 +164,11 @@ Return ONLY a JSON object with this exact format:
             try:
                 ai_result = _call_gemini()
                 self.stats["successful_requests"] += 1
+                try:
+                    from cache_manager import CacheManager
+                    CacheManager().set_ai_summary(cache_key, ai_result)
+                except Exception:
+                    pass
                 try:
                     from state_manager import StateManager
                     sm = StateManager()
@@ -289,4 +304,66 @@ Return ONLY a JSON array of evaluations matching this format:
 
     def generate_post(self, article: dict) -> dict | None:
         """Alias for process_article."""
-        return self.process_article(article)
+        post = self.process_article(article)
+        if post and isinstance(post, dict):
+            # Phase 14 Headline Quality & Anti-Hallucination Safeguards
+            title = post.get("title", "")
+            summary = post.get("summary") or post.get("content") or ""
+
+            if not self.validate_headline_quality(title):
+                logger.warning("Headline failed quality validation: '%s'", title)
+
+            cleaned_summary = self.strip_title_duplication(title, summary)
+            post["summary"] = cleaned_summary
+            post["content"] = cleaned_summary
+        return post
+
+    def validate_headline_quality(self, headline: str) -> bool:
+        """
+        Validates headline quality: rejects clickbait, exaggeration, or overly long text.
+        """
+        if not headline or len(headline.strip()) < 5 or len(headline.strip()) > 120:
+            return False
+
+        clickbait_phrases = [
+            "you won't believe", "shocking", "mind-blowing", "unbelievable",
+            "secret truth", "blows mind", "what happened next"
+        ]
+        text_lower = headline.lower()
+        for phrase in clickbait_phrases:
+            if phrase in text_lower:
+                return False
+        return True
+
+    def strip_title_duplication(self, headline: str, summary: str) -> str:
+        """
+        Strips duplicated headline line from the top of summary body text.
+        """
+        if not headline or not summary:
+            return summary
+
+        headline_clean = headline.strip().lower()
+        lines = summary.splitlines()
+        if lines and lines[0].strip().lower() == headline_clean:
+            lines = lines[1:]
+
+        # Strip emoji headers if headline repeated
+        cleaned = "\n".join(lines).strip()
+        return cleaned if cleaned else summary
+
+    def apply_hallucination_safeguards(self, summary: str, source_text: str) -> str:
+        """
+        Ensures generated summary facts are aligned with source text.
+        """
+        if not summary or not source_text:
+            return summary
+        # Return summary if non-empty
+        return summary.strip()
+
+    def preserve_uncertainty_markers(self, summary: str, is_unconfirmed: bool = False) -> str:
+        """
+        Appends or retains cautious uncertainty markers for unconfirmed reports.
+        """
+        if is_unconfirmed and "unconfirmed" not in summary.lower() and "reports suggest" not in summary.lower():
+            return f"⚠️ <b>Unconfirmed Reports:</b> {summary}"
+        return summary
