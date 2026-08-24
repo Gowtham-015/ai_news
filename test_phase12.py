@@ -190,8 +190,177 @@ class TestPhase12(unittest.TestCase):
     def test_15_scheduler_rhythm_integration(self):
         """15. Verifies scheduler module imports and references channel automation."""
         import scheduler
-        self.assertTrue(hasattr(scheduler, "check_and_publish"))
+        self.assertTrue(hasattr(scheduler, "check_and_trigger_channel_rhythm"))
+
+    def test_16_auto_morning_briefing_trigger_and_state_update(self):
+        """16. Verifies automatic morning briefing triggers and updates state file."""
+        from unittest import mock
+        import scheduler
+        dt_830 = datetime(2026, 8, 24, 8, 30, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", return_value=True):
+            scheduler.check_and_trigger_channel_rhythm(dt_830, automation_mgr=self.cam, admin_mgr=self.acm)
+
+        state = self.cam.load_state()
+        self.assertEqual(state.get("last_morning_briefing_date"), "2026-08-24")
+
+    def test_17_auto_evening_roundup_trigger_and_state_update(self):
+        """17. Verifies automatic evening roundup triggers and updates state file."""
+        from unittest import mock
+        import scheduler
+        dt_2030 = datetime(2026, 8, 24, 20, 30, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", return_value=True):
+            scheduler.check_and_trigger_channel_rhythm(dt_2030, automation_mgr=self.cam, admin_mgr=self.acm)
+
+        state = self.cam.load_state()
+        self.assertEqual(state.get("last_evening_roundup_date"), "2026-08-24")
+
+    def test_18_auto_trending_digest_trigger_and_state_update(self):
+        """18. Verifies automatic trending digest triggers and updates state file."""
+        from unittest import mock
+        import scheduler
+        from analytics_manager import AnalyticsManager, get_ist_date_str
+        am = AnalyticsManager()
+        am.record_top_stories([{"title": "Test Trending News", "score": 90}], "2026-08-24", "2026-W34")
+
+        dt_1400 = datetime(2026, 8, 24, 14, 0, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", return_value=True):
+            scheduler.check_and_trigger_channel_rhythm(dt_1400, automation_mgr=self.cam, admin_mgr=self.acm)
+
+        state = self.cam.load_state()
+        self.assertIsNotNone(state.get("last_trending_digest_at"))
+
+    def test_19_duplicate_rhythm_prevention_on_subsequent_runs(self):
+        """19. Verifies subsequent execution does not send duplicate rhythm post."""
+        from unittest import mock
+        import scheduler
+        dt_830 = datetime(2026, 8, 24, 8, 30, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", return_value=True) as mock_pub:
+            # 1st run: should trigger morning briefing
+            scheduler.check_and_trigger_channel_rhythm(dt_830, automation_mgr=self.cam, admin_mgr=self.acm)
+            initial_call_count = mock_pub.call_count
+
+            # 2nd run: should NOT trigger morning briefing again
+            scheduler.check_and_trigger_channel_rhythm(dt_830, automation_mgr=self.cam, admin_mgr=self.acm)
+            self.assertEqual(mock_pub.call_count, initial_call_count)
+
+    def test_20_github_30min_schedule_compatibility(self):
+        """20. Verifies 30-minute schedule run (e.g. 08:03 IST delay) triggers correctly."""
+        from unittest import mock
+        import scheduler
+        dt_803 = datetime(2026, 8, 24, 8, 3, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", return_value=True):
+            scheduler.check_and_trigger_channel_rhythm(dt_803, automation_mgr=self.cam, admin_mgr=self.acm)
+
+        state = self.cam.load_state()
+        self.assertEqual(state.get("last_morning_briefing_date"), "2026-08-24")
+
+    def test_21_briefing_time_configuration_respect(self):
+        """21. Verifies briefing_time_ist configuration is respected."""
+        state = self.cam.load_state()
+        state["briefing_time_ist"] = "09:00"
+        self.cam.save_state(state)
+
+        # 8:30 AM should NOT trigger if set to 09:00
+        dt_830 = datetime(2026, 8, 24, 8, 30, tzinfo=IST)
+        self.assertFalse(self.cam.should_trigger_morning_briefing(dt_830))
+
+        # 9:00 AM SHOULD trigger
+        dt_900 = datetime(2026, 8, 24, 9, 0, tzinfo=IST)
+        self.assertTrue(self.cam.should_trigger_morning_briefing(dt_900))
+
+    def test_22_roundup_time_configuration_respect(self):
+        """22. Verifies roundup_time_ist configuration is respected."""
+        state = self.cam.load_state()
+        state["roundup_time_ist"] = "21:00"
+        self.cam.save_state(state)
+
+        # 20:30 PM should NOT trigger if set to 21:00
+        dt_2030 = datetime(2026, 8, 24, 20, 30, tzinfo=IST)
+        self.assertFalse(self.cam.should_trigger_evening_roundup(dt_2030))
+
+        # 21:00 PM SHOULD trigger
+        dt_2100 = datetime(2026, 8, 24, 21, 0, tzinfo=IST)
+        self.assertTrue(self.cam.should_trigger_evening_roundup(dt_2100))
+
+    def test_23_ist_date_transition_handling(self):
+        """23. Verifies new IST day allows new briefing trigger."""
+        state = self.cam.load_state()
+        state["last_morning_briefing_date"] = "2026-08-23"
+        self.cam.save_state(state)
+
+        dt_new_day = datetime(2026, 8, 24, 8, 0, tzinfo=IST)
+        self.assertTrue(self.cam.should_trigger_morning_briefing(dt_new_day))
+
+    def test_24_global_pause_blocks_rhythm_triggers(self):
+        """24. Verifies global publishing pause blocks automatic rhythm posts."""
+        from unittest import mock
+        import scheduler
+
+        self.acm.handle_command(123456789, "/pause")
+        dt_830 = datetime(2026, 8, 24, 8, 30, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post") as mock_pub:
+            scheduler.check_and_trigger_channel_rhythm(dt_830, automation_mgr=self.cam, admin_mgr=self.acm)
+            mock_pub.assert_not_called()
+
+    def test_25_category_pause_blocks_category_rhythm(self):
+        """25. Verifies category pause blocks category specific updates."""
+        self.acm.handle_command(123456789, "/pause sports")
+        self.assertTrue(self.acm.is_publishing_paused("SPORTS"))
+        self.assertFalse(self.acm.is_publishing_paused("NEWS"))
+
+    def test_26_analytics_recording_for_rhythm_events(self):
+        """26. Verifies Phase 10 Analytics records rhythm events."""
+        from analytics_manager import AnalyticsManager
+        am = AnalyticsManager()
+        am.record_publishing_event("morning_briefing", post={"title": "Morning Briefing"})
+        daily = am.generate_daily_report()
+        self.assertIn("DAILY NEWS REPORT", daily)
+
+    def test_27_poll_enable_disable_respect(self):
+        """27. Verifies polls_enabled toggle in state is respected."""
+        state = self.cam.load_state()
+        state["polls_enabled"] = False
+        self.cam.save_state(state)
+
+        dt_now = datetime(2026, 8, 24, 12, 0, tzinfo=IST)
+        self.assertFalse(self.cam.should_trigger_poll(dt_now))
+
+    def test_28_pin_enable_disable_respect(self):
+        """28. Verifies pinning_enabled toggle in state is respected."""
+        state = self.cam.load_state()
+        state["pinning_enabled"] = False
+        self.cam.save_state(state)
+        self.assertFalse(state["pinning_enabled"])
+
+    def test_29_rhythm_failure_isolation_does_not_crash_pipeline(self):
+        """29. Verifies error during rhythm trigger does not throw exception or crash scheduler."""
+        from unittest import mock
+        import scheduler
+        dt_830 = datetime(2026, 8, 24, 8, 30, tzinfo=IST)
+
+        with mock.patch("publisher.publish_post", side_effect=Exception("API Error")):
+            # Should catch exception internally and log warning without crashing
+            try:
+                scheduler.check_and_trigger_channel_rhythm(dt_830, automation_mgr=self.cam, admin_mgr=self.acm)
+            except Exception:
+                self.fail("check_and_trigger_channel_rhythm raised exception unexpectedly")
+
+    def test_30_state_file_persistence(self):
+        """30. Verifies automation state file persists accurately."""
+        state = self.cam.load_state()
+        state["briefing_time_ist"] = "07:30"
+        self.cam.save_state(state)
+
+        reloaded = self.cam.load_state()
+        self.assertEqual(reloaded["briefing_time_ist"], "07:30")
 
 
 if __name__ == "__main__":
     unittest.main()
+

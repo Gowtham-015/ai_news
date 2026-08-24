@@ -181,6 +181,89 @@ def check_post_frequency_limits(post: dict, published_history: list = None) -> t
     return True, "Frequency limits passed"
 
 
+def check_and_trigger_channel_rhythm(now: datetime, automation_mgr=None, admin_mgr=None):
+    """
+    Executes Phase 12 channel publication rhythm automatically:
+    - Morning Briefing (🌅 GOOD MORNING)
+    - Evening Roundup (🌙 TODAY'S TOP STORIES)
+    - Trending Digest (🔥 TRENDING NOW)
+    Respects admin pause controls, IST timezone dates, and records Phase 10 telemetry.
+    Isolated in try...except so rhythm errors never affect core news processing.
+    """
+    try:
+        from channel_automation import ChannelAutomationManager
+        from admin_control import AdminControlManager
+        from analytics_manager import AnalyticsManager, get_ist_date_str
+
+        cam = automation_mgr or ChannelAutomationManager()
+        acm = admin_mgr or AdminControlManager()
+        am = AnalyticsManager()
+
+        if acm.is_publishing_paused():
+            logger.info("[AUTOMATION] Publishing is paused globally. Skipping rhythm checks.")
+            return
+
+        date_str = get_ist_date_str(now)
+
+        # 1. Automatic Morning Briefing
+        if cam.should_trigger_morning_briefing(dt=now):
+            try:
+                top_stories = am.get_top_stories("today")
+                payload = cam.generate_morning_briefing(top_stories)
+                logger.info("[AUTOMATION] Triggering automatic Morning Briefing for date %s", date_str)
+                if publisher.publish_post(payload):
+                    state = cam.load_state()
+                    state["last_morning_briefing_date"] = date_str
+                    cam.save_state(state)
+                    am.record_publishing_event("success", post=payload, priority="HIGH")
+            except Exception as mb_err:
+                logger.warning("[AUTOMATION] Morning briefing trigger failed: %s", mb_err)
+
+        # 2. Automatic Evening Roundup
+        if cam.should_trigger_evening_roundup(dt=now):
+            try:
+                top_stories = am.get_top_stories("today")
+                report_text = am.generate_daily_report()
+                cat_stats = {}
+                for line in report_text.splitlines():
+                    if "• " in line and ":" in line:
+                        parts = line.split("• ")[1].split(":")
+                        if len(parts) == 2:
+                            c_name = parts[0].strip().lower()
+                            try:
+                                c_cnt = int(parts[1].split()[0])
+                                cat_stats[c_name] = c_cnt
+                            except Exception:
+                                pass
+                payload = cam.generate_evening_roundup(top_stories, cat_stats=cat_stats)
+                logger.info("[AUTOMATION] Triggering automatic Evening Roundup for date %s", date_str)
+                if publisher.publish_post(payload):
+                    state = cam.load_state()
+                    state["last_evening_roundup_date"] = date_str
+                    cam.save_state(state)
+                    am.record_publishing_event("success", post=payload, priority="HIGH")
+            except Exception as er_err:
+                logger.warning("[AUTOMATION] Evening roundup trigger failed: %s", er_err)
+
+        # 3. Automatic Trending Digest
+        if cam.should_trigger_trending_digest(dt=now):
+            try:
+                top_stories = am.get_top_stories("today")
+                if top_stories:
+                    payload = cam.generate_trending_digest(top_stories)
+                    logger.info("[AUTOMATION] Triggering automatic Trending Digest")
+                    if publisher.publish_post(payload):
+                        state = cam.load_state()
+                        state["last_trending_digest_at"] = now.isoformat()
+                        cam.save_state(state)
+                        am.record_publishing_event("success", post=payload, priority="HIGH")
+            except Exception as td_err:
+                logger.warning("[AUTOMATION] Trending digest trigger failed: %s", td_err)
+
+    except Exception as e:
+        logger.warning("[AUTOMATION] Rhythm check execution failed: %s", e)
+
+
 def check_and_publish():
     """
     Checks due posts in posts.json and publishes them via publisher.py.
@@ -195,11 +278,14 @@ def check_and_publish():
     except Exception as e:
         logger.warning("Failed to poll admin control commands: %s", e)
 
+    now = datetime.now(TIMEZONE)
+
+    # Automatic Phase 12 channel publication rhythm check
+    check_and_trigger_channel_rhythm(now)
+
     posts = load_posts()
     if not posts:
         return
-
-    now = datetime.now(TIMEZONE)
     published_history = deduplicator.load_published_history()
     max_retries = getattr(config, "MAX_RETRIES", 3)
 
