@@ -3,7 +3,7 @@ name: Autonomous AI News Automation Agent
 on:
   schedule:
     # Runs automatically every 30 minutes on GitHub Cloud
-    - cron: '*/30 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI anytime
 
 permissions:
