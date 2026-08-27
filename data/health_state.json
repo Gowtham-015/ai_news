@@ -1,28 +1,318 @@
 {
-  "status": "ONLINE",
-  "last_successful_workflow": "2026-08-27T10:26:46.723297+05:30",
-  "last_news_collection": "2026-08-27T10:26:40.901434+05:30",
+  "status": "ERROR",
+  "last_successful_workflow": "2026-08-27T14:04:25.763125+05:30",
+  "last_news_collection": "2026-08-27T14:04:19.664131+05:30",
   "last_telegram_publication": "2026-08-27T10:26:51.424856+05:30",
-  "last_ai_success": "2026-08-27T10:26:46.722622+05:30",
-  "consecutive_failures": 0,
+  "last_ai_success": "2026-08-27T14:04:25.762639+05:30",
+  "consecutive_failures": 120,
   "last_error": {
     "type": "TELEGRAM_FAILURE",
-    "reason": "Failed to publish post 1",
-    "timestamp": "2026-08-24T16:16:14.493606+05:30",
+    "reason": "Failed to publish post 2131",
+    "timestamp": "2026-08-27T14:05:51.811172+05:30",
     "details": {}
   },
-  "last_alerts": {},
+  "last_alerts": {
+    "TELEGRAM_FAILURE": "2026-08-27T14:04:30.054877+05:30"
+  },
   "recovery_logs": [
     {
       "failure": "TELEGRAM_FAILURE",
-      "reason": "Failed to publish post 1",
-      "timestamp": "2026-08-24T16:16:11.908333+05:30",
+      "reason": "Failed to publish post 2082",
+      "timestamp": "2026-08-27T14:05:16.751588+05:30",
       "action": "logged"
     },
     {
       "failure": "TELEGRAM_FAILURE",
-      "reason": "Failed to publish post 1",
-      "timestamp": "2026-08-24T16:16:14.493606+05:30",
+      "reason": "Failed to publish post 2083",
+      "timestamp": "2026-08-27T14:05:17.590097+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2084",
+      "timestamp": "2026-08-27T14:05:18.229330+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2085",
+      "timestamp": "2026-08-27T14:05:18.907143+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2086",
+      "timestamp": "2026-08-27T14:05:19.577500+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2087",
+      "timestamp": "2026-08-27T14:05:20.239243+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2088",
+      "timestamp": "2026-08-27T14:05:21.185525+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2089",
+      "timestamp": "2026-08-27T14:05:21.795156+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2090",
+      "timestamp": "2026-08-27T14:05:22.468251+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2091",
+      "timestamp": "2026-08-27T14:05:23.368801+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2092",
+      "timestamp": "2026-08-27T14:05:24.037313+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2093",
+      "timestamp": "2026-08-27T14:05:25.334764+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2094",
+      "timestamp": "2026-08-27T14:05:26.016914+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2095",
+      "timestamp": "2026-08-27T14:05:26.584720+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2096",
+      "timestamp": "2026-08-27T14:05:27.518187+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2097",
+      "timestamp": "2026-08-27T14:05:28.391553+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2098",
+      "timestamp": "2026-08-27T14:05:28.958266+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2099",
+      "timestamp": "2026-08-27T14:05:29.500461+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2100",
+      "timestamp": "2026-08-27T14:05:30.186158+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2101",
+      "timestamp": "2026-08-27T14:05:30.798165+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2102",
+      "timestamp": "2026-08-27T14:05:31.683059+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2103",
+      "timestamp": "2026-08-27T14:05:32.277283+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2104",
+      "timestamp": "2026-08-27T14:05:32.821173+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2105",
+      "timestamp": "2026-08-27T14:05:33.474115+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2106",
+      "timestamp": "2026-08-27T14:05:34.171228+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2107",
+      "timestamp": "2026-08-27T14:05:35.541334+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2108",
+      "timestamp": "2026-08-27T14:05:36.188432+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2109",
+      "timestamp": "2026-08-27T14:05:36.728035+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2110",
+      "timestamp": "2026-08-27T14:05:37.303916+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2111",
+      "timestamp": "2026-08-27T14:05:37.965136+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2112",
+      "timestamp": "2026-08-27T14:05:38.597748+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2113",
+      "timestamp": "2026-08-27T14:05:39.234308+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2114",
+      "timestamp": "2026-08-27T14:05:39.872429+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2115",
+      "timestamp": "2026-08-27T14:05:40.546923+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2116",
+      "timestamp": "2026-08-27T14:05:41.192498+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2117",
+      "timestamp": "2026-08-27T14:05:41.891645+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2118",
+      "timestamp": "2026-08-27T14:05:42.659040+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2119",
+      "timestamp": "2026-08-27T14:05:43.295645+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2120",
+      "timestamp": "2026-08-27T14:05:43.951738+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2121",
+      "timestamp": "2026-08-27T14:05:44.882638+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2122",
+      "timestamp": "2026-08-27T14:05:45.523217+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2123",
+      "timestamp": "2026-08-27T14:05:46.194473+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2124",
+      "timestamp": "2026-08-27T14:05:47.296249+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2125",
+      "timestamp": "2026-08-27T14:05:47.966841+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2126",
+      "timestamp": "2026-08-27T14:05:48.606761+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2127",
+      "timestamp": "2026-08-27T14:05:49.241607+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2128",
+      "timestamp": "2026-08-27T14:05:49.900388+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2129",
+      "timestamp": "2026-08-27T14:05:50.579254+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2130",
+      "timestamp": "2026-08-27T14:05:51.154362+05:30",
+      "action": "logged"
+    },
+    {
+      "failure": "TELEGRAM_FAILURE",
+      "reason": "Failed to publish post 2131",
+      "timestamp": "2026-08-27T14:05:51.811172+05:30",
       "action": "logged"
     }
   ]
