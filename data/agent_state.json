@@ -1,9 +1,9 @@
 {
   "status": "idle",
   "started_at": "2026-08-19 07:15:58",
-  "last_collection_at": "2026-09-13 02:29:39",
-  "next_collection_at": "2026-09-13 03:01:27",
-  "last_successful_collection_at": "2026-09-13 02:29:39",
+  "last_collection_at": "2026-09-13 04:28:49",
+  "next_collection_at": "2026-09-13 05:00:40",
+  "last_successful_collection_at": "2026-09-13 04:28:49",
   "queue_size": 6,
   "published_count": 16,
   "articles_collected_total": 0,
@@ -19,6 +19,6 @@
     "ENTERTAINMENT": 0
   },
   "last_error": null,
-  "candidates_last_cycle": 300,
-  "top_story_score": 81.2
+  "candidates_last_cycle": 305,
+  "top_story_score": 83.5
 }
