@@ -73,20 +73,20 @@
   },
   "2026-W38": {
     "week": "2026-W38",
-    "days_count": 3,
-    "total_posts_published": 37,
-    "total_articles_collected": 6182,
-    "total_duplicates_removed": 1635,
-    "total_ai_processed": 624,
+    "days_count": 4,
+    "total_posts_published": 39,
+    "total_articles_collected": 6585,
+    "total_duplicates_removed": 1717,
+    "total_ai_processed": 689,
     "total_breaking_posts": 2,
     "total_failed_posts": 0,
     "total_retries": 0,
-    "avg_posts_per_day": 12.3,
+    "avg_posts_per_day": 9.8,
     "category_totals": {
-      "NEWS": 29,
+      "NEWS": 30,
       "TECHNOLOGY": 3,
       "SPORTS": 5,
-      "ENTERTAINMENT": 0
+      "ENTERTAINMENT": 1
     }
   }
 }
