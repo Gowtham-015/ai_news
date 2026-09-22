@@ -17156,13 +17156,9 @@
     "first_seen_at": "2026-08-21T07:23:38.103119+00:00",
     "source_count": 1,
     "highest_trend_score": 53,
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "velocity": 0.0,
     "mention_history": [
-      {
-        "timestamp": "2026-09-18T17:45:19.043412+00:00",
-        "mentions": 1
-      },
       {
         "timestamp": "2026-09-19T09:35:09.444089+00:00",
         "mentions": 1
@@ -17237,6 +17233,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -459586,7 +459586,7 @@
   "cluster_95d3f182bb": {
     "topic": "Sonam Wangchuk to lead 20-km symbolic march in Leh on September 23",
     "first_seen_at": "2026-09-19T09:35:09.444089+00:00",
-    "last_seen_at": "2026-09-19T13:30:19.694945+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -459597,6 +459597,10 @@
       },
       {
         "timestamp": "2026-09-19T13:30:19.694945+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -488178,7 +488182,7 @@
   "cluster_9c92bd59dc": {
     "topic": "Rider Dies, Wife Injured After Speeding Thar Hits Scooter In Greater Noida",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-21T22:47:19.323707+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 2,
     "highest_trend_score": 78,
     "velocity": 0.0,
@@ -488190,6 +488194,10 @@
       {
         "timestamp": "2026-09-21T22:47:19.323707+00:00",
         "mentions": 2
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
@@ -490302,7 +490310,7 @@
   "cluster_1624838fd7": {
     "topic": "Google opens pre-orders for $899 Googlebook laptops built around Gemini AI",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 2,
     "highest_trend_score": 78,
     "velocity": 0.0,
@@ -490326,13 +490334,17 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 2
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_1da331acf1": {
     "topic": "Gates Foundation launches coalition to build more representative language data sets for AI",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -490355,6 +490367,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -490362,7 +490378,7 @@
   "cluster_bd6eaf375d": {
     "topic": "OpenAI calls for US to take lead in global efforts to develop technical standards",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -490385,6 +490401,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -490392,7 +490412,7 @@
   "cluster_f2f988a04c": {
     "topic": "Poor data sharing undermining EU cyber defences, auditors say",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -490415,6 +490435,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -490482,7 +490506,7 @@
   "cluster_bff8212890": {
     "topic": "Kairos Power gets up to $100M from Samsung group to build nuclear reactor for Google",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -490505,6 +490529,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -490646,7 +490674,7 @@
   "cluster_9ca9948484": {
     "topic": "Dyson Won’t Say What’s Wrong With Its CameraJet Toothbrush",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -490669,6 +490697,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -491146,7 +491178,7 @@
   "cluster_aea890fd7d": {
     "topic": "Sri Lanka seek ODI revival in bruising England tour",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -491169,6 +491201,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -491176,7 +491212,7 @@
   "cluster_fcb6073b67": {
     "topic": "Lancashire sack Mark Chilton as on-field decline continues",
     "first_seen_at": "2026-09-21T19:18:17.366430+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -491199,6 +491235,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -492762,7 +492802,7 @@
   "cluster_43ccb340ea": {
     "topic": "Meta’s Muse is outpacing ChatGPT’s early mobile launch",
     "first_seen_at": "2026-09-21T22:47:19.323707+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -492781,6 +492821,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -492832,7 +492876,7 @@
   "cluster_11241626a7": {
     "topic": "Liverpool eye in-demand right-back Read - Tuesday's gossip",
     "first_seen_at": "2026-09-21T22:47:19.323707+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -492851,6 +492895,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -493362,7 +493410,7 @@
   "cluster_f456275841": {
     "topic": "I couldn't cook when I left home – but these easy £2.50 recipes became my go-to",
     "first_seen_at": "2026-09-22T01:32:50.533739+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -493377,6 +493425,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -493384,7 +493436,7 @@
   "cluster_d8de364044": {
     "topic": "The simple skincare routine for teens that actually works - and five expert tips",
     "first_seen_at": "2026-09-22T01:32:50.533739+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -493399,6 +493451,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -494902,7 +494958,7 @@
   "cluster_43cb5d4942": {
     "topic": "Scientists discover why Kent meningitis outbreak was so severe",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -494913,6 +494969,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -494976,7 +495036,7 @@
   "cluster_860744692a": {
     "topic": "Inside Scotland's wildcat HQ - 'It's like Big Brother for cats'",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -494987,6 +495047,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495082,7 +495146,7 @@
   "cluster_4fb8dc8970": {
     "topic": "Snapdeal parent AceVector to launch IPO on September 25, seeks Rs 1,741-crore valuation",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495093,6 +495157,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495100,7 +495168,7 @@
   "cluster_950b1a15c0": {
     "topic": "Govt pushing for public-private collaboration in data infrastructure, says MoS Commerce Jitin Prasada",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495111,6 +495179,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495118,7 +495190,7 @@
   "cluster_ee013307d6": {
     "topic": "India's semiconductor opportunity expanding beyond fabs: Report",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495129,6 +495201,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495136,7 +495212,7 @@
   "cluster_253d95aa56": {
     "topic": "China's robot dancers limber up for America's Got Talent final",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495147,6 +495223,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495154,7 +495234,7 @@
   "cluster_0067743522": {
     "topic": "China's Z.ai disables AI coding assistant features after security issue",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495165,6 +495245,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495172,7 +495256,7 @@
   "cluster_7e41793836": {
     "topic": "Alibaba plans AI model with 5 trillion to 10 trillion parameters, unveils new chip",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495183,6 +495267,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495190,7 +495278,7 @@
   "cluster_5a4fab2a2f": {
     "topic": "British Columbia sues OpenAI over Tumbler Ridge school shooting",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495201,6 +495289,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495208,7 +495300,7 @@
   "cluster_a5530ebe23": {
     "topic": "UN AI experts warn against 'apocalyptic' rhetoric on risks",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495219,6 +495311,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495226,7 +495322,7 @@
   "cluster_190a5bce89": {
     "topic": "Google data centre sparks protests in Austria",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495237,6 +495333,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495244,7 +495344,7 @@
   "cluster_965b5393b0": {
     "topic": "Inside Furlenco’s IPO; Moneyview investors make bank",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495255,6 +495355,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -495276,7 +495380,7 @@
   "cluster_2498267bd5": {
     "topic": "Acer Promo Codes: 40% Off",
     "first_seen_at": "2026-09-22T06:50:48.845287+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -495287,6 +495391,10 @@
       },
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -496090,13 +496198,17 @@
   "cluster_f877da7456": {
     "topic": "After Bihar Groping Horror, Shocker From Odisha: Couple Assaulted On Camera",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -496230,13 +496342,17 @@
   "cluster_b2c5bd13e6": {
     "topic": "After Jamui, Odisha tourist couple harassed on way to Kapilash temple; 2 detained",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -496258,13 +496374,17 @@
   "cluster_dff9b2dd09": {
     "topic": "The China+1 question: Does India lose if Trump and Xi make peace?",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -496300,13 +496420,17 @@
   "cluster_00c8e5b7c4": {
     "topic": "Trump's double standards: Russian oil bad for India, Belarusian potash good for US?",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -496706,13 +496830,17 @@
   "cluster_35a9757901": {
     "topic": "India script history, become first team to register 200 T20I wins",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497350,13 +497478,17 @@
   "cluster_26ce87f1d2": {
     "topic": "Martha's Rule rolled out at every A&E department in England",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497392,13 +497524,17 @@
   "cluster_1d1fe90845": {
     "topic": "Watch: Six-year-old girl from China sets new Rubik's Cube world record",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497448,13 +497584,17 @@
   "cluster_5d81bf856e": {
     "topic": "Can you take the 'London' out of London Fashion Week?",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497560,13 +497700,17 @@
   "cluster_898b6a7014": {
     "topic": "England fast bowler Wood retires from internationals",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497616,7 +497760,7 @@
   "cluster_4eb8940a99": {
     "topic": "KEONICS plans to expand tech infra, opportunities beyond Bengaluru",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -497624,19 +497768,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_7c3380f00b": {
     "topic": "PhonePe's Ritesh Pai explains what the platform will offer consumers, merchants in UAE",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497658,13 +497810,17 @@
   "cluster_bf16967509": {
     "topic": "Meta deal will help plastics recycling startup MacroCycle build its first factory",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497714,13 +497870,17 @@
   "cluster_89bd826b4d": {
     "topic": "GoPro Mission 1 Pro ILS Review (2026): Cinema-Quality Action Cam",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497728,13 +497888,17 @@
   "cluster_ac333688b1": {
     "topic": "The UK Government Faces a Reckoning Over Palantir",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497742,13 +497906,17 @@
   "cluster_c7ce4775b2": {
     "topic": "Everything You Know About Political Violence Is Probably Wrong",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497756,13 +497924,17 @@
   "cluster_ba5caf8f2d": {
     "topic": "Is a Home Security System Subscription Worth It? (2026)",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497770,13 +497942,17 @@
   "cluster_50a39add7a": {
     "topic": "I Built AI Clones of My Coworkers. Things Got Weird",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497784,13 +497960,17 @@
   "cluster_4306cf0da7": {
     "topic": "Patti Harrison Had Dreams of a Tech Utopia. Silicon Valley Smashed Them",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497798,13 +497978,17 @@
   "cluster_d62861dc1b": {
     "topic": "A New Tool Found Malware That’s Guided by an AI Hive Mind—No Humans in Sight",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497812,7 +497996,7 @@
   "cluster_6eabf64db7": {
     "topic": "A New Chatbot Wants to Unlock the Secrets in Tattered Ancient Greek Records",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -497820,19 +498004,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_34fc56bd8d": {
     "topic": "How to Use AI With Your Privacy Intact",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -497924,7 +498116,7 @@
   "cluster_c5b7761414": {
     "topic": "India survive huge Japan scare, win by two runs in historic T20I",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 2,
     "highest_trend_score": 78,
     "velocity": 0.0,
@@ -497932,13 +498124,17 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 2
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_727128dd58": {
     "topic": "Five golden ducks in 2026: Abhishek Sharma equals unwanted T20I record",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -497946,19 +498142,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_0e4489bd0e": {
     "topic": "Asian Games: SAI ramps up logistical support for Indian contingent",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498218,7 +498422,7 @@
   "cluster_43b2dfe73a": {
     "topic": "ICC's agenda for 2027-31: more T20Is, fewer bilateral ODIs",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -498226,19 +498430,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_4022f2729c": {
     "topic": "England bat first in opening ODI with Rashid ruled out of series",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498260,7 +498472,7 @@
   "cluster_dce027abf1": {
     "topic": "Iyer after India's close shave: 'It was a very difficult wicket to bat on'",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -498268,19 +498480,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_4dcf0aecea": {
     "topic": "The wide that wasn't: why the right call was made in a tight finish",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498316,13 +498536,17 @@
   "cluster_accd439e62": {
     "topic": "Shafali Verma moves up to No. 4 in T20I batting rankings",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498330,13 +498554,17 @@
   "cluster_093dc6afbd": {
     "topic": "DDCA to look into DPL corruption allegations",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498344,13 +498572,17 @@
   "cluster_43d31022c7": {
     "topic": "India bat first in five-over shootout against Japan",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498358,13 +498590,17 @@
   "cluster_7a51572c29": {
     "topic": "Red Bull's Hadjar to return at Azerbaijan Grand Prix",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498372,13 +498608,17 @@
   "cluster_88e4e781aa": {
     "topic": "'I'm an idiot' - Strickland survives crash with no helmet",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498386,7 +498626,7 @@
   "cluster_60b50600c8": {
     "topic": "What's gone wrong at Lancashire?",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -498394,19 +498634,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_8f250ba975": {
     "topic": "Egan's late career resurgence back to Premier League",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498428,7 +498676,7 @@
   "cluster_6635825422": {
     "topic": "'I lost my love for swimming' - Smith comes out of retirement",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -498436,19 +498684,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_9a64c22ed0": {
     "topic": "'This is not Wrexham. I'm not Ryan Reynolds' - behind the scenes at world's oldest club",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498470,7 +498726,7 @@
   "cluster_867affb9a6": {
     "topic": "72nd National Film Awards: Kartik Aaryan, Mammootty, Yami - Complete winners list",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 53,
     "velocity": 0.0,
@@ -498478,19 +498734,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 2
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
       }
     ]
   },
   "cluster_f4ec96112a": {
     "topic": "Mika drove a Hummer when he was struggling for work in Bollywood, Shaan told him to take auto",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498498,7 +498762,7 @@
   "cluster_d0a315c1f0": {
     "topic": "Nani and Srikanth Odela’s ‘The Paradise’ gets interim court protection",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
@@ -498506,19 +498770,27 @@
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
         "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
       }
     ]
   },
   "cluster_1d677ce661": {
     "topic": "'Hanuman Ansh' BO Day 46 [LIVE]: Neem Kaorli Baba biopic eyes Rs 280 crore domestic net",
     "first_seen_at": "2026-09-22T12:31:19.748062+00:00",
-    "last_seen_at": "2026-09-22T12:31:19.748062+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
     "source_count": 1,
     "highest_trend_score": 50,
     "velocity": 0.0,
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      },
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
@@ -498827,6 +499099,2946 @@
     "mention_history": [
       {
         "timestamp": "2026-09-22T12:31:19.748062+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_945eb02fc3": {
+    "topic": "Trump Renames AI To \"Super Intelligence\", Says \"Artificial\" Sounds \"Fake\"",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 2,
+    "highest_trend_score": 78,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_9ea90850ca": {
+    "topic": "Analysis: BJP's Punjab Challenge Runs Much Longer Than A 4,000-km Yatra",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_da08fa240e": {
+    "topic": "'Rogue Institution': At UN, Trump Calls On Nations To Quit World Court",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_28aa1f48b1": {
+    "topic": "US Wants To Punish Russian Oil Buyers. But It's Still Buying From Moscow",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_59577f4655": {
+    "topic": "Decks Cleared For Bangladesh's New High Commissioner To India Asad Alam Siam",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0f90423724": {
+    "topic": "PM Modi To Chair 2-Day 'Chintan Shivir' With Cabinet Ministers From Tomorrow",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c191d91ae5": {
+    "topic": "Mamdani Calls Netanyahu \"Genocide Architect\", Then A \"Hamas Supporter\" Reply",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_9407404c57": {
+    "topic": "Gandhis' \"Extraneous Considerations\" Charge In National Herald Case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 2,
+    "highest_trend_score": 78,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_acf09a9bb7": {
+    "topic": "\"You Have A Tiger Cub For A Pet\": Godfather Of AI's Chilling Warning",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_999a48dc95": {
+    "topic": "AI Could Change Who Gets To Become An Entrepreneur",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_9cfad5323f": {
+    "topic": "A Rs 24-Crore 'Revenge' Over Rs 10,000: Surat Textile Hub Blaze Wasn't An Accident",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_70ee83749f": {
+    "topic": "'18 Fractures, In Coma': Wife Fights For Life After Man's Death In Greater Noida Thar Crash",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_7042f2060d": {
+    "topic": "Assam Woman Alleges Harassment, Forced Confinement By Husband, Brother-In-Law",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_df023f1c82": {
+    "topic": "Iran Ready To Open Hormuz In 7 Days If US Lifts Blockade, Rubio Open To Talks",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 2,
+    "highest_trend_score": 78,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_dc8c3e1460": {
+    "topic": "\"Not A Gram To Enter India\": Amit Shah Sets 2029 Deadline For War Against Drugs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3b46217cbb": {
+    "topic": "Class 2 Student Collapses, Dies Moments After DJ Procession Crossed UP School",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_fd68e963e6": {
+    "topic": "From tariff overlord to tarmac man, Trump to roll out red carpet for Xi",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_79ed1312ba": {
+    "topic": "'Told him to tolerate it': Parents regret advice to kid in IIT-B suicide case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c86c50fc74": {
+    "topic": "Trump-Pezeshkian meeting on UNGA sidelines? US prez 'open' to talks with Iran",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b3f7954372": {
+    "topic": "Watch: Trump calls Cuba a 'failed state', delegation walks out",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6687a2f0ac": {
+    "topic": "India’s space sovereignty: From building missions to building depth",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f821710ba1": {
+    "topic": "MediaTek targets Qualcomm's fortress with an unmatched new weapon",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ba22b25f13": {
+    "topic": "Gold jumps 60% to Rs 1.57L from Rs 98,000 a year ago; sales fall 15%, coins gain",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_27086d2010": {
+    "topic": "Where is the Village? PT Usha questions Asian Games accommodation model",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_40c67026ef": {
+    "topic": "‘Must act now’: Kashmiri leader urges UNHRC action over situation in PoJK, PoGB",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_9e0c76f220": {
+    "topic": "Pak must take credible action on crossborder terror before world believes it: MEA",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1807076c5e": {
+    "topic": "Kurt Weill’s former NY estate restored for 33 years now asks $1.995m",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_007f459f4c": {
+    "topic": "Anand Mahindra shares hill-station view where road appears to end at a rainbow",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_62a0bd64fc": {
+    "topic": "Indian Railways plans second Vande Bharat Sleeper on Delhi-Varanasi route",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1c6506df4a": {
+    "topic": "Deal or annihilation? Trump speaks about his 'big' Iran dilemma at UNGA",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c56d6771fa": {
+    "topic": "Patrick Mahomes reflects on Chiefs’ win: What did he say after Week 2?",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6d750ef08a": {
+    "topic": "Cristiano Ronaldo and Georgina Rodríguez’s $25m plot: What are they building?",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_36c1716404": {
+    "topic": "Embassy sells Juhu tower to Angel One founder Thakkar for Rs 711 cr",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4e276545a4": {
+    "topic": "Foreign cycling coach booked under POCSO for 'raping' minor athlete; passport seized",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_09e3708b7f": {
+    "topic": "Yash Dayal back in Uttar Pradesh Ranji Trophy camp",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6a4e01b7ff": {
+    "topic": "'Naxalites can't make law': Heated exchange between lawyers during Vande Mataram hearing",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_a6eda20766": {
+    "topic": "Sri Lanka court convicts 15 men over 2019 Easter Sunday bombings",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 2,
+    "highest_trend_score": 78,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_b1595c7b9d": {
+    "topic": "Gurugram collapses in rains while Greater Noida planned for 30-40 years: SC",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_a7bd6fec44": {
+    "topic": "Mahindra Thar OG launched: Prices, variants, features and more",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b4e29788c9": {
+    "topic": "Rajya Sabha polls for 12 seats: BJP likely to retain 8 in UP, SP eyes gain",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b7139bdd34": {
+    "topic": "India-Japan T20I wide row: What laws say about umpire's reversal of decision",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_931d63ec1c": {
+    "topic": "Rani Mukerji's mother's funeral: SRK, Alia, Anil Kapoor arrive to pay last respects",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c15ac9dd1f": {
+    "topic": "'I'm going to tell the truth': Netanyahu hits back at Mamdani ahead of UN speech",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_5964a0a243": {
+    "topic": "Putin, Saudi crown prince discuss safe passage through Hormuz, Bab el-Mandeb",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0232392da9": {
+    "topic": "Who is Roshibina? Wushu star who faced selection row before assuring herself a medal",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3562f990ea": {
+    "topic": "Gunmen kill 2 cops during polio vaccination drive in Pakistan's Balochistan",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0e943b1204": {
+    "topic": "72nd National Awards: Mammootty receives standing ovation, Dhanush honoured",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_199e27c757": {
+    "topic": "Mutual funds clock record Rs 87 lakh crore AUM; SIP flows peak at Rs 32,297 crore",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2810d8c7fe": {
+    "topic": "Murmu urges actors against endorsing harmful health products; ‘True star spreads light, not darkness’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c4b93c2793": {
+    "topic": "Bolarum arms theft accused questioned for six hours on first day of police custody",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2687588c15": {
+    "topic": "BJP questions Congress after court order on Sonia’s electoral roll entry",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6ffaacd17c": {
+    "topic": "IB school leaders from pan-India converge at ‘IB Manthan 2026’ in the city",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ffa5c046d8": {
+    "topic": "CPI(M) march to Srikakulam over Narayanapuram land grabbing issue",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_8a7e92a29a": {
+    "topic": "Family alleges police jeep deliberately rammed bike, demands attempt-to-murder case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_df9028ea50": {
+    "topic": "Muttil case: Supreme Court shifts cheating case to court trying tree-felling case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2f596fdd8f": {
+    "topic": "Congress questions ECI’s silence after attack on leaders’ convoy during Assam bypoll campaign",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1ae6e718ec": {
+    "topic": "File compliance report over loud music during Ganesh idol procession, immersion: HC to police",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_dd4572e10a": {
+    "topic": "Sustained dialogue key for investment, strengthening energy resilience: Puri at OPEC-India dialogue",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_e7df5cfa5d": {
+    "topic": "Torpedo jar fragment, ring wells found in underwater archaeological exploration off the Poompuhar coast in  Mayiladuthurai district",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1f1a3c26d6": {
+    "topic": "‘Reports suggest widespread illegal adoption, trafficking of babies in Telangana’: HC, takes up suo motu PIL plea",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_e83744ac68": {
+    "topic": "Govt to develop Nalgonda as smart city: Minister Komatireddy",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d5dada2efa": {
+    "topic": "‘Robust mechanism in place to address any supply gap in essential medicines’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2d32199d23": {
+    "topic": "Tejashwi seeks Samrat Choudhary’s resignation over Jamui incident",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_107181e165": {
+    "topic": "Skill development centres in schools helping students: Minister",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_af4ad7c079": {
+    "topic": "SC notice to Karnataka on Premium FAR scheme",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d9a1a4fd93": {
+    "topic": "Drug trade to be uprooted from country by end of 2029: Amit Shah",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_5a46a29792": {
+    "topic": "New airports, Telangana Bhavan designs should reflect State’s culture: CM",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ba2eaddeac": {
+    "topic": "Australia Consul General commends Keralam’s anti-drug efforts and Operation Toofan",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b4af7074d4": {
+    "topic": "Packed schedule for Jaishankar at UN as India campaigns for Security Council election",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_089b5f9e4b": {
+    "topic": "Jamui molestation incident: Prime accused arrested after being shot in police encounter",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_41e7a32a3a": {
+    "topic": "Experts call for promotion of premium teas",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c1a94825b1": {
+    "topic": "Government hospital staff pattern in Keralam to be revised: Minister",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_cea5f9caab": {
+    "topic": "Kodakara hawala case transferred to PMLA court for joint trial with ED case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0aa9fe8e05": {
+    "topic": "Centre studying plan for 4 new airports in West Bengal",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0e71c0ef59": {
+    "topic": "Genome Analysis Centre to be established in Amaravati, says Health Minister",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f195d02a63": {
+    "topic": "Priyadarshini makes KSRTC more people-friendly, says Minister",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_87445112b2": {
+    "topic": "Girl gang-raped on her 17th birthday at a Delhi park, by three men posing as police personnel",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_66699ade5a": {
+    "topic": "Priyanka Gandhi reviews progress of Wayanad township, development projects",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_397c709e6b": {
+    "topic": "Karnataka Lokayukta raids eight officials across State over disproportionate assets worth ₹29.6 crore",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_067e904594": {
+    "topic": "Naidu virtually lays foundation stones for development projects worth ₹380 crore in Nellore district",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3abff970d3": {
+    "topic": "Pooja special trains for Keralam announced",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4e636e8a06": {
+    "topic": "Kerala HC allows time for State to object to Thachankary’s appeal against conviction in disproportionate assets case",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_257679434a": {
+    "topic": "Four-day Krishi Mela to be held at UAS-Dharwad from September 25 to 28",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_87788fc4dd": {
+    "topic": "‘Pushpa Yagam’, ‘Akalmasha Homam’ performed as part of nine-day ritual in Tirupati",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_250964a527": {
+    "topic": "Don’t substitute third language with AI, urge Council members",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_00f5d8fb9b": {
+    "topic": "Krishnagiri consumer court directs NHAI, contractor to pay ₹1 lakh to commuter, ₹1 crore in damages",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_31d84b60ec": {
+    "topic": "53 more taluks to be added to drought-affected list in Karnataka, taking total to 177",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_a3dd6b67f6": {
+    "topic": "Karnataka High Court refuses to quash money laundering proceedings against real estate firm Ozone Urbana Infra Developers",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_03a35017b7": {
+    "topic": "Rajan Gurukkal criticises Kerala University’s alleged student code",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6689f40297": {
+    "topic": "Oktoberfest: Lufthansa crew onboard Bengaluru-Munich flight sport traditional costume",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d130da96c9": {
+    "topic": "Andhra Pradesh revives Nandi awards to honour film and TV talent",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d92023d6b2": {
+    "topic": "Uttam holds BRS responsible for Mahabubnagar water crisis",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ec30c5590f": {
+    "topic": "Karnataka issues notification to fill 814 lecturer posts in govt. PU colleges",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_a82b576db9": {
+    "topic": "20 dairy units inspected, two licences suspended over food safety violations in Hyderabad",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d81de1a73b": {
+    "topic": "Declare entire Kalaburagi district drought-hit, KPRS demands",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_63a7229f70": {
+    "topic": "Minister assures financial aid to drought-affected farmers through banks",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_71d3558557": {
+    "topic": "Stay updated on cybercrime, Anitha tells new AP constables",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c731441889": {
+    "topic": "‘India does not suffer from shortage of laws or institutions to fight corruption but from a lack of credibility’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_07b122b214": {
+    "topic": "It’s my dream to make Kuppam fertile, says Naidu as he welcomes Krishna waters with ‘Jalaharathi’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c59ac426df": {
+    "topic": "Three infants killed in fire accident at Telangana’s RIMS Adilabad hospital SNCU ward; 25 children rescued",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_8cf5514374": {
+    "topic": "Plot targeting Manchester's Jewish community disrupted, say police",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_775088678a": {
+    "topic": "New EU industry rules would damage UK, warns Burnham",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ccf5f23fb6": {
+    "topic": "Tim Westwood charged with two more sexual offences",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_61c9934c42": {
+    "topic": "Father admits causing death of his son in hotel fall",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_52e0f72e2c": {
+    "topic": "Earl Spencer apologises to Piers Morgan over factual error in Diana book",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_79face9765": {
+    "topic": "Autopsy shows Hayden Panettiere died from a drug overdose",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2d6f7a7d34": {
+    "topic": "Davey promises tax cuts for millions if UK rejoins EU single market",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_fea8147aa1": {
+    "topic": "'Looksmaxxing' influencer Clavicular charged with rape in Massachusetts",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_bdd18f055c": {
+    "topic": "Mum and three children die in Bootle house fire",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_7c803ac80a": {
+    "topic": "Ella Langley's Choosin' Texas becomes longest-running number one in US chart history",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f39f4a3d53": {
+    "topic": "Developing El Niño becomes strongest on record weeks before expected peak",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1968dfc9b3": {
+    "topic": "Juvenile murder sentence rule doesn't breach human rights, says Supreme Court",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_13e6ed2b62": {
+    "topic": "Call of Duty's Activision to make next Halo game as Xbox cuts more jobs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c0c5c616a0": {
+    "topic": "Pollock left money on table to stay at Saints - Hearn",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0fc2578672": {
+    "topic": "Who will start for England at Euro 2028? BBC Sport's predictions",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6d7657adc6": {
+    "topic": "I was close to joining Liverpool in 2016 - Mbappe",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_62312f10e7": {
+    "topic": "Three out of four Americans say AI firms not doing enough to prevent disaster, Reuters/Ipsos poll finds",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3989dbfa69": {
+    "topic": "Palo Alto Networks unveils AI-powered cybersecurity service using Claude, GPT models",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c6347457e4": {
+    "topic": "Cred alumni’s Sol raises $4 million from GC, Nexus Venture Partners, Kunal Shah",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3c7e549bfc": {
+    "topic": "Persistent Systems buys additional stake to get 83.2% control of Nagarro",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_628e990fed": {
+    "topic": "UN chief calls for AI curbs and end to wars in his last assembly address",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_deaf6947cf": {
+    "topic": "CoRover.ai, Tech Mahindra partner on India-origin AI",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1b27c3107b": {
+    "topic": "HCLTech bags AI-led IT transformation deal from M Group",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_03eeb8c3db": {
+    "topic": "With new Macs, Apple aims to take on Microsoft, Nvidia in a rush to lower AI costs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_94be5eaa51": {
+    "topic": "Snorkel AI valued at $3.5 billion amid surging demand for complex AI training data",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f486c3064b": {
+    "topic": "Anthropic releases Opus 5.5 with lower prices and Fable-level performance",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4f7f16e878": {
+    "topic": "Stolen passwords are exposing America’s water providers to hackers",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_17b96783e2": {
+    "topic": "Noble Carbon will show how it’s making EV charger installs painless at TechCrunch Disrupt",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_dd58f635b1": {
+    "topic": "Five AI safety sessions every founder should have on their TechCrunch Disrupt 2026 agenda",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_798ae35cd7": {
+    "topic": "AstroForge is putting AI in command of its next spacecraft",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4aac5fa0c5": {
+    "topic": "TechCrunch Disrupt 2026: Aaron Edsinger brings Hello Robot’s Stretch 4 to life onstage",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0238aa28b9": {
+    "topic": "Exhibit tables added: One last chance to showcase your startup at TechCrunch Disrupt 2026",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4ed12eb571": {
+    "topic": "TikTok’s US arm joins Lantern, a cross-platform child safety initiative",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_34241ff5aa": {
+    "topic": "4 days to save up to $200: Reason 2 of 5 to be at TechCrunch Disrupt 2026",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 53,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_d6848ed87c": {
+    "topic": "Singapore’s Nexstrom wants to bring 2D semiconductors to chip fabs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_51e9ac3500": {
+    "topic": "Bill Gates’ Breakthrough Energy bets these 21 startups will shape energy’s future",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b0ff6f9bab": {
+    "topic": "Everyone can find a reason to dislike data center construction",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_2835bca929": {
+    "topic": "Rabbit Is Back, This Time With an AI Agent App",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_35bdee1c31": {
+    "topic": "Viture’s Vonder Glasses Are Meant to Map Your Mind",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_500d0b9c30": {
+    "topic": "Adobe Premiere, One of the iPhone’s Best Video-Editing Apps, Is Now on Android",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_7882d65608": {
+    "topic": "AI Models Built From Rat Brains Just Got Closer to Reality",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_d574b7fdad": {
+    "topic": "Andreessen Horowitz is launching an ‘academy’ with no homework and partnerships with Palantir, Google, and Meta",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_68a7e17551": {
+    "topic": "Anthropic launches Claude Opus 5.5 with stricter safeguards for cybersecurity",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_073217e1d2": {
+    "topic": "Rivian’s R2 beat its own climate goals four years early",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_85a15edfc8": {
+    "topic": "Trump says the US is officially renaming AI to ‘super intelligence’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_c8388eaf6a": {
+    "topic": "Xbox is barely Xbox anymore",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_94fe68cb74": {
+    "topic": "Xbox is merging its Forza developers into a single studio",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6b2e708f4c": {
+    "topic": "Microsoft is laying off 268 Xbox staffers and Ninja Theory may close",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b296462b12": {
+    "topic": "Activision is taking over Halo as part of a massive Xbox shake-up",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_3366c3ca45": {
+    "topic": "The Beats 360 are what I’d bring to the gym if I hated earbuds",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6c10e31d28": {
+    "topic": "&#8216;Trump TV&#8217; is just reruns of the president on YouTube",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_bc38c9e799": {
+    "topic": "The most crucial thing you missed in that Sydney Sweeney ad",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_58fda81ff3": {
+    "topic": "Arman Tsarukyan Drops Major UFC Title Fight Update After UFC 331 KO",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_db7ce29ad4": {
+    "topic": "Presidents Cup 2026 Power Rankings: Scottie Scheffler Leads Top 5 Players To Watch",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_7d2966864c": {
+    "topic": "Inside Zach Ertz And Julie Ertz's Marriage, Careers And Net Worth",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_898d4a0d44": {
+    "topic": "Caleb Williams Injury Update: What Latest Diagnosis Means For Bears QB's Next Game",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_59f3032d99": {
+    "topic": "Blueface Fires Back At Adrien Broner In Viral Yacht Stream Exchange",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_97869f9c9a": {
+    "topic": "Wide Reversal Takes Centre Stage In India-Japan T20I. Here's What ICC Rules Say",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ece5ff5e6f": {
+    "topic": "Shreyas Iyer's Stunning Remark After Japan Game: \"Long Travel, Took Three Hours To Reach Stadium\"",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_271bab1083": {
+    "topic": "Jason Holder Keen To Watch World-Class Players In Action In India vs WI ODIs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_407764fa42": {
+    "topic": "Jason Whitlock Takes Aim at Deion Sanders' Two-Way Vision After Travis Hunter's Limited Role",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_84b561f3bc": {
+    "topic": "How Patrick Mahomes Backed $1.2B Startup That Later Reached $10.1B Valuation",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ac8e0b0fbc": {
+    "topic": "Twitch Streamer Lacy Buys A $470,000 Lamborghini Temerario At The Age Of 23",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f4f8f500f0": {
+    "topic": "Could Alec Pierce’s Injury Force Indianapolis Colts To Change Their Plans Around Daniel Jones?",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_51d640b68f": {
+    "topic": "Jaxson Dart Net Worth 2026: Giants QB's Salary, Contract And Career Earnings",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_eff1a15e62": {
+    "topic": "Sachindu Colombage shines on debut as Sri Lanka limit England",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_9d79ec13d8": {
+    "topic": "Alexa Stonehouse agrees permanent switch to Warwickshire",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6fc6aaeaeb": {
+    "topic": "Miller commits to SA despite no national contract",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_76ddf3c48d": {
+    "topic": "Record prize fund for 2028 European Championships",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_8732f4197f": {
+    "topic": "Well-travelled Binks eager to make mark for Scotland",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_14350174d3": {
+    "topic": "Neutral venues and no 'away' fans - how Israel v Republic of Ireland became so contentious",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_49978c6333": {
+    "topic": "India avoid shock defeat by Japan after controversial wide",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_7b39f13fee": {
+    "topic": "Wigan and Leigh face conduct probe, says RFL",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_914e462700": {
+    "topic": "Dream debut - Colombage takes three wickets to stifle England",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_8d2a34b298": {
+    "topic": "Bouzkova beats Kartal as Czech Republic take BJK Cup lead over GB",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_64b9a88de9": {
+    "topic": "Scarlets ready to 'come out fighting' with future at stake",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_826cf6cf98": {
+    "topic": "'That's not how the letter read to me' - FAW chief questions Infantino's reform claims",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b7ba4fc7ab": {
+    "topic": "Wales pick two father-son duos for Wheelchair World Cup squad",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b09a81d043": {
+    "topic": "The Wales captains looking to conquer England",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_bc038b7417": {
+    "topic": "Nations League 'a great opportunity' for NI - Ballard",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ddd9bde4e0": {
+    "topic": "Lionel Richie hospitalised for third time, undergoes heart procedure",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_9f9fe34e69": {
+    "topic": "Hayden Panettiere died of accidental overdose involving fentanyl and other drugs",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_ad8b642b7c": {
+    "topic": "Nani’s 'The Paradise' nears Rs 20 crore in advance bookings",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_562d610cfb": {
+    "topic": "Keerthy Suresh 'Da' remark on her 'Dorothy' co-stars stirs up controversy",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_14701a8989": {
+    "topic": "Yami Gautam reacts to Best Actress National Award win",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 53,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_ec17439463": {
+    "topic": "'Dhanush is a brilliant actor, so half your job is done': Arun Matheswaran",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_61c59e9636": {
+    "topic": "72nd National Film Awards: Sukumar, GV Prakash, Venky Atluri receive honours",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 53,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 2
+      }
+    ]
+  },
+  "cluster_7e4e2c6dab": {
+    "topic": "Rani Mukerji's mother passes away: When she said her daughter got National Award very late",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_aeb1a1a9a2": {
+    "topic": "Pankaj Udhas' wife leases out 3347sq feet property in Pune for Rs 2.89 crore",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_cb75eabf6e": {
+    "topic": "Aditya Dhar teases ‘Dhurandhar’ with ‘hopefully next year’ at 72nd National Film Awards",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0deb76db68": {
+    "topic": "In 1656, Elizabeth Key Grinstead won her freedom suit; now Johnny Depp, her descendant, is a Hollywood star",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_5439bbb4d3": {
+    "topic": "Queer Horror Explored in ECAM Incubator Title ‘The Unmoving Hands’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_bd2536b9ee": {
+    "topic": "El Sol Ermitaño Launches at San Sebastián Festival With WIP Title ‘Lovers Go Home’ (EXCLUSIVE)",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f1fba6a8a7": {
+    "topic": "‘Paper Tiger’ and ‘Musk’ Documentary Among 2026 Santa Fe International Film Festival Lineup (EXCLUSIVE)",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_4666d624f9": {
+    "topic": "BookTok Sensation Quan Millz Signs With Verve (EXCLUSIVE)",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_21c0acb1c9": {
+    "topic": "‘Iron Boy,’ ‘Tangles’ and ‘The Violinist’ Among Animation Is Film’s 2026 Festival Line-Up",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_286b13bd63": {
+    "topic": "‘La Gradiva’ Debuts Trailer: Cannes’ Critics Winner Is a Poignant French Coming-of-Age Tale",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_5ab7e654d6": {
+    "topic": "Tyler Posey to Guest Star in NBC Cop Family Drama ‘Line of Fire’ (EXCLUSIVE)",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_bd2a414557": {
+    "topic": "Vice Greenlights ‘Everybody Hates’ Series About Polarizing Sports Figures Like Jake Paul, Aaron Rodgers (EXCLUSIVE)",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_a2c9f9c2f3": {
+    "topic": "Diane Lane Joins Li Jun Li in Hulu Limited Series ‘Victoria’",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_1d220b5be4": {
+    "topic": "$111 Billion Paramount-Warner Bros. Deal Coughs Up Just $5 Million a Year for Indie Films",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_f9829e963d": {
+    "topic": "George Michael Tribute Set for 2026 MTV Video Music Awards",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_18d6f08850": {
+    "topic": "Assistants vs. Agents Creator Co-Founds New Platform to Help Hollywood (and Its Assistants) Keep Up",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_5e4e871a56": {
+    "topic": "Lily-Rose Depp to Star in Playboy Mansion Movie from Lorraine Nicholson, Searchlight",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_6181fb99fd": {
+    "topic": "Ella Langley’s “Choosin’ Texas” Is the Longest-Running Number One In Hot 100 History",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_45064155a9": {
+    "topic": "BFI London Film Festival Unveils Full Industry Forum Lineup",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_b46f485bcf": {
+    "topic": "Jordan Firstman Reflects on a Wild Cannes Bidding War for ‘Club Kid’: “You Choose the Fate of Your Life in a Day”",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_0b70ed889a": {
+    "topic": "As a ‘Dancing With the Stars’ Pro, Rylee Arnold Is Making Her Mark",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_26b62d092c": {
+    "topic": "Like, Subscribe and Govern: The White House Is Creating Its Own Media Ecosystem",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
+        "mentions": 1
+      }
+    ]
+  },
+  "cluster_fe50b480d0": {
+    "topic": "Jimmy Kimmel Says Matthew McConaughey Hugged Him With His Penis Out in Bathroom",
+    "first_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "last_seen_at": "2026-09-22T17:14:50.298863+00:00",
+    "source_count": 1,
+    "highest_trend_score": 50,
+    "velocity": 0.0,
+    "mention_history": [
+      {
+        "timestamp": "2026-09-22T17:14:50.298863+00:00",
         "mentions": 1
       }
     ]
