@@ -110,18 +110,18 @@
   "2026-W40": {
     "week": "2026-W40",
     "days_count": 2,
-    "total_posts_published": 18,
-    "total_articles_collected": 2731,
-    "total_duplicates_removed": 714,
-    "total_ai_processed": 283,
-    "total_breaking_posts": 0,
+    "total_posts_published": 23,
+    "total_articles_collected": 3104,
+    "total_duplicates_removed": 785,
+    "total_ai_processed": 357,
+    "total_breaking_posts": 1,
     "total_failed_posts": 0,
     "total_retries": 0,
-    "avg_posts_per_day": 9.0,
+    "avg_posts_per_day": 11.5,
     "category_totals": {
-      "NEWS": 16,
-      "TECHNOLOGY": 1,
-      "SPORTS": 0,
+      "NEWS": 19,
+      "TECHNOLOGY": 2,
+      "SPORTS": 1,
       "ENTERTAINMENT": 1
     }
   }
