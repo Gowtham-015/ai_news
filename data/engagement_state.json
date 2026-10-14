@@ -1,12 +1,12 @@
 {
   "enabled": true,
-  "polls_today_count": 1,
-  "engagement_today_count": 2,
+  "polls_today_count": 2,
+  "engagement_today_count": 3,
   "last_engagement_date": "2026-10-14",
-  "last_poll_at": "2026-10-14T06:05:46.084114+05:30",
-  "last_engagement_at": "2026-10-14T10:59:16.960883+05:30",
+  "last_poll_at": "2026-10-14T16:03:37.617670+05:30",
+  "last_engagement_at": "2026-10-14T16:03:37.617670+05:30",
   "polls_rejected_count": 34,
-  "cta_index": 4,
+  "cta_index": 5,
   "max_polls_per_day": 3,
   "max_engagement_per_day": 4
 }
