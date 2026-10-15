@@ -8799,63 +8799,63 @@
   },
   "2026-10-15": {
     "date": "2026-10-15",
-    "articles_collected": 1880,
-    "articles_rejected": 426,
-    "duplicates_removed": 426,
-    "unique_articles": 1454,
-    "stories_clustered": 1426,
-    "stories_ranked": 1426,
-    "ai_processed": 184,
+    "articles_collected": 2259,
+    "articles_rejected": 508,
+    "duplicates_removed": 508,
+    "unique_articles": 1751,
+    "stories_clustered": 1719,
+    "stories_ranked": 1719,
+    "ai_processed": 285,
     "ai_successful": 0,
     "ai_failed": 0,
     "ai_retries": 0,
-    "ai_filtered_before": 1242,
-    "posts_generated": 184,
-    "posts_scheduled": 92,
-    "posts_published": 9,
+    "ai_filtered_before": 1434,
+    "posts_generated": 285,
+    "posts_scheduled": 112,
+    "posts_published": 13,
     "posts_failed": 0,
     "post_retries": 0,
     "permanently_failed": 0,
-    "photo_posts": 5,
-    "text_only_posts": 4,
+    "photo_posts": 6,
+    "text_only_posts": 7,
     "markup_fallbacks": 0,
     "breaking_posts": 0,
-    "high_priority_posts": 8,
-    "normal_priority_posts": 1,
+    "high_priority_posts": 11,
+    "normal_priority_posts": 2,
     "low_priority_posts": 0,
-    "lifecycle_new": 1307,
-    "lifecycle_developing": 112,
-    "lifecycle_trending": 2,
-    "lifecycle_resolved": 5,
+    "lifecycle_new": 1587,
+    "lifecycle_developing": 122,
+    "lifecycle_trending": 4,
+    "lifecycle_resolved": 6,
     "meaningful_followups": 0,
-    "rejected_followups": 117,
+    "rejected_followups": 128,
     "queue_size_end": 120,
     "peak_queue_size": 120,
-    "last_successful_collection": "2026-10-15 16:42:14",
-    "last_successful_publication": "2026-10-15 16:42:17",
+    "last_successful_collection": "2026-10-15 21:09:17",
+    "last_successful_publication": "2026-10-15 21:09:23",
     "durations_seconds": {
-      "collection": 421.61,
-      "deduplication": 7.18,
-      "clustering": 0.48,
-      "ai": 33.449999999999996,
-      "ranking": 0.14,
-      "queue": 0.2,
+      "collection": 517.04,
+      "deduplication": 8.73,
+      "clustering": 0.6,
+      "ai": 53.61,
+      "ranking": 0.17,
+      "queue": 0.36,
       "publishing": 0.0,
-      "total_pipeline": 636.79
+      "total_pipeline": 791.5899999999999
     },
     "category_stats": {
       "NEWS": {
-        "collected": 772,
+        "collected": 930,
         "rejected": 0,
-        "published": 8,
+        "published": 11,
         "failed": 0,
         "breaking": 0,
-        "high": 7,
-        "normal": 1,
+        "high": 9,
+        "normal": 2,
         "low": 0
       },
       "TECHNOLOGY": {
-        "collected": 391,
+        "collected": 456,
         "rejected": 0,
         "published": 1,
         "failed": 0,
@@ -8865,7 +8865,7 @@
         "low": 0
       },
       "SPORTS": {
-        "collected": 517,
+        "collected": 633,
         "rejected": 0,
         "published": 0,
         "failed": 0,
@@ -8875,91 +8875,91 @@
         "low": 0
       },
       "ENTERTAINMENT": {
-        "collected": 200,
+        "collected": 240,
         "rejected": 0,
-        "published": 0,
+        "published": 1,
         "failed": 0,
         "breaking": 0,
-        "high": 0,
+        "high": 1,
         "normal": 0,
         "low": 0
       }
     },
     "source_stats": {
       "NDTV News": {
-        "collected": 100,
-        "accepted": 23,
+        "collected": 120,
+        "accepted": 25,
         "published": 0
       },
       "Times of India": {
-        "collected": 226,
-        "accepted": 38,
+        "collected": 271,
+        "accepted": 48,
         "published": 1
       },
       "The Hindu": {
-        "collected": 300,
-        "accepted": 54,
+        "collected": 360,
+        "accepted": 109,
         "published": 3
       },
       "BBC News": {
-        "collected": 146,
-        "accepted": 15,
+        "collected": 179,
+        "accepted": 24,
         "published": 0
       },
       "Economic Times Tech": {
-        "collected": 133,
+        "collected": 155,
         "accepted": 10,
         "published": 0
       },
       "TechCrunch": {
-        "collected": 100,
-        "accepted": 4,
+        "collected": 120,
+        "accepted": 7,
         "published": 1
       },
       "Wired": {
-        "collected": 108,
+        "collected": 121,
         "accepted": 1,
         "published": 0
       },
       "The Verge": {
-        "collected": 50,
-        "accepted": 1,
+        "collected": 60,
+        "accepted": 2,
         "published": 0
       },
       "TOI Sports": {
-        "collected": 99,
+        "collected": 119,
         "accepted": 4,
         "published": 0
       },
       "NDTV Sports": {
-        "collected": 100,
-        "accepted": 16,
+        "collected": 120,
+        "accepted": 22,
         "published": 0
       },
       "ESPN Cricinfo": {
-        "collected": 89,
-        "accepted": 1,
+        "collected": 104,
+        "accepted": 2,
         "published": 0
       },
       "BBC Sport": {
-        "collected": 229,
-        "accepted": 8,
+        "collected": 290,
+        "accepted": 16,
         "published": 0
       },
       "Times of India Entertainment": {
-        "collected": 100,
+        "collected": 120,
         "accepted": 1,
         "published": 0
       },
       "Variety": {
-        "collected": 50,
-        "accepted": 3,
+        "collected": 60,
+        "accepted": 6,
         "published": 0
       },
       "Hollywood Reporter": {
-        "collected": 50,
-        "accepted": 5,
-        "published": 0
+        "collected": 60,
+        "accepted": 8,
+        "published": 1
       }
     }
   }
