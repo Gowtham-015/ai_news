@@ -164,17 +164,17 @@
   "2026-W43": {
     "week": "2026-W43",
     "days_count": 3,
-    "total_posts_published": 31,
-    "total_articles_collected": 5002,
-    "total_duplicates_removed": 1355,
-    "total_ai_processed": 391,
+    "total_posts_published": 33,
+    "total_articles_collected": 5340,
+    "total_duplicates_removed": 1432,
+    "total_ai_processed": 450,
     "total_breaking_posts": 0,
     "total_failed_posts": 0,
     "total_retries": 0,
-    "avg_posts_per_day": 10.3,
+    "avg_posts_per_day": 11.0,
     "category_totals": {
-      "NEWS": 26,
-      "TECHNOLOGY": 0,
+      "NEWS": 27,
+      "TECHNOLOGY": 1,
       "SPORTS": 5,
       "ENTERTAINMENT": 0
     }
